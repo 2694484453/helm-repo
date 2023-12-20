@@ -1,0 +1,275 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "yun-app.fullname" . }}
+  labels:
+    {{- include "yun-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "yun-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "yun-app.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          #命令行
+          {{- if .Values.command.enabled | default false }}
+          command: {{ .Values.command.args }}
+          {{- end}}
+          #生命周期
+          {{- if .Values.lifecycle.enabled | default false }}
+          lifecycle:
+            {{- if .Values.lifecycle.postStart.enabled | default false }}
+            postStart:
+              {{- with .Values.lifecycle.preStop }}
+              {{- if eq "Exec" .type }}
+              exec:
+                command: {{ .exec }}
+              {{- else if eq "HttpGet" .type }}
+              {{- toYaml .httpGet | nindent 14 }}
+              {{- end }}
+              {{- end }}
+            {{- end}}
+            {{- if .Values.lifecycle.preStop.enabled | default false }}
+            preStop:
+              {{- with .Values.lifecycle.preStop }}
+              {{- if eq "Exec" .type }}
+              exec:
+                command: {{ .exec }}
+              {{- else if eq "HttpGet" .type }}
+              {{- toYaml .httpGet | nindent 14 }}
+              {{- end }}
+              {{- end }}
+            {{- end}}
+          {{- end }}
+          # 亲和与反亲和
+          {{- if .Values.lifecycle.livenessProbe.enabled | default false }}
+          livenessProbe:
+            {{- with .Values.lifecycle.livenessProbe }}
+            initialDelaySeconds: {{ .initialDelaySeconds }}
+            periodSeconds: {{ .periodSeconds }}
+            successThreshold: {{ .successThreshold }}
+            timeoutSeconds: {{ .timeoutSeconds }}
+            failureThreshold: {{ .failureThreshold }}
+            {{- if eq "Exec" .type }}
+            exec:
+              command: {{ .exec }}
+            {{- else if eq "HttpGet" .type }}
+            {{- toYaml .httpGet | nindent 12 }}
+            {{- else if eq "TcpSocket" .type }}
+            {{- toYaml .tcpSocket | nindent 12 }}
+            {{- end }}
+            {{- end }}
+          {{- end}}
+          {{- if .Values.lifecycle.readinessProbe.enabled | default false }}
+          readinessProbe:
+            {{- with .Values.lifecycle.readinessProbe }}
+            initialDelaySeconds: {{ .initialDelaySeconds }}
+            periodSeconds: {{ .periodSeconds }}
+            successThreshold: {{ .successThreshold }}
+            timeoutSeconds: {{ .timeoutSeconds }}
+            failureThreshold: {{ .failureThreshold }}
+            {{- if eq "Exec" .type }}
+            exec:
+              command: {{ .exec }}
+            {{- else if eq "HttpGet" .type }}
+            {{- toYaml .httpGet | nindent 12 }}
+            {{- else if eq "TcpSocket" .type }}
+            {{- toYaml .tcpSocket | nindent 12 }}
+            {{- end }}
+            {{- end }}
+          {{- end }}
+          #容器端口
+          ports:
+            {{- toYaml .Values.containerPorts | nindent 12 }}
+          #资源限制
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          #环境变量
+          env:
+            {{- if .Values.env.enabled | default false }}
+            {{- toYaml .Values.env.config | nindent 12}}
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -javaagent:/var/pinpoint/pinpoint-bootstrap.jar
+                -Dpinpoint.container=true
+                -Dpinpoint.agentId={{ .Release.Name }}
+                -Dpinpoint.applicationName={{ .Release.Name }}
+          {{- end}}
+          volumeMounts:
+            #resource-mounts
+          {{- if .Values.pv.enabled | default false }}
+          {{- range $k, $v := .Values.pv.config }}
+            - name: {{ $v.name}}
+              mountPath: {{ $v.targetPath}}
+              readOnly: {{ $v.readOnly }}
+          {{- end }}
+          {{- end }}
+            #configMap-mounts
+          {{- if .Values.configMap.enabled | default false }}
+            - name: configMap
+              mountPath: {{ template "yun-app.fullname" . }}
+              readOnly: false
+          {{- end}}
+            #pinpoint-mounts
+          {{- if .Values.pinpoint.enabled | default false }}
+            - name: {{ .Release.Name }}-pinpoint-vm
+              mountPath: /var/pinpoint/
+              readOnly: false
+          {{- end }}
+      #volumes
+      volumes:
+        # resources-volume
+        {{- if .Values.pv.enabled | default false }}
+        {{- range $k, $v := .Values.pv.config }}
+        - name: {{ $v.name }}
+          persistentVolumeClaim:
+            claimName: {{ $v.pvName }}-pvc
+        {{- end}}
+        {{- end}}
+        # configMap-volume
+        {{- if .Values.configMap.enabled | default false }}
+        - name: configMap
+          configMap:
+            name: {{ template "yun-app.fullname" . }}
+        {{- end}}
+        # pinpoint-volume
+        {{- if .Values.pinpoint.enabled | default false }}
+        - name: {{ .Release.Name }}-pinpoint-vm
+          persistentVolumeClaim:
+            claimName: {{ template "yun-app.fullname" . }}-agent-pvc
+        {{- end }}
+
+      #节点调度控制
+      {{- if .Values.deployControl.enabled | default false }}
+      nodeSelector:
+        {{- if .Values.deployControl.nodeSelector.enabled | default false}}
+        {{- toYaml .Values.deployControl.nodeSelector.config | nindent 8 }}
+        {{- end}}
+      {{- if .Values.deployControl.tolerations.enabled | default false }}
+      {{- with .Values.deployControl.tolerations }}
+      tolerations:
+      {{- range .config}}
+        - key: {{ .key}}
+          value: {{ .value}}
+          operator: {{ .operator}}
+          effect: {{ .effect}}
+          tolerationSeconds: {{ .tolerationSeconds}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- if or .Values.deployControl.nodeAffinity .Values.deployControl.podAffinity .Values.deployControl.podAntiAffinity}}
+      affinity:
+      {{- end}}
+      {{- if .Values.deployControl.nodeAffinity.enabled | default false }}
+        nodeAffinity:
+      {{- with .Values.deployControl.nodeAffinity}}
+      {{- range .config}}
+      {{- if eq "required" .type }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: {{ .key }}
+                    operator: {{ .operator }}
+                    values:
+                      - {{ .values }}
+      {{- end}}
+      {{- if eq "preferred" .type }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: {{ .weight }}
+              preference:
+                matchExpressions:
+                  - key: {{ .key }}
+                    operator: {{ .operator }}
+                    values:
+                      - {{ .values }}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- if .Values.deployControl.podAffinity.enabled | default false }}
+        podAffinity:
+      {{- with .Values.deployControl.podAffinity}}
+      {{- range .config}}
+      {{- if eq "required" .type}}
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: {{ .topologyKey }}
+              namespaces:
+                - {{ .namespace }}
+              namespaceSelector:
+                matchLabels:
+                {{- range .selector }}
+                  - key: {{ .key}}
+                    operator: {{ .operator}}
+                    values:
+                      - {{ .values}}
+                {{- end}}
+      {{- end}}
+      {{- if eq "preferred" .type}}
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                topologyKey: {{ .topologyKey }}
+                namespaces:
+                  - {{ .namespace }}
+                namespaceSelector:
+                  matchLabels:
+                  {{- range .selector }}
+                    - key: {{ .key}}
+                      operator: {{ .operator}}
+                      values:
+                        - {{ .values}}
+                  {{- end}}
+              weight: {{ .weight}}
+      {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.deployControl.podAntiAffinity.enabled | default false }}
+        podAntiAffinity:
+            {{- with .Values.deployControl.podAntiAffinity}}
+            {{- range .config}}
+            {{- if eq "required" .type}}
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: {{ .topologyKey }}
+              namespaces:
+                - {{ .namespace }}
+              namespaceSelector:
+                matchLabels:
+                      {{- range .selector }}
+                  - key: {{ .key}}
+                    operator: {{ .operator}}
+                    values:
+                      - {{ .values}}
+                      {{- end}}
+            {{- end}}
+            {{- if eq "preferred" .type}}
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                topologyKey: {{ .topologyKey }}
+                namespaces:
+                  - {{ .namespace }}
+                namespaceSelector:
+                  matchLabels:
+                        {{- range .selector }}
+                    - key: {{ .key}}
+                      operator: {{ .operator}}
+                      values:
+                        - {{ .values}}
+                        {{- end}}
+              weight: {{ .weight}}
+            {{- end }}
+            {{- end }}
+            {{- end }}
+            {{- end }}
+      {{- end }}
+      {{- end }}

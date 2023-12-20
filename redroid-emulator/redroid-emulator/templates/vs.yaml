@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "redroid-emulator.fullname" . }}
+spec:
+  hosts:
+    - {{ .Release.Name }}.{{ .Values.vs.domain}}
+  gateways:
+    - istio-system/biyi-gateway
+  http:
+    - route:
+        - destination:
+            host: {{ include "redroid-emulator.fullname" . }}
+            port:
+              number: {{ .Values.service.port }}

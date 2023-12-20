@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: spring-boot-demo-monitor
+  namespace: prometheus
+  labels:
+    app: spring-app
+    release: spring
+spec:
+  endpoints:
+    - interval: 30s
+      path: /actuator/prometheus
+      port: http-container
+      relabelings:
+        - action: replace
+          regex: (.*)
+          sourceLabels:
+            - __meta_kubernetes_service_label_release
+          targetLabel: service
+  selector:
+    matchLabels:
+      app: spring-app
+      release: spring
+  namespaceSelector:
+    any: true

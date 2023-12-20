@@ -1,0 +1,246 @@
+#副本数
+replicaCount: 1
+#镜像
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "latest"
+serviceAccount:
+  create: false
+  annotations: { }
+  name: ""
+ingress:
+  enabled: false
+  className: ""
+  annotations: { }
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: [ ]
+# 负载均衡
+loadBalancer:
+  enabled: false
+  type: ROUND_ROBIN
+# 流控
+currentLimiting:
+  enabled: false
+  maxConnections: 100
+  conetTimeout: 30ms
+  tcpKeepalive:
+    time: 7200s
+    interval: 75s
+  httpHttp1MaxPendingRequests: 1000
+  httpMaxRequestsPerConnection: 10
+# 熔断
+circuitBreaker:
+  enabled: false
+  consecutiveErrors: 1
+  interval: 1s
+  baseEjectionTime: 1m
+  maxEjectionPercent: 100
+# 黑白名单
+blackWhiteList:
+  enabled: false
+  type: ALLOW
+  list: [ ]
+#资源限制
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+    storage: 2Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    storage: 1Gi
+# 扩缩
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+#调度
+deployControl:
+  enabled: false
+  nodeAffinity:
+    enabled: false
+    config:
+      - type: "required"
+        key: ""
+        operator: In
+        values: ""
+        weight:
+  podAffinity:
+    enabled: false
+    config:
+      - type: ""
+        namespace: ""
+        topologyKey: ""
+        selector:
+          - key: ""
+            operator: In
+            values: ""
+        weight:
+  podAntiAffinity:
+    enabled: false
+    config:
+      - type: ""
+        namespace: ""
+        topologyKey: ""
+        selector:
+          - key: ""
+            operator: In
+            values: ""
+        weight:
+  tolerations:
+    enabled: false
+    config:
+      - key: "example-key"
+        value: ""
+        operator: "Exists"
+        effect: "NoSchedule"
+        tolerationSeconds: 8
+  nodeSelector:
+    enabled: false
+    config:
+      nodeName: ""
+      disktype: ssd
+#命令
+command:
+  enabled: false
+  args: '[ "/bin/bash","-c","echo 123" ]'
+#环境变量
+env:
+  enabled: false
+  config:
+    - name: "name"
+      value: "zhangsan"
+    - name: "age"
+      value: "18"
+#端口
+containerPorts:
+  - name: http
+    containerPort: 80
+    protocol: TCP
+#configMap
+configMap:
+  enabled: false
+  config:
+    - name: application
+      key: application.yaml
+      value: "spring:\n  profiles:\n    active: dev\n"
+      targetPath: ""
+    - name: application-dev
+      key: application-dev.yaml
+      value: ""
+      targetPath: ""
+    - name: application-pro
+      key: application-pro.yaml
+      configMapName: app
+      value: ""
+      targetPath: ""
+    - name: application-test
+      key: application-test.yaml
+      value: ""
+      targetPath: ""
+# pv
+pv:
+  enabled: false
+  config:
+    - name: vm1   #存储键名
+      pvName: demo-hostPath #存储名
+      type: "hostPath"  #存储类型
+      accessModes: ReadWriteOnce #读写模式
+      storageClass: standard #存储类
+      sourcePath: /demo1/host #源目录
+      targetPath: /demo1/test #目标目录
+      readOnly: false    #是否只读
+      requests: 1Gi    #保留容量
+      limits: 2Gi     #最大容量
+#生命周期
+lifecycle:
+  enabled: false
+  postStart:
+    enabled: false
+    type: "Exec"
+    exec: '[ "/bin/bash","-c","echo 123" ]'
+    httpGet:
+      host:
+      path:
+      port:
+      scheme:
+      httpHeaders:
+        - name:
+          value:
+  preStop:
+    enabled: false
+    type: "Exec"
+    exec: '[ "/bin/bash","-c","echo 123" ]'
+    httpGet:
+      host:
+      path:
+      port:
+      scheme:
+      httpHeaders:
+        - name:
+          value:
+  livenessProbe:
+    enabled: false
+    type: "Exec"
+    initialDelaySeconds:
+    periodSeconds:
+    successThreshold:
+    timeoutSeconds:
+    failureThreshold:
+    exec: '[ "/bin/bash","-c","echo 123" ]'
+    tcpSocket:
+      host:
+      port:
+    httpGet:
+      path: /
+      port: http
+      host:
+      scheme:
+      httpHeaders:
+        - name:
+          value:
+  readinessProbe:
+    enabled: false
+    type: "Exec"
+    initialDelaySeconds:
+    periodSeconds:
+    successThreshold:
+    timeoutSeconds:
+    failureThreshold:
+    exec: '[ "/bin/bash","-c","echo 123" ]'
+    tcpSocket:
+      host:
+      port:
+    httpGet:
+      path: /
+      port: http
+      host:
+      scheme:
+      httpHeaders:
+        - name:
+          value:
+# istio
+istio:
+  enabled: false
+  domain: ctbiyi.com
+  timeout:
+    enabled: false
+    time: 15s
+  cookieMatch:
+    enabled: false
+    outsideHost: code-app-svc
+    outsideContainerPort: 9000
+    cookieRegex: ^(.*?; ?)?(version=code-server)(;.*)?$
+# pinpoint-agent
+pinpoint:
+  enabled: false
+
+

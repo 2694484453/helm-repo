@@ -1,0 +1,33 @@
+{{- if .Values.istio.enabled | default false }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ template "yun-app.fullname" . }}
+  labels:
+    {{- include "yun-app.labels" . | nindent 4 }}
+spec:
+  gateways:
+    - biyi-gateway.istio-system
+  hosts:
+    - {{ .Release.Name }}.{{ .Values.istio.domain }}
+  http:
+  {{- if .Values.istio.cookieMatch.enabled }}
+    - match:
+        - headers:
+            cookie:
+              regex: {{ .Values.istio.cookieMatch.cookieRegex }}
+      route:
+        - destination:
+            host: {{ .Values.istio.cookieMatch.outsideHost }}
+            port:
+              number: {{ .Values.istio.cookieMatch.outsideContainerPort }}
+  {{- end }}
+    - route:
+        - destination:
+            host: {{ .Release.Name }}-service
+    {{- if .Values.istio.timeout.enabled }}
+      #超时
+      timeout: {{ .Values.istio.timeout.time }}
+    {{- end -}}
+
+{{- end }}

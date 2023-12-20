@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ms-monitor-api
+    app.kubernetes.io/instance: ms-monitor-api
+    service: ms-monitor-api
+  name: ms-monitor-api
+  namespace: biyi
+spec:
+  clusterIP: 10.68.138.24
+  clusterIPs:
+    - 10.68.138.24
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: ms-monitor-api
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,0 +1,13 @@
+{{- if .Values.configMap.enabled | default false }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "yun-app.fullname" . }}
+  labels:
+    {{- include "yun-app.labels" . | nindent 4 }}
+data:
+  # 配置文件
+  {{- range $k,$v := .Values.configMap.config}}
+  {{ $v.key }}: "{{ $v.value }}"
+  {{- end}}
+{{- end }}

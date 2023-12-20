@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "redroid-emulator.fullname" . }}
+  labels:
+    {{- include "redroid-emulator.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: adb
+  selector:
+    {{- include "redroid-emulator.selectorLabels" . | nindent 4 }}

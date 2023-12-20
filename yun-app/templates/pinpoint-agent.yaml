@@ -1,0 +1,41 @@
+# 挂载pinpoint-agent.jar以及pinpoint.config
+{{- if .Values.pinpoint.enabled | default false }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ template "yun-app.fullname" . }}-agent-pv
+  labels:
+      {{- include "yun-app.labels" . | nindent 4 }}
+    pv: {{ template "yun-app.fullname" . }}-agent-pv
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/pinpoint/pinpoint-agent-2.2.1
+    type: Directory
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "yun-app.fullname" . }}-agent-pvc
+  labels:
+      {{- include "yun-app.labels" . | nindent 4 }}
+    pvc: {{ template "yun-app.fullname" . }}-agent-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      pv: {{ template "yun-app.fullname" . }}-agent-pv
+{{- end }}

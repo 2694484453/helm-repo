@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readiness-get
+  namespace: demo
+  labels:
+    app: readiness-get
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readiness-get
+  template:
+    metadata:
+      name: readiness-get
+      labels:
+        app: readiness-get
+    spec:
+      containers:
+        - name: demo-app
+          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/spring-boot-demo:0.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http-java8090
+              containerPort: 8090
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8090
+              scheme: HTTP
+          livenessProbe:
+            httpGet:
+              port: 8090
+              path: /
+              scheme: HTTP
+      restartPolicy: Always
+
+

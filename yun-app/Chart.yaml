@@ -1,0 +1,15 @@
+annotations:
+  category: Kubernetes-Application
+apiVersion: v2
+appVersion: 1.0.0
+description: This is A Helm chart for Kubernetes!
+home: https://ctbiyi.com
+icon: https://dev-1306623386.cos.ap-shanghai.myqcloud.com/icon/helm.jpg
+keywords:
+  - java
+maintainers:
+  - email: kfpt@chinatelecom.cn
+    name: kfpt-admin
+name: yun-app
+type: application
+version: 0.0.1

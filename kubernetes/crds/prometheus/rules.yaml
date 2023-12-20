@@ -1,0 +1,54 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: wbtest2.gpg-test
+  namespace: default
+spec:
+  groups:
+    - name: wbtest2.gpg-test.rules
+      rules:
+        - alert: 系统CPU使用率
+          annotations:
+            comparison: GREATER_THAN
+            current_value: '''{{ .Value }}'''
+            duration: 1m
+            group_rule_id: "13"
+            message: 系统CPU使用率
+            rule_id: "131"
+            rule_inst_id: "1304"
+            severity: warning
+            threshold_value: "0.001"
+          expr: (system_cpu_usage{namespace="kfpttest", service="kfpttest-oeuy3z-kfpttest-java-api"})
+            > 0.001
+          for: 1m
+          labels:
+            expression: (system_cpu_usage{namespace="kfpttest", service="kfpttest-oeuy3z-kfpttest-java-api"})
+              > 0.001
+            ms_id: "892788770146263040"
+            namespace: kfpttest
+            release_type: biyi-java
+            service_name: kfpttest-oeuy3z-kfpttest-java-api
+        - alert: 当前进程CPU使用率
+          annotations:
+            comparison: GREATER_THAN
+            current_value: '''{{ .Value }}'''
+            duration: 1m
+            group_rule_id: "13"
+            message: 当前进程CPU使用率
+            rule_id: "132"
+            rule_inst_id: "1305"
+            severity: warning
+            threshold_value: "0.001"
+          expr: "(process_cpu_usage{namespace=\"kfpttest\", service=\"kfpttest-oeuy3z-kfpttest-java-api\"}\t*\t100)
+        > 0.001"
+          for: 1m
+          labels:
+            expression: "(process_cpu_usage{namespace=\"kfpttest\", service=\"kfpttest-oeuy3z-kfpttest-java-api\"}\t*\t100)
+          > 0.001"
+            ms_id: "892788770146263040"
+            namespace: kfpttest
+            release_type: biyi-java
+            service_name: kfpttest-oeuy3z-kfpttest-java-api

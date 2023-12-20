@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+  labels:
+    app: test
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /home/test
+          name: test
+          readOnly: false
+  volumes:
+    - name: test
+      configMap:
+        name: app
+  restartPolicy: Always
+

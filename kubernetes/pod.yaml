@@ -1,0 +1,363 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/default-container: ms-monitor-api
+    kubectl.kubernetes.io/default-logs-container: ms-monitor-api
+    prometheus.io/path: /stats/prometheus
+    prometheus.io/port: '15020'
+    prometheus.io/scrape: 'true'
+    sidecar.istio.io/inject: 'true'
+    sidecar.istio.io/status: >-
+      {"initContainers":["istio-init"],"containers":["istio-proxy"],"volumes":["istio-envoy","istio-data","istio-podinfo","istio-token","istiod-ca-cert"],"imagePullSecrets":null}
+  generateName: ms-monitor-api-product-f5b7b84-
+  labels:
+    app: ms-monitor-api
+    istio.io/rev: default
+    pod-template-hash: f5b7b84
+    security.istio.io/tlsMode: istio
+    service.istio.io/canonical-name: ms-monitor-api
+    service.istio.io/canonical-revision: product
+    version: product
+  name: ms-monitor-api-product-f5b7b84-5dkt7
+  namespace: biyi
+  ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: ms-monitor-api-product-f5b7b84
+      uid: 537dd63b-d6bc-415a-89b9-3fce4e4db5be
+spec:
+  containers:
+    - env:
+        - name: KUBERNETES_TRUST_CERTIFICATES
+          value: 'true'
+        - name: JAVA_OPTS
+          valueFrom:
+            configMapKeyRef:
+              key: jvm.options
+              name: ms-monitor-api-configmap-product
+        - name: SPRING.DATASOURCE.PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: spring.datasource.password.biyi2020
+              name: biyi-secret
+        - name: SPRING.REDIS.PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: spring.redis.password
+              name: biyi-secret
+        - name: ELASTICSEARCH.PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: elasticsearch.password
+              name: biyi-secret
+        - name: KUBERNETES.CLUSTER.CERTIFICATE-AUTHORITY-DATA
+          valueFrom:
+            secretKeyRef:
+              key: kubernetes.cluster.certificate-authority-data
+              name: biyi-secret
+        - name: KUBERNETES.USER.CLIENT-CERTIFICATE-DATA
+          valueFrom:
+            secretKeyRef:
+              key: kubernetes.user.client-certificate-data
+              name: biyi-secret
+        - name: KUBERNETES.USER.CLIENT-KEY-DATA
+          valueFrom:
+            secretKeyRef:
+              key: kubernetes.user.client-key-data
+              name: biyi-secret
+        - name: CTSI.SECURITY.AUTHENTICATION.JWT.PUBLIC-KEY
+          valueFrom:
+            secretKeyRef:
+              key: ctsi.security.authentication.jwt.public-key
+              name: biyi-secret
+        - name: JAVA_TOOL_OPTIONS
+          value: >-
+            -javaagent:/var/pinpoint/pinpoint-bootstrap.jar
+            -Dpinpoint.container=true -Dpinpoint.agentId=biyi-ms-monitor-api-1
+            -Dpinpoint.applicationName=biyi-ms-monitor-api
+      image: 'zdf-kfpt/ms/ms-monitor-backend:YDYY-20230112-kfpt-v20230330-v1'
+      imagePullPolicy: Always
+      name: ms-monitor-api
+      ports:
+        - containerPort: 9000
+          protocol: TCP
+      resources:
+        limits:
+          cpu: '4'
+          memory: 4Gi
+        requests:
+          cpu: 500m
+          memory: 1Gi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /var/pinpoint/
+          name: pinpoint-volume
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-pd5wh
+          readOnly: true
+    - args:
+        - proxy
+        - sidecar
+        - '--domain'
+        - $(POD_NAMESPACE).svc.k8s.local
+        - '--serviceCluster'
+        - ms-monitor-api.$(POD_NAMESPACE)
+        - '--proxyLogLevel=warning'
+        - '--proxyComponentLogLevel=misc:error'
+        - '--log_output_level=default:info'
+        - '--concurrency'
+        - '2'
+      env:
+        - name: JWT_POLICY
+          value: third-party-jwt
+        - name: PILOT_CERT_PROVIDER
+          value: istiod
+        - name: CA_ADDR
+          value: 'istiod.istio-system.svc:15012'
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: SERVICE_ACCOUNT
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.serviceAccountName
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: CANONICAL_SERVICE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: 'metadata.labels[''service.istio.io/canonical-name'']'
+        - name: CANONICAL_REVISION
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: 'metadata.labels[''service.istio.io/canonical-revision'']'
+        - name: PROXY_CONFIG
+          value: |
+            {}
+        - name: ISTIO_META_POD_PORTS
+          value: |-
+            [
+                {"containerPort":9000,"protocol":"TCP"}
+            ]
+        - name: ISTIO_META_APP_CONTAINERS
+          value: ms-monitor-api
+        - name: ISTIO_META_CLUSTER_ID
+          value: Kubernetes
+        - name: ISTIO_META_INTERCEPTION_MODE
+          value: REDIRECT
+        - name: ISTIO_METAJSON_ANNOTATIONS
+          value: |
+            {"sidecar.istio.io/inject":"true"}
+        - name: ISTIO_META_WORKLOAD_NAME
+          value: ms-monitor-api-product
+        - name: ISTIO_META_OWNER
+          value: >-
+            kubernetes://apis/apps/v1/namespaces/biyi/deployments/ms-monitor-api-product
+        - name: ISTIO_META_MESH_ID
+          value: k8s.local
+        - name: TRUST_DOMAIN
+          value: k8s.local
+      image: 'istio/proxyv2:1.10.2'
+      imagePullPolicy: IfNotPresent
+      name: istio-proxy
+      ports:
+        - containerPort: 15090
+          name: http-envoy-prom
+          protocol: TCP
+      readinessProbe:
+        failureThreshold: 30
+        httpGet:
+          path: /healthz/ready
+          port: 15021
+          scheme: HTTP
+        initialDelaySeconds: 1
+        periodSeconds: 2
+        successThreshold: 1
+        timeoutSeconds: 3
+      resources:
+        limits:
+          cpu: '2'
+          memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1337
+        runAsNonRoot: true
+        runAsUser: 1337
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /var/run/secrets/istio
+          name: istiod-ca-cert
+        - mountPath: /var/lib/istio/data
+          name: istio-data
+        - mountPath: /etc/istio/proxy
+          name: istio-envoy
+        - mountPath: /var/run/secrets/tokens
+          name: istio-token
+        - mountPath: /etc/istio/pod
+          name: istio-podinfo
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-pd5wh
+          readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  imagePullSecrets:
+    - name: docker-local
+  initContainers:
+    - args:
+        - istio-iptables
+        - '-p'
+        - '15001'
+        - '-z'
+        - '15006'
+        - '-u'
+        - '1337'
+        - '-m'
+        - REDIRECT
+        - '-i'
+        - '*'
+        - '-x'
+        - ''
+        - '-b'
+        - '*'
+        - '-d'
+        - '15090,15021,15020'
+      image: 'istio/proxyv2:1.10.2'
+      imagePullPolicy: IfNotPresent
+      name: istio-init
+      resources:
+        limits:
+          cpu: '2'
+          memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          add:
+            - NET_ADMIN
+            - NET_RAW
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: false
+        runAsGroup: 0
+        runAsNonRoot: false
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-pd5wh
+          readOnly: true
+  nodeName: 192.168.184.32
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  volumes:
+    - emptyDir:
+        medium: Memory
+      name: istio-envoy
+    - emptyDir: {}
+      name: istio-data
+    - downwardAPI:
+        defaultMode: 420
+        items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels
+            path: labels
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.annotations
+            path: annotations
+          - path: cpu-limit
+            resourceFieldRef:
+              containerName: istio-proxy
+              divisor: 1m
+              resource: limits.cpu
+          - path: cpu-request
+            resourceFieldRef:
+              containerName: istio-proxy
+              divisor: 1m
+              resource: requests.cpu
+      name: istio-podinfo
+    - name: istio-token
+      projected:
+        defaultMode: 420
+        sources:
+          - serviceAccountToken:
+              audience: istio-ca
+              expirationSeconds: 43200
+              path: istio-token
+    - configMap:
+        defaultMode: 420
+        name: istio-ca-root-cert
+      name: istiod-ca-cert
+    - hostPath:
+        path: /data/pinpoint/pinpoint-agent-2.2.1
+        type: Directory
+      name: pinpoint-volume
+    - name: kube-api-access-pd5wh
+      projected:
+        defaultMode: 420
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              items:
+                - key: ca.crt
+                  path: ca.crt
+              name: kube-root-ca.crt
+          - downwardAPI:
+              items:
+                - fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+                  path: namespace

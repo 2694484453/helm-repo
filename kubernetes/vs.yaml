@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+    app.kubernetes.io/instance: ms-monitor-api
+  name: ms-monitor-api
+  namespace: biyi
+spec:
+  gateways:
+    - istio-system/biyi-gateway
+    - mesh
+  hosts:
+    - ms-monitor-api.ctbiyi.com
+  http:
+    - match:
+        - headers:
+            cookie:
+              regex: ^(.*?; ?)?(version=pre)(;.*)?$
+      route:
+        - destination:
+            host: ms-monitor-api
+            subset: pre
+    - match:
+        - sourceLabels:
+            version: pre
+      route:
+        - destination:
+            host: ms-monitor-api
+            subset: pre
+    - route:
+        - destination:
+            host: ms-monitor-api
+            subset: product

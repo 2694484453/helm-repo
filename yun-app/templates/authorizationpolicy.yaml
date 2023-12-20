@@ -1,0 +1,20 @@
+{{- if .Values.blackWhiteList.enabled }}
+apiVersion: "security.istio.io/v1beta1"
+kind: AuthorizationPolicy
+metadata:
+  name: {{ template "yun-app.fullname" . }}
+  labels:
+    {{- include "yun-app.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "yun-app.fullname" . }}
+  action: {{ .Values.blackWhiteList.type }}
+  rules:
+  - from:
+    - source:
+        namespaces:
+        {{- range .Values.blackWhiteList.list }}
+        - {{ . }}
+        {{- end -}}
+{{- end -}}

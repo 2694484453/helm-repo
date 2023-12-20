@@ -1,0 +1,37 @@
+{{- if or .Values.circuitBreaker.enabled .Values.currentLimiting.enabled .Values.loadBalancer.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ include "yun-app.fullname" . }}
+  labels:
+    {{- include "yun-app.labels" . | nindent 4 }}
+spec:
+  host: {{ .Release.Name }}-service
+  trafficPolicy:
+    {{- if .Values.currentLimiting.enabled }}
+    connectionPool:
+      #限流
+      tcp:
+        maxConnections: {{ .Values.currentLimiting.maxConnections }}
+        connectTimeout: {{ .Values.currentLimiting.conetTimeout }}
+        tcpKeepalive:
+          time: {{ .Values.currentLimiting.tcpKeepalive.time }}
+          interval: {{ .Values.currentLimiting.tcpKeepalive.interval }}
+      http:
+        http1MaxPendingRequests: {{ .Values.currentLimiting.httpHttp1MaxPendingRequests }}
+        maxRequestsPerConnection: {{ .Values.currentLimiting.httpMaxRequestsPerConnection }}
+      {{- end -}}
+    {{- if .Values.circuitBreaker.enabled }}
+    #熔断
+    outlierDetection:
+      consecutiveErrors: {{ .Values.circuitBreaker.consecutiveErrors }}
+      interval: {{ .Values.circuitBreaker.interval }}
+      baseEjectionTime: {{ .Values.circuitBreaker.baseEjectionTime }}
+      maxEjectionPercent: {{ .Values.circuitBreaker.maxEjectionPercent }}
+    {{- end -}}
+    {{- if .Values.loadBalancer.enabled }}
+    #负载均衡
+    loadBalancer:
+      simple: {{ .Values.loadBalancer.type }}
+    {{- end -}}
+{{- end -}}

@@ -1,0 +1,74 @@
+{{- if .Values.pv.enabled | default false }}
+{{- range $k, $v := .Values.pv.config }}
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ $v.pvName }}-pv
+  labels:
+    pv: {{ $v.pvName }}-pv
+    app:kubernetes:io/name: {{$v.pvName}}-pv
+spec:
+  capacity:
+    storage: {{ $v.limits}}
+  volumeMode: Filesystem
+  accessModes:
+    - {{ $v.accessModes}}
+  storageClassName: {{ $v.storageClass}}
+  {{- if eq $v.type "cephfs" }}
+  cephfs:
+    monitors:
+      - biyi-ceph-0001:6789
+      - biyi-ceph-0002:6789
+      - biyi-ceph-0003:6789
+    user: admin
+    path: {{ $v.sourcePath }}
+    secretRef:
+      name: ceph-admin-secret
+    readOnly: {{ $v.readOnly}}
+  {{- end }}
+  {{- if eq $v.type "hostPath"}}
+  hostPath:
+    path: {{ $v.sourcePath}}
+    type: DirectoryOrCreate
+  {{- end}}
+  {{- if eq $v.type "nfs"}}
+  nfs:
+    server: nfs.ctbiyi.com
+    path: {{ $v.sourcePath}}
+    readOnly: {{ $v.readOnly}}
+  {{- end}}
+  {{- if eq $v.type "rbd"}}
+  rbd:
+    monitors:
+      - biyi-ceph-0001:6789
+      - biyi-ceph-0002:6789
+      - biyi-ceph-0003:6789
+    user: admin
+    secretRef:
+      name: ceph-admin-secret
+    readOnly: {{ $v.readOnly}}
+  {{- end}}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $v.pvName }}-pvc
+  labels:
+    pvc: {{$v.pvName}}-pvc
+    app:kubernetes:io/name: {{$v.pvName}}-pvc
+spec:
+  accessModes:
+    - {{ $v.accessModes}}
+  storageClassName: {{ $v.storageClass}}
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ $v.requests }}
+    limits:
+      storage: {{ $v.limits }}
+  selector:
+    matchLabels:
+      pv: {{ $v.pvName }}-pv
+---
+{{- end }}
+{{- end }}

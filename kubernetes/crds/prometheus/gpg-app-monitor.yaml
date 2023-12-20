@@ -1,0 +1,40 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    meta.helm.sh/release-name: gpg1020-1714847218279186433-app
+    meta.helm.sh/release-namespace: wbtest2
+  labels:
+    app: gpg1020-1714847218279186433-app
+    app.kubernetes.io/instance: gpg1020-1714847218279186433-app
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: gpg1020-1714847218279186433-app
+    app.kubernetes.io/version: 1.0.0
+    helm.sh/chart: app-0.1.0
+    namespace: prometheus
+    release: gpg1020-1714847218279186433-app
+    serviceMonitor: gpg1020-1714847218279186433-app
+  name: gpg1020-1714847218279186433-app
+  namespace: prometheus
+spec:
+  endpoints:
+    - interval: 30s
+      path: /actuator/prometheus
+      port: tcp-http90
+      relabelings:
+        - action: replace
+          regex: (.*)
+          sourceLabels:
+            - __meta_kubernetes_service_label_release
+          targetLabel: service
+      scheme: http
+  namespaceSelector:
+    matchNames:
+      - default
+  selector:
+    matchLabels:
+      app: gpg1020-1714847218279186433-app
+      app.kubernetes.io/instance: gpg1020-1714847218279186433-app
+      app.kubernetes.io/name: gpg1020-1714847218279186433-app
+      namespace: wbtest2
+      release: gpg1020-1714847218279186433-app

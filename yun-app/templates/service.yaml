@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "yun-app.fullname" . }}
+  labels:
+    {{- include "yun-app.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    {{- range $k,$v := .Values.containerPorts }}
+    - port: {{ $v.containerPort }}
+      targetPort: {{ $v.containerPort }}
+      protocol: {{ $v.protocol }}
+      name: {{ $v.name }}
+    {{- end }}
+  selector:
+    app.kubernetes.io/name: {{ .Chart.Name  }}-{{ .Chart.Version}}
+    app.kubernetes.io/instance: {{ include "yun-app.fullname" . }}
