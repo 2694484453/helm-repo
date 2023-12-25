@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "spring-boot-demo.fullname" . }}
+  labels:
+    {{- include "spring-boot-demo.labels" . | nindent 4 }}
+    ServiceMonitor: {{.Release.Name}}
+spec:
+  endpoints:
+    - interval: 30s
+      path: /actuator/prometheus
+      port: http8090
+      scheme: http
+      relabelings:
+        - action: replace
+          regex: (.*)
+          sourceLabels:
+            - __meta_kubernetes_service_label_release
+          targetLabel: service
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      {{- include "spring-boot-demo.selectorLabels" . | nindent 6 }}

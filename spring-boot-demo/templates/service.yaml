@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.Release.Name}}
-  namespace: default
+  name: {{ include "spring-boot-demo.fullname" . }}
   labels:
-    micrometer-prometheus-discovery: 'true'
+    {{- include "spring-boot-demo.labels" . | nindent 4 }}
 spec:
-  selector:
-    app: {{.Release.Name}}
+  type: {{ .Values.service.type }}
   ports:
-    - protocol: TCP
-      port: 8088
-      targetPort: 8088
-      name: metrics
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http8090
+  selector:
+    {{- include "spring-boot-demo.selectorLabels" . | nindent 4 }}

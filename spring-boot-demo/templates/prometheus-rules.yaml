@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ template "spring-boot-demo.fullname" . }}
+  labels:
+    {{- include "spring-boot-demo.labels" . | nindent 4 }}
+    {{- include "prometheus.labels" . | nindent 4 }}
+spec:
+  groups:
+    - name: {{ template "spring-boot-demo.fullname" . }}.rule
+      rules:
+        {{- range $k,$v := .Values.prometheus.rules }}
+        - alert: {{ $v.alert }}
+          expr: {{ $v.expr | replace "{{.Release.Namespace}}" $.Release.Namespace | quote |replace "{{.Release.Name}}" $.Release.Name }}
+          for: {{ $v.for }}
+          labels:
+            expression: {{ $v.expr | replace "{{.Release.Namespace}}" $.Release.Namespace | quote |replace "{{.Release.Name}}" $.Release.Name }}
+            namespace: {{ $.Release.Namespace }}
+            release: {{ $.Release.Name }}
+          annotations:
+            duration: {{ $v.for }}
+            severity: {{ $v.severity }}
+            name: {{ $v.alert }}
+            message: {{ $v.message }}
+        {{- end }}

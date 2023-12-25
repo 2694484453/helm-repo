@@ -1,0 +1,40 @@
+{{ if .Values.pinpoint.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ template "spring-boot-demo.fullname" . }}-agent-pv
+  labels:
+      {{- include "spring-boot-demo.labels" . | nindent 4 }}
+    pv: {{ template "spring-boot-demo.fullname" . }}-agent-pv
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/pinpoint/pinpoint-agent-2.2.1
+    type: Directory
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "spring-boot-demo.fullname" . }}-agent-pvc
+  labels:
+      {{- include "spring-boot-demo.labels" . | nindent 4 }}
+    pvc: {{ template "spring-boot-demo.fullname" . }}-agent-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      pv: {{ template "spring-boot-demo.fullname" . }}-agent-pv
+{{- end}}
