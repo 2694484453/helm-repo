@@ -3,7 +3,7 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T14:55:19.1154888+08:00"
+    created: "2023-12-25T14:58:44.5506438+08:00"
     description: A Helm chart for Kubernetes
     digest: 55c7041aa83faa8af4b4b1709a07497c87fd4194764789705a178a15913145fe
     name: code-server
@@ -14,7 +14,7 @@ entries:
   goland:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T14:55:19.1154888+08:00"
+    created: "2023-12-25T14:58:44.5609597+08:00"
     description: A Helm chart for Kubernetes
     digest: 8bef1285a9041a42ba02e986097941b9ea0e9da705c184c0de8eae1d049e3001
     name: goland
@@ -32,7 +32,7 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 10.1.5
-    created: "2023-12-25T14:55:19.1149792+08:00"
+    created: "2023-12-25T14:58:44.5501373+08:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 30dbe3212dbe4b183c8d2c017d6b61d430e5a399db4a8445753cebbe87884d71
     home: https://grafana.net
@@ -63,7 +63,7 @@ entries:
   idea-c:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T14:55:19.1160922+08:00"
+    created: "2023-12-25T14:58:44.5615539+08:00"
     description: A Helm chart for Kubernetes
     digest: 1a92e1a995c6e7efdbe13b4648d6d44431d544ee39a0d116f8cbbc2615fb299c
     name: idea-c
@@ -82,7 +82,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.67.1
-    created: "2023-12-25T14:55:19.164281+08:00"
+    created: "2023-12-25T14:58:44.6245421+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -142,7 +142,7 @@ entries:
   phpstorm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T14:55:19.1166035+08:00"
+    created: "2023-12-25T14:58:44.5722867+08:00"
     description: A Helm chart for Kubernetes
     digest: 2a46a797eeb1ae9983574c3dc9ae2f836ba70229cd70e03328b369a05de43522
     name: phpstorm
@@ -160,7 +160,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.46.0
-    created: "2023-12-25T14:55:19.1801424+08:00"
+    created: "2023-12-25T14:58:44.6406329+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -211,7 +211,7 @@ entries:
   redroid-emulator:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T14:55:19.1806657+08:00"
+    created: "2023-12-25T14:58:44.6416344+08:00"
     description: A Helm chart for Kubernetes
     digest: 71c02b517e11dd57175fa8925463ebe6975f619c457b7cea8fbf90df31fd1a37
     name: redroid-emulator
@@ -222,12 +222,12 @@ entries:
   spring-boot-demo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T14:55:19.0997999+08:00"
+    created: "2023-12-25T14:58:44.488647+08:00"
     description: A Helm chart for Kubernetes
-    digest: 83e7d94490c9d6e98c45b0587a8069eee2d53449aad816f20ffa7a3acdb89bb6
+    digest: 53635b78e87b202dbb5ab9f40991d346ce2fec8cbab92bb86b865d1e5a569c71
     name: spring-boot-demo
     type: application
     urls:
-    - demo/spring-boot-demo-0.1.1.tgz
-    version: 0.1.1
-generated: "2023-12-25T14:55:19.0881848+08:00"
+    - demo/spring-boot-demo-2.0.3.tgz
+    version: 2.0.3
+generated: "2023-12-25T14:58:44.4749926+08:00"
