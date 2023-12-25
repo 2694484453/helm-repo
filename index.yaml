@@ -10,7 +10,7 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 10.1.5
-    created: "2023-12-25T10:07:24.488476+08:00"
+    created: "2023-12-25T10:08:44.1802632+08:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 30dbe3212dbe4b183c8d2c017d6b61d430e5a399db4a8445753cebbe87884d71
     home: https://grafana.net
@@ -49,7 +49,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.67.1
-    created: "2023-12-25T10:07:24.5087122+08:00"
+    created: "2023-12-25T10:08:44.2029371+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -116,7 +116,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.46.0
-    created: "2023-12-25T10:07:24.5141616+08:00"
+    created: "2023-12-25T10:08:44.2073464+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -167,7 +167,7 @@ entries:
   redroid-emulator:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T10:07:24.5147102+08:00"
+    created: "2023-12-25T10:08:44.2083479+08:00"
     description: A Helm chart for Kubernetes
     digest: 71c02b517e11dd57175fa8925463ebe6975f619c457b7cea8fbf90df31fd1a37
     name: redroid-emulator
@@ -178,12 +178,12 @@ entries:
   spring-boot-demo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-12-25T10:07:24.4847183+08:00"
+    created: "2023-12-25T10:08:44.174237+08:00"
     description: A Helm chart for Kubernetes
     digest: 83e7d94490c9d6e98c45b0587a8069eee2d53449aad816f20ffa7a3acdb89bb6
     name: spring-boot-demo
     type: application
     urls:
-    - spring-boot-demo-0.1.1.tgz
+    - demo/spring-boot-demo-0.1.1.tgz
     version: 0.1.1
-generated: "2023-12-25T10:07:24.4840713+08:00"
+generated: "2023-12-25T10:08:44.1737237+08:00"
