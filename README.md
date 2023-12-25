@@ -1,7 +1,7 @@
 # helm-repo
 
 #### 介绍
-个人helm-chart仓库
+个人helm-chart仓库 https://artifacthub.io/packages/search?ts_query_web=gpg-dev&sort=relevance&page=1
 
 #### 软件架构
 软件架构说明
