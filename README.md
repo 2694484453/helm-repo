@@ -9,7 +9,7 @@ helm & kubernetes
 
 #### 安装教程
 
-helm repo add gpg http://chart.gpg123.vip
+helm repo add gpg-dev http://chart.gpg123.vip
 
 #### 使用说明
 
