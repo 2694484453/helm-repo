@@ -1,8 +1,8 @@
 replicaCount: 1
 image:
-  repository: registry.cn-hangzhou.aliyuncs.com/gpg_dev/spring-boot-demo
+  repository: kfpt/spring-boot-demo
   pullPolicy: IfNotPresent
-  tag: "0.0.1"
+  tag: "0.0.2"
 nameOverride: ""
 fullnameOverride: ""
 service:
