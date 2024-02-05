@@ -3,24 +3,24 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3810392+08:00"
+    created: "2024-02-05T16:33:57.2369146+08:00"
     description: A Helm chart for Kubernetes
     digest: 55c7041aa83faa8af4b4b1709a07497c87fd4194764789705a178a15913145fe
     name: code-server
     type: application
     urls:
-    - ide/code-server-0.1.0.tgz
+    - chart.gpg123.vip/ide/code-server-0.1.0.tgz
     version: 0.1.0
   goland:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3937421+08:00"
+    created: "2024-02-05T16:33:57.2379142+08:00"
     description: A Helm chart for Kubernetes
     digest: 8bef1285a9041a42ba02e986097941b9ea0e9da705c184c0de8eae1d049e3001
     name: goland
     type: application
     urls:
-    - ide/goland-0.1.0.tgz
+    - chart.gpg123.vip/ide/goland-0.1.0.tgz
     version: 0.1.0
   grafana:
   - annotations:
@@ -32,7 +32,7 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 10.1.5
-    created: "2024-01-12T14:09:15.3630917+08:00"
+    created: "2024-02-05T16:33:57.2369146+08:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 30dbe3212dbe4b183c8d2c017d6b61d430e5a399db4a8445753cebbe87884d71
     home: https://grafana.net
@@ -58,19 +58,50 @@ entries:
     - https://github.com/grafana/helm-charts
     type: application
     urls:
-    - grafana/grafana-7.0.6.tgz
+    - chart.gpg123.vip/grafana/grafana-7.0.6.tgz
     version: 7.0.6
   idea-c:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3953332+08:00"
+    created: "2024-02-05T16:33:57.2389153+08:00"
     description: A Helm chart for Kubernetes
     digest: 1a92e1a995c6e7efdbe13b4648d6d44431d544ee39a0d116f8cbbc2615fb299c
     name: idea-c
     type: application
     urls:
-    - ide/idea-c-0.1.0.tgz
+    - chart.gpg123.vip/ide/idea-c-0.1.0.tgz
     version: 0.1.0
+  ingress-nginx:
+  - annotations:
+      artifacthub.io/changes: |-
+        - "Add controller.metrics.serviceMonitor.annotations in Helm chart"
+        - "fix(labels): use complete labels variable on default-backend deployment"
+        - "chart: allow setting allocateLoadBalancerNodePorts (#10693)"
+        - "[release-1.9] feat(helm): add documentation about metric args (#10695)"
+        - "Update Ingress-Nginx version controller-v1.9.5"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.9.5
+    created: "2024-02-05T16:33:57.2317685+08:00"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: 0e2b1dc67321c6bdc346f43d75683e09a0a4caedb6e55ea2d44d450c23655f72
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.20.0-0'
+    maintainers:
+    - name: rikatz
+    - name: strongjz
+    - name: tao12345666333
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    urls:
+    - chart.gpg123.vip/ingress-nginx-4.9.0.tgz
+    version: 4.9.0
   kube-prometheus-stack:
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -82,7 +113,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.67.1
-    created: "2024-01-12T14:09:15.4336442+08:00"
+    created: "2024-02-05T16:33:57.296922+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -137,18 +168,49 @@ entries:
     - https://github.com/prometheus-operator/kube-prometheus
     type: application
     urls:
-    - kubernetes/kube-prometheus-stack-50.3.1.tgz
+    - chart.gpg123.vip/kubernetes/kube-prometheus-stack-50.3.1.tgz
     version: 50.3.1
+  nginx:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-02-05T16:33:57.2999286+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 613260792b9fa2bb01f60a9cf05ed15ba179ce9d24371cf89cd90442abda7a7f
+    name: nginx
+    type: application
+    urls:
+    - chart.gpg123.vip/nginx/nginx-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-02-05T16:33:57.2989299+08:00"
+    description: A Helm chart for Kubernetes
+    digest: fe89baa5b32dd9221dad2129080971058d38bbda016ece6f56ab8b4a9a101ba0
+    name: nginx
+    type: application
+    urls:
+    - chart.gpg123.vip/nginx/nginx-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-02-05T16:33:57.2979285+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 5f8ee1af6bd429a650db8b757ed99f577646644a5cbbea24c290ad78ab84de3c
+    name: nginx
+    type: application
+    urls:
+    - chart.gpg123.vip/nginx/nginx-0.1.0-yys.tgz
+    version: 0.1.0-yys
   phpstorm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3963845+08:00"
+    created: "2024-02-05T16:33:57.2389153+08:00"
     description: A Helm chart for Kubernetes
     digest: 2a46a797eeb1ae9983574c3dc9ae2f836ba70229cd70e03328b369a05de43522
     name: phpstorm
     type: application
     urls:
-    - ide/phpstorm-0.1.0.tgz
+    - chart.gpg123.vip/ide/phpstorm-0.1.0.tgz
     version: 0.1.0
   prometheus:
   - annotations:
@@ -160,7 +222,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.46.0
-    created: "2024-01-12T14:09:15.4687091+08:00"
+    created: "2024-02-05T16:33:57.3084243+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -206,58 +268,58 @@ entries:
     - https://github.com/kubernetes/kube-state-metrics
     type: application
     urls:
-    - prometheus/prometheus-24.3.0.tgz
+    - chart.gpg123.vip/prometheus/prometheus-24.3.0.tgz
     version: 24.3.0
   redroid-emulator:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.4697603+08:00"
+    created: "2024-02-05T16:33:57.3095066+08:00"
     description: A Helm chart for Kubernetes
     digest: 71c02b517e11dd57175fa8925463ebe6975f619c457b7cea8fbf90df31fd1a37
     name: redroid-emulator
     type: application
     urls:
-    - redroid-emulator/redroid-emulator-0.1.0.tgz
+    - chart.gpg123.vip/redroid-emulator/redroid-emulator-0.1.0.tgz
     version: 0.1.0
   spring-boot-demo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3463973+08:00"
+    created: "2024-02-05T16:33:57.2338867+08:00"
     description: A Helm chart for Kubernetes
     digest: 18d43bc0505405aec961a3e00b8e0823cb0a7276794750c1d049e69eb2ede316
     name: spring-boot-demo
     type: application
     urls:
-    - demo/spring-boot-demo-4.0.0.tgz
+    - chart.gpg123.vip/demo/spring-boot-demo-4.0.0.tgz
     version: 4.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3371718+08:00"
+    created: "2024-02-05T16:33:57.2327684+08:00"
     description: A Helm chart for Kubernetes
     digest: 557af81ddfb4da28428a360757f75f2fafeacdeebfb100c8d5efdb46cb8057a2
     name: spring-boot-demo
     type: application
     urls:
-    - demo/spring-boot-demo-3.0.1.tgz
+    - chart.gpg123.vip/demo/spring-boot-demo-3.0.1.tgz
     version: 3.0.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3158853+08:00"
+    created: "2024-02-05T16:33:57.2327684+08:00"
     description: A Helm chart for Kubernetes
     digest: 461cdf7a1d8b00441ef2b5eb18b87bbae4ae0487b1457713387a3dc2385c4e8c
     name: spring-boot-demo
     type: application
     urls:
-    - demo/spring-boot-demo-3.0.0.tgz
+    - chart.gpg123.vip/demo/spring-boot-demo-3.0.0.tgz
     version: 3.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-12T14:09:15.3135155+08:00"
+    created: "2024-02-05T16:33:57.2327684+08:00"
     description: A Helm chart for Kubernetes
     digest: 53635b78e87b202dbb5ab9f40991d346ce2fec8cbab92bb86b865d1e5a569c71
     name: spring-boot-demo
     type: application
     urls:
-    - demo/spring-boot-demo-2.0.3.tgz
+    - chart.gpg123.vip/demo/spring-boot-demo-2.0.3.tgz
     version: 2.0.3
-generated: "2024-01-12T14:09:15.2887225+08:00"
+generated: "2024-02-05T16:33:57.1529865+08:00"
