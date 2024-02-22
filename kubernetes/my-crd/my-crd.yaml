@@ -15,16 +15,17 @@ spec:
             spec:
               type: object
               properties:
-                cronSpec:
+                UserInfo:
                   type: string
+                  x-kubernetes-preserve-unknown-fields: true
                 image:
                   type: string
                 replicas:
                   type: integer
   scope: Namespaced
   names:
-    plural: crontabs
-    singular: crontab
-    kind: CronTab
+    plural: ideinfos
+    singular: ideinfo
+    kind: IdeInfo
     shortNames:
-      - ct
+      - ii

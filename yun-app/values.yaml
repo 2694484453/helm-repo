@@ -143,7 +143,7 @@ configMap:
       value: ""
       targetPath: ""
     - name: application-test
-      key: application-test.yaml
+      key: application-ide-custom-cm.yaml
       value: ""
       targetPath: ""
 # pv
