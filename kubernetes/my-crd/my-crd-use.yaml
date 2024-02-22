@@ -1,0 +1,9 @@
+####左右滑动
+apiVersion: "gpg123.vip/v1"
+kind: CronTab
+metadata:
+  name: my-crontab
+spec:
+  cronSpec: "*/5 * * * *"
+  image: my-cron-image
+  replicas: 1

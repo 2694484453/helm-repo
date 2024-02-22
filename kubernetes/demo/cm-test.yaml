@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-test
+  namespace: demo
+data:
+  demo.sh: "echo 123 > log.txt"
+
+immutable: true
