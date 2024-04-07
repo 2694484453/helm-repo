@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-demo1-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  namespace: demo
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: nginx1.gpg123.vip
+      http:
+        paths:
+          - path: /nginx1
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-demo1-svc
+                port:
+                  number: 80
+

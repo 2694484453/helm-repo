@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-demo1
+  labels:
+    app: nginx-demo1
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-demo1
+  template:
+    metadata:
+      name: nginx-demo1
+      labels:
+        app: nginx-demo1
+    spec:
+      containers:
+        - name: nginx-demo
+          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/nginx1:1.0.0
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+
