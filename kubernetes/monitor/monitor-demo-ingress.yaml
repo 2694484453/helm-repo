@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monitor-demo-ingress
+  annotations:
+    nginx.org/mergeable-ingress-type: "minion"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.org/rewrites: "serviceName=monitor-demo-svc rewrite=/;serviceName=monitor-demo-svc rewrite=/metrics"
+  namespace: demo
+spec:
+  ingressClassName: nginx
+#  tls:
+#    - hosts:
+#        - lb.gpg123.vip
+#      secretName: cafe-secret
+  rules:
+    - host: lb.gpg123.vip
+      http:
+        paths:
+          - path: /monitor
+            pathType: Prefix
+            backend:
+              service:
+                name: monitor-demo-svc
+                port:
+                  number: 80
+          - path: /monitor/metrics
+            pathType: Prefix
+            backend:
+              service:
+                name: monitor-demo-svc
+                port:
+                  number: 9100
+
+

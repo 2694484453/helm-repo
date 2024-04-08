@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitor-demo
+  labels:
+    app: monitor-demo
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monitor-demo
+  template:
+    metadata:
+      name: monitor-demo
+      labels:
+        app: monitor-demo
+    spec:
+      containers:
+        - name: server-demo
+          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/nginx1:1.0.0
+          imagePullPolicy: IfNotPresent
+        - name: node-exporter-demo
+          image: prom/node-exporter:latest
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+
