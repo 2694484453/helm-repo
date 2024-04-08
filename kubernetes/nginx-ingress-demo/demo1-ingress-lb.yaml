@@ -3,7 +3,9 @@ kind: Ingress
 metadata:
   name: nginx-demo1-ingress-lb
   annotations:
+    nginx.org/mergeable-ingress-type: "minion"
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.org/rewrites: "serviceName=nginx-demo1-svc-lb rewrite=/"
   namespace: demo
 spec:
   ingressClassName: nginx

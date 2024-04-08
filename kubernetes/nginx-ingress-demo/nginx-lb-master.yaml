@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cafe-ingress-master
+  annotations:
+    nginx.org/mergeable-ingress-type: "master"
+  namespace: demo
+spec:
+  ingressClassName: nginx
+#  tls:
+#    - hosts:
+#        - lb.gpg123.vip
+#      secretName: cafe-secret
+  rules:
+    - host: lb.gpg123.vip
