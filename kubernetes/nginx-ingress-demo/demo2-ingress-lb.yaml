@@ -9,6 +9,11 @@ metadata:
   namespace: demo
 spec:
   ingressClassName: nginx
+  #https配置专用，无证书请勿开启
+#  tls:
+#    - hosts:
+#        - lb.gpg123.vip
+#      secretName: nginx-demo2-tls
   rules:
     - host: lb.gpg123.vip
       http:
