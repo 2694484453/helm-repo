@@ -1,0 +1,57 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: monitor-demo
+  namespace: demo
+rules:
+  - apiGroups: [""]
+    resources:
+      - nodes
+      - services
+      - endpoints
+      - pods
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources:
+      - configmaps
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: monitor-demo
+  namespace: demo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: monitor-demo
+subjects:
+  - kind: ServiceAccount
+    name: monitor-demo
+    namespace: demo
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: frontend
+  namespace: demo
+  labels:
+    prometheus: frontend
+spec:
+  serviceAccountName: prometheus-frontend
+  version: v1.7.1
+  serviceMonitorSelector:
+    matchLabels:
+      service-monitor: service-monitor
+  resources:
+    requests:
+      # 2Gi is default, but won't schedule if you don't have a node with >2Gi
+      # memory. Modify based on your target and time-series count for
+      # production use. This value is mainly meant for demonstration/testing
+      # purposes.
+      memory: 400Mi
+  alerting:
+    alertmanagers:
+      - namespace: monitoring
+        name: alertmanager-main
+        port: node-exporter

@@ -3,11 +3,13 @@ kind: Service
 metadata:
   name: monitor-demo-svc
   namespace: demo
+  labels:
+    service: monitor-demo-svc
 spec:
   selector:
     app: monitor-demo
   ports:
-    - name: demo-server
+    - name: server
       protocol: TCP
       port: 80
       targetPort: 80
@@ -15,5 +17,5 @@ spec:
       protocol: TCP
       port: 9100
       targetPort: 9100
-  type: ClusterIP
+  type: NodePort
 

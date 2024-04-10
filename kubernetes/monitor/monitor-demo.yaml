@@ -20,8 +20,14 @@ spec:
         - name: server-demo
           image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/nginx1:1.0.0
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: server
         - name: node-exporter-demo
           image: prom/node-exporter:latest
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9100
+              name: node-exporter
       restartPolicy: Always
 

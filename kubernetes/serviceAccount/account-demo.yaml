@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: account-demo
+  namespace: demo
+secrets:
+  - name: secret-demo

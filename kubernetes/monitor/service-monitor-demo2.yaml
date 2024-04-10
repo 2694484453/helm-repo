@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: service-monitor-demo
+  namespace: monitoring
+  labels:
+    release: mypro
+spec:
+  endpoints:
+    - interval: 15s
+      path: /metrics
+      port: http-metrics
+  namespaceSelector:
+    matchNames:
+      - monitoring
+  selector:
+    matchLabels:
+      jobLabel: node-exporter
+
