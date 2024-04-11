@@ -4,7 +4,7 @@ metadata:
   name: service-monitor-demo
   namespace: demo
   labels:
-    service-monitor: service-monitor
+    release: kube-prometheus-stack
 spec:
   endpoints:
     - interval: 15s
@@ -12,11 +12,13 @@ spec:
       port: node-exporter
     - interval: 15s
       path: /metrics
-      port: server
+      port: cadvisor
   namespaceSelector:
     matchNames:
       - demo
   selector:
     matchLabels:
-      service: monitor-demo-svc
+      app: monitor-demo
+      self-monitor: "true"
+      release: kube-prometheus-stack
 

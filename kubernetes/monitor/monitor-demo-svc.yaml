@@ -4,7 +4,9 @@ metadata:
   name: monitor-demo-svc
   namespace: demo
   labels:
-    service: monitor-demo-svc
+    app: monitor-demo
+    release: kube-prometheus-stack
+    self-monitor: "true"
 spec:
   selector:
     app: monitor-demo
@@ -13,9 +15,5 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-    - name: node-exporter
-      protocol: TCP
-      port: 9100
-      targetPort: 9100
-  type: NodePort
+  type: LoadBalancer
 

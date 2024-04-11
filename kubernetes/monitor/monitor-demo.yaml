@@ -23,11 +23,12 @@ spec:
           ports:
             - containerPort: 80
               name: server
-        - name: node-exporter-demo
-          image: prom/node-exporter:latest
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 9100
-              name: node-exporter
+          resources:
+            requests:
+              cpu: 50m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 200Mi
       restartPolicy: Always
 
