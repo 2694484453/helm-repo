@@ -4,6 +4,8 @@ metadata:
   name: monitor-demo
   labels:
     app: monitor-demo
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9113"
   namespace: demo
 spec:
   replicas: 1

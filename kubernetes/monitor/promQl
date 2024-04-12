@@ -1,0 +1,1 @@
+sum(container_memory_working_set_bytes{namespace="demo", pod="monitor-demo-6464c77756-2kg8l", image!="", cluster=""}) / sum(kube_pod_container_resource_limits{namespace="demo", pod="monitor-demo-6464c77756-2kg8l", resource="memory", job=~"kube-state-metrics", cluster=""})

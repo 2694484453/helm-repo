@@ -15,5 +15,7 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer
-
+  #使用svc直接访问
+#  externalIPs:
+#    - 192.168.49.2
+  type: ClusterIP
