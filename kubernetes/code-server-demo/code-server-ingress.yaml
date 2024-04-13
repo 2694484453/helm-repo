@@ -1,22 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: monitor-demo-ingress
+  name: code-server-ingress
   annotations:
     nginx.org/mergeable-ingress-type: "minion"
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.org/rewrites: "serviceName=monitor-demo-svc rewrite=/"
+    nginx.org/rewrites: "serviceName=code-server-svc rewrite=/"
   namespace: demo
 spec:
   ingressClassName: nginx
   rules:
-    - host: k8s-ingress.gpg123.vip
-      http:
+    - http:
         paths:
-          - path: /demo
+          - path: /code
             pathType: Prefix
             backend:
               service:
-                name: monitor-demo-svc
+                name: code-server-svc
                 port:
-                  number: 80
+                  number: 8080
+
