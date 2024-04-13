@@ -13,4 +13,4 @@ spec:
 #        - lb.gpg123.vip
 #      secretName: cafe-secret
   rules:
-    - host: lb.gpg123.vip
+    - host: k8s-ingress.gpg123.vip

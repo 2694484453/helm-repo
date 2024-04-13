@@ -10,10 +10,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: lb.gpg123.vip
+    - host: k8s-ingress.gpg123.vip
       http:
         paths:
-          - path: /
+          - path: /demo
             pathType: Prefix
             backend:
               service:
