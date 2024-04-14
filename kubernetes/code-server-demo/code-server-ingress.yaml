@@ -5,6 +5,7 @@ metadata:
   annotations:
     nginx.org/mergeable-ingress-type: "minion"
     nginx.org/rewrites: "serviceName=code-server-svc rewrite=/"
+    nginx.org/websocket-services: "code-server-svc"
   namespace: demo
 spec:
   ingressClassName: nginx
@@ -19,3 +20,10 @@ spec:
                 name: code-server-svc
                 port:
                   number: 8080
+#          - path: /ws
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: code-server-svc
+#                port:
+#                  number: 8080
