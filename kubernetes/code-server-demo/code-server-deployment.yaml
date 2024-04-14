@@ -19,6 +19,9 @@ spec:
       containers:
         - name: code-server
           image: codercom/code-server:4.23.0-39
+          env:
+            - name: PASSWORD
+              value: "1234"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

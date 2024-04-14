@@ -4,19 +4,18 @@ metadata:
   name: code-server-ingress
   annotations:
     nginx.org/mergeable-ingress-type: "minion"
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.org/rewrites: "serviceName=code-server-svc rewrite=/"
   namespace: demo
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: k8s-ingress.gpg123.vip
+      http:
         paths:
-          - path: /code
+          - path: /code-server/
             pathType: Prefix
             backend:
               service:
                 name: code-server-svc
                 port:
                   number: 8080
-

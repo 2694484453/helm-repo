@@ -4,7 +4,6 @@ metadata:
   name: monitor-demo-ingress
   annotations:
     nginx.org/mergeable-ingress-type: "minion"
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.org/rewrites: "serviceName=monitor-demo-svc rewrite=/"
   namespace: demo
 spec:
