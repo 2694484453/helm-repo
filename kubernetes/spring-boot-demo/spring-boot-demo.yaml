@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-demo
+  labels:
+    app: spring-boot-demo
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-demo
+  template:
+    metadata:
+      name: spring-boot-demo
+      labels:
+        app: spring-boot-demo
+    spec:
+      containers:
+        - name: spring-boot-demo
+          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/spring-boot-demo:0.0.2
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 256m
+              memory: 512Mi
+            limits:
+              cpu: 512m
+              memory: 1024Mi
+          ports:
+            - containerPort: 8090
+              protocol: TCP
+              name: http
+              hostPort: 8090
+      restartPolicy: Always
+

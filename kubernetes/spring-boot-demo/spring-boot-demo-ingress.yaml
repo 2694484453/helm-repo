@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-boot-demo-ingress
+  annotations:
+    nginx.org/mergeable-ingress-type: "minion"
+    nginx.org/rewrites: "serviceName=spring-boot-demo-service rewrite=/"
+  namespace: demo
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: k8s-ingress.gpg123.vip
+      http:
+        paths:
+          - path: /spring-boot-demo/
+            pathType: Prefix
+            backend:
+              service:
+                name: spring-boot-demo-service
+                port:
+                  number: 8090
+

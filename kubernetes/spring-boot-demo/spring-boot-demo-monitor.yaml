@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: spring-boot-demo-monitor
+  namespace: demo
+  labels:
+    app: spring-boot-demo
+    release: kube-prometheus-stack
+spec:
+  endpoints:
+    - interval: 15s
+      path: /actuator/prometheus
+      port: http
+  namespaceSelector:
+    matchNames:
+      - demo
+  selector:
+    matchLabels:
+      app: spring-boot-demo
+      self-monitor: "true"
