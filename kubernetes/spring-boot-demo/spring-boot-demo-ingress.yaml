@@ -12,7 +12,7 @@ spec:
     - host: k8s-ingress.gpg123.vip
       http:
         paths:
-          - path: /spring-boot-demo/
+          - path: /spring-boot-demo
             pathType: Prefix
             backend:
               service:

@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: spring-boot-demo-alert
+  namespace: demo
+spec:
+  route:
+    groupBy: ['job']
+    groupWait: 10s
+    groupInterval: 5m
+    repeatInterval: 2h
+    receiver: 'email'
+  receivers:
+    - name: 'webhook'
+      webhookConfigs:
+        - url: 'http://example.com/'
+    - name: 'email'
+      emailConfigs:
+        - to: '2694484453@qq.com'
