@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alert3-0-alert
+  namespace: test0424-4
+  labels:
+    app: alert3-0
+    release: alert3-0
+    releaseId: "1508060032595968"
+spec:
+  route:
+    groupBy: ['job']
+    groupWait: 10s
+    groupInterval: 5m
+    repeatInterval: 2h
+    routes:
+      - receiver: 'email'
+      - receiver: 'webhook'
+  receivers:
+    - name: 'email'
+      emailConfigs:
+        - to: '2694484453@qq.com'
+        - to: 'gaopuguang1@outlook.com'
+    - name: 'webhook'
+      webhookConfigs:
+        - url: 'http://example.com/'
+        - url: 'http://example.com/'

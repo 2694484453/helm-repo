@@ -5,15 +5,17 @@ metadata:
   namespace: demo
 spec:
   route:
-    groupBy: ['job']
+    groupBy: [ 'job' ]
     groupWait: 10s
-    groupInterval: 5m
+    groupInterval: 1m
     repeatInterval: 2h
-    receiver: 'email'
+    receiver: "webhook"
   receivers:
+#    - name: 'email'
     - name: 'webhook'
       webhookConfigs:
-        - url: 'http://example.com/'
-    - name: 'email'
+        - url: 'https://webhook.site/c163ccbb-903b-4717-a156-d1895fa276a1'
+        - url: 'https://webhook.site/c163ccbb-903b-4717-a156-d1895fa276a1'
       emailConfigs:
+        - to: 'c163ccbb-903b-4717-a156-d1895fa276a1@emailhook.site'
         - to: '2694484453@qq.com'

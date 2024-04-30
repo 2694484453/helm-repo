@@ -1,0 +1,38 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: alert3-0
+    prometheus: k8s
+    release: alert3-0
+    role: alert-rules
+  name: alert3-0
+  namespace: monitoring #test0424-4
+spec:
+  groups:
+    - name: alert3-0
+      rules:
+        - alert: jvm线程状态
+          expr: >-
+            (jvm_threads_states_threads{namespace="test0424-4",state="blocked",service="alert3-0"
+            }) >= 0
+          for: 1m
+          labels:
+            createBy: '1'
+            createTime: '2024-04-26'
+            creator: admin
+            description: ccc123333
+            releaseId: '1508060032595968'
+            severity: high
+            releaseName: alert3-0
+        - alert: cpu使用率
+          expr: system_cpu_usage{service="alert3-0"} >= 0.01
+          for: 1m
+          labels:
+            createBy: '1'
+            createTime: '2024-04-26'
+            creator: admin
+            description: test222333444
+            releaseId: '1508060032595968'
+            severity: critical
+            releaseName: alert3-0

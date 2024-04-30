@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: spring-boot-demo-vsvc
+  namespace: demo
+  labels:
+    app: spring-boot-demo
+spec:
+  hosts:
+    - k8s-istio.gpg123.vip
+  http:
+    - match:
+        - headers:
+            end-user:
+              exact: jason
+      route:
+        - destination:
+            host: k8s-istio.gpg123.vip
+            subset: v2
+    - route:
+        - destination:
+            host: k8s-istio.gpg123.vip
+            subset: v3

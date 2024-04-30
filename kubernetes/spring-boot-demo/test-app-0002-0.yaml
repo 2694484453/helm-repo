@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: test-app-0002-0
+  namespace: monitoring #test0424-4 #
+  labels:
+    release: test-app-0002-0
+    prometheus: k8s
+    role: alert-rules
+spec:
+  groups:
+    - name: test-app-0002-0
+      rules:
+        - alert: cpuOverload
+          expr: system_cpu_usage{application="spring-boot-demo"} >= 0.02
+          for: 1m
+          labels:
+            severity: critical
+        - alert: jvm线程数量超出15
+          expr: jvm_threads_live_threads{application="spring-boot-demo"} >= 15
+          for: 10m
+          labels:
+            severity: critical
+        - alert: jvm线程数量超出10
+          expr: jvm_threads_live_threads{application="spring-boot-demo"} >= 10
+          for: 5m
+          labels:
+            severity: warning
+#system_cpu_usage{namespace="test0424-4",service="alert3-0"} >=0.0520

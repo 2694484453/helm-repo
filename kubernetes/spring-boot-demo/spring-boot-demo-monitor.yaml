@@ -6,6 +6,7 @@ metadata:
   labels:
     app: spring-boot-demo
     release: kube-prometheus-stack
+    yys: spring-boot-demo
 spec:
   endpoints:
     - interval: 15s
