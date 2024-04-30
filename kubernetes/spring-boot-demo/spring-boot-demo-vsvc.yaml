@@ -10,14 +10,11 @@ spec:
     - k8s-istio.gpg123.vip
   http:
     - match:
-        - headers:
-            end-user:
-              exact: jason
+#        - headers:
+#            end-user:
+#              exact: jason
+        - uri:
+            prefix: /demo
       route:
         - destination:
             host: k8s-istio.gpg123.vip
-            subset: v2
-    - route:
-        - destination:
-            host: k8s-istio.gpg123.vip
-            subset: v3
