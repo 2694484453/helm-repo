@@ -1,0 +1,78 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    meta.helm.sh/release-name: my-demo-0
+    meta.helm.sh/release-namespace: test0424-4
+  labels:
+    app: my-demo-0
+    app.kubernetes.io/instance: my-demo-0
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: my-demo-0
+    app.kubernetes.io/version: 1.0.0
+    helm.sh/chart: web-app-0.1.6
+    namespace: test0424-4
+    release: my-demo-0
+    serviceMonitor: my-demo-0
+  managedFields:
+    - apiVersion: monitoring.coreos.com/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:meta.helm.sh/release-name: {}
+            f:meta.helm.sh/release-namespace: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:app.kubernetes.io/instance: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:app.kubernetes.io/name: {}
+            f:app.kubernetes.io/version: {}
+            f:helm.sh/chart: {}
+            f:namespace: {}
+            f:release: {}
+            f:serviceMonitor: {}
+        f:spec:
+          .: {}
+          f:endpoints: {}
+          f:namespaceSelector:
+            .: {}
+            f:matchNames: {}
+          f:selector:
+            .: {}
+            f:matchLabels:
+              .: {}
+              f:app: {}
+              f:app.kubernetes.io/instance: {}
+              f:app.kubernetes.io/name: {}
+              f:namespace: {}
+              f:release: {}
+      manager: helm
+      operation: Update
+      time: '2024-05-10T07:10:41Z'
+  name: my-demo-0-web-app
+  namespace: test0424-4
+spec:
+  endpoints:
+    - interval: 30s
+      path: /metrics
+      port: http-web0
+      relabelings:
+        - action: replace
+          regex: (.*)
+          sourceLabels:
+            - __meta_kubernetes_service_label_release
+          targetLabel: service
+      scheme: http
+  namespaceSelector:
+    matchNames:
+      - test0424-4
+  selector:
+    matchLabels:
+      app: my-demo-0
+      app.kubernetes.io/instance: my-demo-0
+      app.kubernetes.io/name: my-demo-0
+      namespace: test0424-4
+      release: my-demo-0
