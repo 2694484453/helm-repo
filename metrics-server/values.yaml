@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: k8s.mirror.nju.edu.cn/metrics-server/metrics-server
+  repository: docker.fxxk.dedyn.io/metrics-server/metrics-server
   # Overrides the image tag whose default is v{{ .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent
@@ -129,7 +129,7 @@ service:
 addonResizer:
   enabled: false
   image:
-    repository: k8s.mirror.nju.edu.cn/autoscaling/addon-resizer
+    repository: docker.fxxk.dedyn.io/autoscaling/addon-resizer
     tag: 1.8.20
   securityContext:
     allowPrivilegeEscalation: false
