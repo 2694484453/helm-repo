@@ -1,0 +1,15 @@
+cos:
+  base:
+    secretid: ICrum5vNf01EvM9OkrBsAhOk6x1PuvlW+/e3zNy09uIrdHAgALRBaLBFetjTRoaP
+    secretkey: za5wyAsCZyQQ3UiRaEIbR9GnruAYmamoyXNs1kEO9FbeQ1lHjB+NSA6psd9+JBIz
+    sessiontoken: 3kNZR4wfjUgOqbHffiQSMw==
+    protocol: https
+    mode: ""
+    cvmrolename: ""
+    closeautoswitchhost: ""
+  buckets:
+  - name: dev-1306623386
+    alias: mybp
+    region: ""
+    endpoint: cos.ap-shanghai.myqcloud.com
+    ofs: false
