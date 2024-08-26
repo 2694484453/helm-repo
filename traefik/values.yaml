@@ -4,7 +4,7 @@
 
 image:
   # -- Traefik image host registry
-  registry: docker.io
+  registry: dockerpull.com
   # -- Traefik image repository
   repository: traefik
   # -- defaults to appVersion
