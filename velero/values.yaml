@@ -318,9 +318,9 @@ configuration:
     # a backup storage location will be created with the name "default". Optional.
   - name:
     # provider is the name for the backup storage location provider.
-    provider:
+    provider: aws
     # bucket is the name of the bucket to store backups in. Required.
-    bucket:
+    bucket: public-1306623386
     # caCert defines a base64 encoded CA bundle to use when verifying TLS connections to the provider. Optional.
     caCert:
     # prefix is the directory under which all Velero data should be stored within the bucket. Optional.
@@ -334,12 +334,16 @@ configuration:
     accessMode: ReadWrite
     credential:
       # name of the secret used by this backupStorageLocation.
-      name:
+      name: AKID77tSowqWyDD0Z1GH4dz71iJl13wSlqpc
       # name of key that contains the secret data to be used.
-      key:
+      key: d2OgnhPwHOIzUowsdBVcWCesTwKYtKfr
     # Additional provider-specific configuration. See link above
     # for details of required/optional fields for your provider.
-    config: {}
+    config:
+      region: 上海
+      s3ForcePathStyle: "false"
+      s3Url: https://cos.ap-shanghai.myqcloud.com
+      insecureSkipTLSVerify: true
     #  region:
     #  s3ForcePathStyle:
     #  s3Url:
@@ -441,7 +445,7 @@ configuration:
   # features: EnableCSI
   features:
   # `velero server` default: velero
-  namespace:
+  namespace: velero
   # additional command-line arguments that will be passed to the `velero server`
   # e.g.: extraArgs: ["--foo=bar"]
   extraArgs: []
@@ -503,11 +507,11 @@ credentials:
   # [AWS] https://github.com/vmware-tanzu/velero-plugin-for-aws/blob/main/README.md
   # [GCP] https://github.com/vmware-tanzu/velero-plugin-for-gcp/blob/main/README.md
   # [Azure] https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure/blob/main/README.md
-  secretContents: {}
-  #  cloud: |
-  #    [default]
-  #    aws_access_key_id=<REDACTED>
-  #    aws_secret_access_key=<REDACTED>
+  secretContents:
+    cloud: |
+      [default]
+      aws_access_key_id=AKID77tSowqWyDD0Z1GH4dz71iJl13wSlqpc
+      aws_secret_access_key=d2OgnhPwHOIzUowsdBVcWCesTwKYtKfr
   # additional key/value pairs to be used as environment variables such as "DIGITALOCEAN_TOKEN: <your-key>". Values will be stored in the secret.
   extraEnvVars: {}
   # Name of a pre-existing secret (if any) in the Velero namespace

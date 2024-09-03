@@ -1,0 +1,21 @@
+namespace: ide
+userName: ycf
+codeServer:
+  password: biyi@chinatelecom.cn
+  image: kfpt/code-server-for-java:1.5.8
+  imagePullPolicy: IfNotPresent
+  containerPort: 8080
+  git:
+    globalName: gaopuguang_zz
+    globalEmail: 2694484453@qq.com
+    urlAddress: http://192.168.184.25/lizilongkfz/quick-java-demo.git
+  resources:
+    requests:
+      cpu: 1
+      memory: 2Gi
+    limits:
+      cpu: 2
+      memory: 4Gi
+    storage: 8Gi
+  key_path: /usr/local/.common/.token/.token-biyi
+
