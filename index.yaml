@@ -2,45 +2,45 @@ apiVersion: v1
 entries:
   chart-diy:
   - apiVersion: v2
-    created: "2024-09-04T11:30:30.2801143+08:00"
+    created: "2024-09-11T18:19:08.0821957+08:00"
     digest: e3d71f7e428c1ec953d88abebaac3329084cb0b593c4b44b250637eae53dd82e
     icon: https://demo.png
     name: chart-diy
     urls:
-    - helm-repo.gpg123.vip/chart-diy-0.0.1.tgz
+    - https://helm-repo.gpg123.vip/chart-diy-0.0.1.tgz
     version: 0.0.1
   code-server:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3553826+08:00"
+    created: "2024-09-11T18:19:08.2838463+08:00"
     description: A Helm chart for Kubernetes
     digest: 55c7041aa83faa8af4b4b1709a07497c87fd4194764789705a178a15913145fe
     name: code-server
     type: application
     urls:
-    - helm-repo.gpg123.vip/ide/code-server-0.1.0.tgz
+    - https://helm-repo.gpg123.vip/ide/code-server-0.1.0.tgz
     version: 0.1.0
   goland:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3553826+08:00"
+    created: "2024-09-11T18:19:08.2908749+08:00"
     description: A Helm chart for Kubernetes
     digest: 8bef1285a9041a42ba02e986097941b9ea0e9da705c184c0de8eae1d049e3001
     name: goland
     type: application
     urls:
-    - helm-repo.gpg123.vip/ide/goland-0.1.0.tgz
+    - https://helm-repo.gpg123.vip/ide/goland-0.1.0.tgz
     version: 0.1.0
   idea-c:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3553826+08:00"
+    created: "2024-09-11T18:19:08.2973121+08:00"
     description: A Helm chart for Kubernetes
     digest: e5b57009998191171a702f0b6f8c4b8b3cc6f7f019a553fe4aedd9eb0966efc3
     name: idea-c
     type: application
     urls:
-    - helm-repo.gpg123.vip/ide/idea-c-0.1.0.tgz
+    - https://helm-repo.gpg123.vip/ide/idea-c-0.1.0.tgz
     version: 0.1.0
   ingress-nginx:
   - annotations:
@@ -53,7 +53,7 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 1.9.5
-    created: "2024-09-04T11:30:30.2833044+08:00"
+    created: "2024-09-11T18:19:08.1151132+08:00"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 0e2b1dc67321c6bdc346f43d75683e09a0a4caedb6e55ea2d44d450c23655f72
@@ -71,7 +71,7 @@ entries:
     sources:
     - https://github.com/kubernetes/ingress-nginx
     urls:
-    - helm-repo.gpg123.vip/ingress-nginx-4.9.0.tgz
+    - https://helm-repo.gpg123.vip/ingress-nginx-4.9.0.tgz
     version: 4.9.0
   kube-prometheus-stack:
   - annotations:
@@ -84,7 +84,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.73.0
-    created: "2024-09-04T11:30:30.3251205+08:00"
+    created: "2024-09-11T18:19:08.1651568+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -141,7 +141,7 @@ entries:
     - https://github.com/prometheus-operator/kube-prometheus
     type: application
     urls:
-    - helm-repo.gpg123.vip/kube-prometheus-stack-58.0.0.tgz
+    - https://helm-repo.gpg123.vip/kube-prometheus-stack-58.0.0.tgz
     version: 58.0.0
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -153,7 +153,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.67.1
-    created: "2024-09-04T11:30:30.3755408+08:00"
+    created: "2024-09-11T18:19:08.3756599+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -208,11 +208,11 @@ entries:
     - https://github.com/prometheus-operator/kube-prometheus
     type: application
     urls:
-    - helm-repo.gpg123.vip/kubernetes/kube-prometheus-stack-50.3.1.tgz
+    - https://helm-repo.gpg123.vip/kubernetes/kube-prometheus-stack-50.3.1.tgz
     version: 50.3.1
   kubernetes-dashboard:
   - apiVersion: v2
-    created: "2024-09-04T11:30:30.3388727+08:00"
+    created: "2024-09-11T18:19:08.1833204+08:00"
     dependencies:
     - alias: nginx
       condition: nginx.enabled
@@ -248,7 +248,7 @@ entries:
     sources:
     - https://github.com/kubernetes/dashboard
     urls:
-    - helm-repo.gpg123.vip/kubernetes-dashboard-7.5.0.tgz
+    - https://helm-repo.gpg123.vip/kubernetes-dashboard-7.5.0.tgz
     version: 7.5.0
   metrics-server:
   - annotations:
@@ -257,7 +257,7 @@ entries:
           description: "Updated the _Metrics Server_ OCI image to [v0.7.1](https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.7.1)."
     apiVersion: v2
     appVersion: 0.7.1
-    created: "2024-09-04T11:30:30.3400443+08:00"
+    created: "2024-09-11T18:19:08.192767+08:00"
     description: Metrics Server is a scalable, efficient source of container resource
       metrics for Kubernetes built-in autoscaling pipelines.
     digest: bed08344ab4b070db463ad63c5effb2ad23a158090ffdb2c1a960895110ee12e
@@ -279,49 +279,49 @@ entries:
     - https://github.com/kubernetes-sigs/metrics-server
     type: application
     urls:
-    - helm-repo.gpg123.vip/metrics-server-3.12.1.tgz
+    - https://helm-repo.gpg123.vip/metrics-server-3.12.1.tgz
     version: 3.12.1
   nginx:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.5073171+08:00"
+    created: "2024-09-11T18:19:08.4102436+08:00"
     description: A Helm chart for Kubernetes
     digest: 613260792b9fa2bb01f60a9cf05ed15ba179ce9d24371cf89cd90442abda7a7f
     name: nginx
     type: application
     urls:
-    - helm-repo.gpg123.vip/nginx/nginx-0.1.1.tgz
+    - https://helm-repo.gpg123.vip/nginx/nginx-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.4623905+08:00"
+    created: "2024-09-11T18:19:08.4065293+08:00"
     description: A Helm chart for Kubernetes
     digest: fe89baa5b32dd9221dad2129080971058d38bbda016ece6f56ab8b4a9a101ba0
     name: nginx
     type: application
     urls:
-    - helm-repo.gpg123.vip/nginx/nginx-0.1.0.tgz
+    - https://helm-repo.gpg123.vip/nginx/nginx-0.1.0.tgz
     version: 0.1.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3755408+08:00"
+    created: "2024-09-11T18:19:08.3955433+08:00"
     description: A Helm chart for Kubernetes
     digest: 5f8ee1af6bd429a650db8b757ed99f577646644a5cbbea24c290ad78ab84de3c
     name: nginx
     type: application
     urls:
-    - helm-repo.gpg123.vip/nginx/nginx-0.1.0-yys.tgz
+    - https://helm-repo.gpg123.vip/nginx/nginx-0.1.0-yys.tgz
     version: 0.1.0-yys
   phpstorm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3553826+08:00"
+    created: "2024-09-11T18:19:08.308619+08:00"
     description: A Helm chart for Kubernetes
     digest: 2a46a797eeb1ae9983574c3dc9ae2f836ba70229cd70e03328b369a05de43522
     name: phpstorm
     type: application
     urls:
-    - helm-repo.gpg123.vip/ide/phpstorm-0.1.0.tgz
+    - https://helm-repo.gpg123.vip/ide/phpstorm-0.1.0.tgz
     version: 0.1.0
   prometheus:
   - annotations:
@@ -333,7 +333,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.46.0
-    created: "2024-09-04T11:30:30.5229492+08:00"
+    created: "2024-09-11T18:19:08.4157702+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -379,99 +379,99 @@ entries:
     - https://github.com/kubernetes/kube-state-metrics
     type: application
     urls:
-    - helm-repo.gpg123.vip/prometheus/prometheus-24.3.0.tgz
+    - https://helm-repo.gpg123.vip/prometheus/prometheus-24.3.0.tgz
     version: 24.3.0
   redroid-emulator:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3400443+08:00"
+    created: "2024-09-11T18:19:08.1942687+08:00"
     description: A Helm chart for Kubernetes
     digest: 71c02b517e11dd57175fa8925463ebe6975f619c457b7cea8fbf90df31fd1a37
     name: redroid-emulator
     type: application
     urls:
-    - helm-repo.gpg123.vip/redroid-emulator-0.1.0.tgz
+    - https://helm-repo.gpg123.vip/redroid-emulator-0.1.0.tgz
     version: 0.1.0
   spring-boot-demo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.345815+08:00"
+    created: "2024-09-11T18:19:08.2138533+08:00"
     description: A Helm chart for Kubernetes
     digest: 47c468da44f1a60c9ff5093b3a6e5645870991ff92c0906a6b0326e6535af1ac
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/spring-boot-demo-10.0.4.tgz
+    - https://helm-repo.gpg123.vip/spring-boot-demo-10.0.4.tgz
     version: 10.0.4
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3409894+08:00"
+    created: "2024-09-11T18:19:08.2133508+08:00"
     description: A Helm chart for Kubernetes
     digest: 919eb8f7443b1dce3bad7bcbc93b862d62c1fcd5a949313b11a265a8b851a968
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/spring-boot-demo-10.0.3.tgz
+    - https://helm-repo.gpg123.vip/spring-boot-demo-10.0.3.tgz
     version: 10.0.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3409894+08:00"
+    created: "2024-09-11T18:19:08.2036291+08:00"
     description: A Helm chart for Kubernetes
     digest: 22923e3e004df4fc021a849f32cc1665c000a9159ca8483df9f22f024c59f190
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/spring-boot-demo-10.0.2.tgz
+    - https://helm-repo.gpg123.vip/spring-boot-demo-10.0.2.tgz
     version: 10.0.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3543677+08:00"
+    created: "2024-09-11T18:19:08.2774634+08:00"
     description: A Helm chart for Kubernetes
     digest: 18d43bc0505405aec961a3e00b8e0823cb0a7276794750c1d049e69eb2ede316
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/demo/spring-boot-demo-4.0.0.tgz
+    - https://helm-repo.gpg123.vip/demo/spring-boot-demo-4.0.0.tgz
     version: 4.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3543677+08:00"
+    created: "2024-09-11T18:19:08.2678105+08:00"
     description: A Helm chart for Kubernetes
     digest: 557af81ddfb4da28428a360757f75f2fafeacdeebfb100c8d5efdb46cb8057a2
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/demo/spring-boot-demo-3.0.1.tgz
+    - https://helm-repo.gpg123.vip/demo/spring-boot-demo-3.0.1.tgz
     version: 3.0.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3533677+08:00"
+    created: "2024-09-11T18:19:08.2436398+08:00"
     description: A Helm chart for Kubernetes
     digest: 461cdf7a1d8b00441ef2b5eb18b87bbae4ae0487b1457713387a3dc2385c4e8c
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/demo/spring-boot-demo-3.0.0.tgz
+    - https://helm-repo.gpg123.vip/demo/spring-boot-demo-3.0.0.tgz
     version: 3.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3533677+08:00"
+    created: "2024-09-11T18:19:08.2271401+08:00"
     description: A Helm chart for Kubernetes
     digest: 53635b78e87b202dbb5ab9f40991d346ce2fec8cbab92bb86b865d1e5a569c71
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/demo/spring-boot-demo-2.0.3.tgz
+    - https://helm-repo.gpg123.vip/demo/spring-boot-demo-2.0.3.tgz
     version: 2.0.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-04T11:30:30.3409894+08:00"
+    created: "2024-09-11T18:19:08.1948061+08:00"
     description: A Helm chart for Kubernetes
     digest: 40ccbd30022d8dc3959a147d4cd4f5b6afa34bd6f5baff64972504abb77d01b1
     name: spring-boot-demo
     type: application
     urls:
-    - helm-repo.gpg123.vip/spring-boot-demo-0.0.1.tgz
+    - https://helm-repo.gpg123.vip/spring-boot-demo-0.0.1.tgz
     version: 0.0.1
   traefik:
   - annotations:
@@ -483,7 +483,7 @@ entries:
         traefik docker tag to v3.1.1\"\n"
     apiVersion: v2
     appVersion: v3.1.2
-    created: "2024-09-04T11:30:30.3533677+08:00"
+    created: "2024-09-11T18:19:08.2223719+08:00"
     description: A Traefik based Kubernetes ingress controller
     digest: 6ee300287c633830a8c88efa1349a0892491c7b1d4bdd3327dc3068e14daede9
     home: https://traefik.io/
@@ -507,6 +507,6 @@ entries:
     - https://github.com/traefik/traefik-helm-chart
     type: application
     urls:
-    - helm-repo.gpg123.vip/traefik-30.1.0.tgz
+    - https://helm-repo.gpg123.vip/traefik-30.1.0.tgz
     version: 30.1.0
-generated: "2024-09-04T11:30:30.2801143+08:00"
+generated: "2024-09-11T18:19:08.0805677+08:00"
