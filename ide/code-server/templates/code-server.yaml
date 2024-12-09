@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server
+  labels:
+    app: code-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-server
+  template:
+    metadata:
+      name: code-server
+      labels:
+        app: code-server
+    spec:
+      containers:
+        - name: code-server
+          image: codercom/code-server:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: code-server
+              protocol: TCP
+          env:
+            - name: USER
+              value: root
+            - name: PASSWORD
+              value: root
+          volumeMounts:
+            - mountPath: /root/.config/code-server/config.yaml
+              name: cm
+      volumes:
+        - name: cm
+          configMap:
+            name: code-server-cm
+      restartPolicy: Always
+
