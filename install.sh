@@ -16,3 +16,6 @@ helm install skywalking kubegemsapp/skywalking --version 8.9.1 -n skywalking --c
 helm upgrade skywalking ./skywalking -n skywalking
 #
 helm install velero ./velero -n velero --create-namespace
+#
+helm install code-server ./ide/code-server -n code-server --create-namespace
+helm upgrade code-server ./ide/code-server -n code-server

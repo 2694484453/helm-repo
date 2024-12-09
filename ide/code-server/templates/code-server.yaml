@@ -19,6 +19,10 @@ spec:
         - name: code-server
           image: codercom/code-server:latest
           imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsGroup: 0
+            runAsUser: 0
+            privileged: true
           ports:
             - containerPort: 8080
               name: code-server
@@ -29,11 +33,21 @@ spec:
             - name: PASSWORD
               value: root
           volumeMounts:
-            - mountPath: /root/.config/code-server/config.yaml
+            - mountPath: /root/.config/code-server
               name: cm
+            - mountPath: /home/coder
+              name: host-code
+            - mountPath: /root/.local/share/code-server
+              name: host-config
       volumes:
         - name: cm
           configMap:
             name: code-server-cm
+        - name: host-code
+          hostPath:
+            path: /home/ide/code-server/coder
+        - name: host-config
+          hostPath:
+            path: /home/ide/code-server/configData
       restartPolicy: Always
 
