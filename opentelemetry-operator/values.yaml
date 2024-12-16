@@ -113,7 +113,7 @@ manager:
 
   ## Enable ServiceMonitor for Prometheus metrics scrape
   serviceMonitor:
-    enabled: false
+    enabled: true
     # additional labels on the ServiceMonitor
     extraLabels: {}
     # add annotations on the ServiceMonitor
