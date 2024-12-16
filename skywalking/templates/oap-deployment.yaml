@@ -51,13 +51,13 @@ spec:
       {{- else if eq .Values.oap.antiAffinity "soft" }}
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            podAffinityTerm:
-              topologyKey: kubernetes.io/hostname
-              labelSelector:
-                matchLabels:
-                  app: "{{ template "skywalking.name" . }}"
-                  component: "{{ .Values.oap.name }}"
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    app: "{{ template "skywalking.name" . }}"
+                    component: "{{ .Values.oap.name }}"
       {{- end }}
       {{- with .Values.oap.nodeAffinity }}
         nodeAffinity:
@@ -80,88 +80,91 @@ spec:
         {{- include "skywalking.containers.wait-for-es" . | nindent 6 }}
         {{- end }}
       containers:
-      - name: {{ .Values.oap.name }}
-        image: {{ .Values.oap.image.repository }}:{{ required "oap.image.tag is required" .Values.oap.image.tag }}
-        imagePullPolicy: {{ .Values.oap.image.pullPolicy }}
-        livenessProbe:
-          tcpSocket:
-            port: 12800
-          initialDelaySeconds: 15
-          periodSeconds: 20
-        readinessProbe:
-          tcpSocket:
-            port: 12800
-          initialDelaySeconds: 15
-          periodSeconds: 20
-        ports:
+        - name: {{ .Values.oap.name }}
+          image: {{ .Values.oap.image.repository }}:{{ required "oap.image.tag is required" .Values.oap.image.tag }}
+          imagePullPolicy: {{ .Values.oap.image.pullPolicy }}
+          livenessProbe:
+            tcpSocket:
+              port: 12800
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            tcpSocket:
+              port: 12800
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          ports:
         {{- range $key, $value :=  .Values.oap.ports }}
-        - containerPort: {{ $value }}
-          name: {{ $key }}
+            - containerPort: {{ $value }}
+              name: {{ $key }}
         {{- end }}
 {{- if .Values.oap.resources }}
-        resources:
+          resources:
 {{ toYaml .Values.oap.resources | indent 10 }}
 {{- end }}
-        env:
-        - name: JAVA_OPTS
-          value: "-Dmode=no-init {{ .Values.oap.javaOpts }}"
-        - name: SW_CLUSTER
-          value: kubernetes
-        - name: SW_CLUSTER_K8S_NAMESPACE
-          value: "{{ .Release.Namespace }}"
+          env:
+            - name: JAVA_OPTS
+              value: "-Dmode=no-init {{ .Values.oap.javaOpts }}"
+            - name: SW_CLUSTER
+              value: kubernetes
+            - name: SW_CLUSTER_K8S_NAMESPACE
+              value: "{{ .Release.Namespace }}"
 {{- if .Values.oap.dynamicConfigEnabled }}
-        - name: SW_CONFIGURATION
-          value: k8s-configmap
-        - name: SW_CONFIG_CONFIGMAP_PERIOD
-          value: "60"
+            - name: SW_CONFIGURATION
+              value: k8s-configmap
+            - name: SW_CONFIG_CONFIGMAP_PERIOD
+              value: "60"
 {{- end }}
-        - name: SW_CLUSTER_K8S_LABEL
-          value: "{{ template "skywalking.oap.labels" . }}"
-        - name: SKYWALKING_COLLECTOR_UID
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.uid
-        - name: SW_STORAGE
-          value: {{ required "oap.storageType is required" .Values.oap.storageType }}
-        - name: SW_JDBC_URL
-          value: "jdbc:mysql://mysql.gpg123.vip:3306/skywalking?rewriteBatchedStatements=true"
-        - name: SW_DATA_SOURCE_USER
-          value: root
-        - name: SW_DATA_SOURCE_PASSWORD
-          value: Gaopuguang@2023%
+            - name: SW_CLUSTER_K8S_LABEL
+              value: "{{ template "skywalking.oap.labels" . }}"
+            - name: SKYWALKING_COLLECTOR_UID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+            - name: SW_STORAGE
+              value: {{ required "oap.storageType is required" .Values.oap.storageType }}
+            - name: SW_JDBC_URL
+              value: "jdbc:mysql://mysql.gpg123.vip:3306/skywalking?rewriteBatchedStatements=true"
+            - name: SW_DATA_SOURCE_USER
+              value: root
+            - name: SW_DATA_SOURCE_PASSWORD
+              value: Gaopuguang@2023%
 {{- if .Values.elasticsearch.enabled }}
-        - name: SW_STORAGE_ES_CLUSTER_NODES
-          value: "{{ .Values.elasticsearch.clusterName }}-{{ .Values.elasticsearch.nodeGroup }}:{{ .Values.elasticsearch.httpPort }}"
+            - name: SW_STORAGE_ES_CLUSTER_NODES
+              value: "{{ .Values.elasticsearch.clusterName }}-{{ .Values.elasticsearch.nodeGroup }}:{{ .Values.elasticsearch.httpPort }}"
 {{- else }}
-          value: "{{ .Values.elasticsearch.config.host }}:{{ .Values.elasticsearch.config.port.http }}"
+              value: "{{ .Values.elasticsearch.config.host }}:{{ .Values.elasticsearch.config.port.http }}"
 {{- end }}
 {{- if not .Values.elasticsearch.enabled }}
         {{- if .Values.elasticsearch.config.user }}
-        - name: SW_ES_USER
-          value: "{{ .Values.elasticsearch.config.user }}"
+            - name: SW_ES_USER
+              value: "{{ .Values.elasticsearch.config.user }}"
         {{- end }}
         {{- if .Values.elasticsearch.config.password }}
-        - name: SW_ES_PASSWORD
-          value: "{{ .Values.elasticsearch.config.password }}"
+            - name: SW_ES_PASSWORD
+              value: "{{ .Values.elasticsearch.config.password }}"
         {{- end }}
 {{- end }}
         {{- range $key, $value :=  .Values.oap.env }}
-        - name: {{ $key }}
-          value: {{ $value | quote }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
         {{- end }}
-
-        volumeMounts:
+          volumeMounts:
           {{- if (.Files.Glob "files/conf.d/oap/**") }}
           {{ range $path, $bytes := .Files.Glob "files/conf.d/oap/**" }}
-          - name: skywalking-oap-override
-            mountPath: {{ print "/skywalking/config/" ($path | replace "files/conf.d/oap/" "") }}
-            subPath: {{ $path | replace "files/conf.d/oap/" "" | b64enc | replace "=" "-" }}
+            - name: skywalking-oap-override
+              mountPath: {{ print "/skywalking/config/" ($path | replace "files/conf.d/oap/" "") }}
+              subPath: {{ $path | replace "files/conf.d/oap/" "" | b64enc | replace "=" "-" }}
           {{- end }}
           {{- end }}
-
+            - name: mysql-host
+              mountPath: /oap-libs/mysql-connector-java-8.0.20.jar
       volumes:
         {{- if (.Files.Glob "files/conf.d/oap/**") }}
         - name: skywalking-oap-override
           configMap:
             name: {{ template "skywalking.fullname" . }}-oap-cm-override
         {{- end }}
+        - name: mysql-host
+          hostPath:
+            path: /home/skywalking/oap-libs/mysql-connector-java-8.0.20.jar

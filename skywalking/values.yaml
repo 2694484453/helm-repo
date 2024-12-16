@@ -36,7 +36,7 @@ oap:
   # Sync period in seconds. Defaults to 60 seconds. env: SW_CONFIG_CONFIGMAP_PERIOD
   dynamicConfigEnabled: false
   image:
-    repository: ghcr.io/apache/skywalking/oap
+    repository: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/apache/skywalking-oap-server
     tag: 10.1.0 # Must be set explicitly
     pullPolicy: IfNotPresent
   storageType: mysql
@@ -76,7 +76,7 @@ ui:
   name: ui
   replicas: 1
   image:
-    repository: ghcr.io/apache/skywalking/ui
+    repository: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/apache/skywalking-ui
     tag: 10.1.0 # Must be set explicitly
     pullPolicy: IfNotPresent
   # podAnnotations:
