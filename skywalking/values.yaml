@@ -36,10 +36,10 @@ oap:
   # Sync period in seconds. Defaults to 60 seconds. env: SW_CONFIG_CONFIGMAP_PERIOD
   dynamicConfigEnabled: false
   image:
-    repository: registry.cn-beijing.aliyuncs.com/kubegemsapp/skywalking-oap-server
-    tag: 8.9.1 # Must be set explicitly
+    repository: ghcr.io/apache/skywalking/oap
+    tag: 10.1.0 # Must be set explicitly
     pullPolicy: IfNotPresent
-  storageType: local-path
+  storageType: mysql
   ports:
     # add more ports here if you need, for example
     # zabbix: 10051
@@ -47,7 +47,7 @@ oap:
     rest: 12800
   replicas: 1
   service:
-    type: ClusterIP
+    type: NodePort
   javaOpts: -Xmx8g -Xms8g
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -76,8 +76,8 @@ ui:
   name: ui
   replicas: 1
   image:
-    repository: registry.cn-beijing.aliyuncs.com/kubegemsapp/skywalking-ui
-    tag: 8.9.1 # Must be set explicitly
+    repository: ghcr.io/apache/skywalking/ui
+    tag: 10.1.0 # Must be set explicitly
     pullPolicy: IfNotPresent
   # podAnnotations:
   #   example: oap-foo

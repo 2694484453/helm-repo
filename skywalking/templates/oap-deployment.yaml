@@ -123,8 +123,9 @@ spec:
               fieldPath: metadata.uid
         - name: SW_STORAGE
           value: {{ required "oap.storageType is required" .Values.oap.storageType }}
-        - name: SW_STORAGE_ES_CLUSTER_NODES
+        - name:
 {{- if .Values.elasticsearch.enabled }}
+        - name: SW_STORAGE_ES_CLUSTER_NODES
           value: "{{ .Values.elasticsearch.clusterName }}-{{ .Values.elasticsearch.nodeGroup }}:{{ .Values.elasticsearch.httpPort }}"
 {{- else }}
           value: "{{ .Values.elasticsearch.config.host }}:{{ .Values.elasticsearch.config.port.http }}"
