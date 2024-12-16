@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: opentelemetry-operator
+  namespace: opentelemetry
+spec:
+  namespaceSelector:
+    matchNames:
+      - opentelemetry
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opentelemetry-operator
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15s

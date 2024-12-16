@@ -5,7 +5,6 @@ metadata:
   namespace: demo
   labels:
     app: spring-boot-demo
-    self-monitor: "true"
 spec:
   selector:
     app: spring-boot-demo
