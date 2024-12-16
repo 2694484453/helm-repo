@@ -22,3 +22,5 @@ helm upgrade code-server ./ide/code-server -n code-server
 
 #open
 helm install opentelemetry ./opentelemetry-operator -n opentelemetry --create-namespace --kubeconfig ./config
+
+kubectl apply -f ./opentelemetry-operator/conf/crds --kubeconfig ./config
