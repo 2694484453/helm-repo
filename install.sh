@@ -1,6 +1,6 @@
 #安装prometheus
 helm install prometheus ./prometheus-24.3.0.tgz -n monitoring --create-namespace
-
+kubectl apply -f D:\project\helm-repo\kube-prometheus-stack\charts\crds\crds --server-side
 #
 helm install kubernetes-dashboard ./kubernetes-dashboard-7.5.0.tgz -n kubernetes-dashboard --create-namespace
 helm install kubernetes-dashboard ./kubernetes-dashboard -n kubernetes-dashboard --create-namespace
@@ -25,5 +25,5 @@ helm upgrade code-server ./ide/code-server -n code-server
 
 #open
 helm install opentelemetry ./opentelemetry-operator -n opentelemetry --create-namespace --kubeconfig ./config
-
+helm upgrade opentelemetry ./opentelemetry-operator -n opentelemetry
 kubectl apply -f ./opentelemetry-operator/conf/crds --kubeconfig ./config
