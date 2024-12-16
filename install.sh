@@ -19,3 +19,6 @@ helm install velero ./velero -n velero --create-namespace
 #
 helm install code-server ./ide/code-server -n code-server --create-namespace
 helm upgrade code-server ./ide/code-server -n code-server
+
+#open
+helm install opentelemetry opentelemetry-operator-0.75.1.tgz -n opentelemetry --create-namespace --kubeconfig ./config
