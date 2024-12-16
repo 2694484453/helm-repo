@@ -123,7 +123,12 @@ spec:
               fieldPath: metadata.uid
         - name: SW_STORAGE
           value: {{ required "oap.storageType is required" .Values.oap.storageType }}
-        - name:
+        - name: SW_JDBC_URL
+          value: "jdbc:mysql://mysql.gpg123.vip:3306/skywalking?rewriteBatchedStatements=true"
+        - name: SW_DATA_SOURCE_USER
+          value: root
+        - name: SW_DATA_SOURCE_PASSWORD
+          value: Gaopuguang@2023%
 {{- if .Values.elasticsearch.enabled }}
         - name: SW_STORAGE_ES_CLUSTER_NODES
           value: "{{ .Values.elasticsearch.clusterName }}-{{ .Values.elasticsearch.nodeGroup }}:{{ .Values.elasticsearch.httpPort }}"
