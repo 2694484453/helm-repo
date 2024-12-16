@@ -3,6 +3,12 @@ kind: ServiceMonitor
 metadata:
   name: opentelemetry-operator
   namespace: opentelemetry
+  labels:
+    app.kubernetes.io/name: opentelemetry-operator
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8080"
 spec:
   namespaceSelector:
     matchNames:

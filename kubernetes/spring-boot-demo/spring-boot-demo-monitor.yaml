@@ -5,6 +5,10 @@ metadata:
   namespace: demo
   labels:
     app: spring-boot-demo
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /actuator/prometheus
+    prometheus.io/port: "8090"
 spec:
   endpoints:
     - interval: 15s

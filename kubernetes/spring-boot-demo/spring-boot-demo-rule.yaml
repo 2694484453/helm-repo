@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: spring-boot-demo-rule
-  namespace: demo
+  namespace: monitoring
   labels:
     app: spring-boot-demo
     release: kube-prometheus-stack
