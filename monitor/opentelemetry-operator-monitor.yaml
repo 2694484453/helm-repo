@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: opentelemetry-operator
+  name: opentelemetry-operator-monitor
   namespace: opentelemetry
   labels:
     app.kubernetes.io/name: opentelemetry-operator
