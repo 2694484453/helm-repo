@@ -23,7 +23,7 @@ fullnameOverride: "skywalking"
 serviceAccounts:
   oap:
 
-imagePullSecrets: []
+imagePullSecrets: [ ]
 
 initContainer:
   image: registry.cn-beijing.aliyuncs.com/kubegemsapp/busybox
@@ -50,16 +50,16 @@ oap:
     type: NodePort
   javaOpts: -Xmx8g -Xms8g
   antiAffinity: "soft"
-  nodeAffinity: {}
-  nodeSelector: {}
-  tolerations: []
+  nodeAffinity: { }
+  nodeSelector: { }
+  tolerations: [ ]
   resources:
     limits:
-     cpu: 4
-     memory: 9Gi
+      cpu: 4
+      memory: 9Gi
     requests:
-     cpu: 1
-     memory: 8Gi
+      cpu: 1
+      memory: 8Gi
 
   envoy:
     als:
@@ -69,8 +69,8 @@ oap:
     adapter:
       enabled: false
   env:
-    # more env, please refer to https://hub.docker.com/r/apache/skywalking-oap-server
-    # or https://github.com/apache/skywalking-docker/blob/master/6/6.4/oap/README.md#sw_telemetry
+  # more env, please refer to https://hub.docker.com/r/apache/skywalking-oap-server
+  # or https://github.com/apache/skywalking-docker/blob/master/6/6.4/oap/README.md#sw_telemetry
 
 ui:
   name: ui
@@ -81,18 +81,18 @@ ui:
     pullPolicy: IfNotPresent
   # podAnnotations:
   #   example: oap-foo
-  nodeAffinity: {}
-  nodeSelector: {}
-  tolerations: []
+  nodeAffinity: { }
+  nodeSelector: { }
+  tolerations: [ ]
   ingress:
     enabled: false
-    annotations: {}
+    annotations: { }
       # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
+    # kubernetes.io/tls-acme: "true"
     path: /
-    hosts: []
-    # - skywalking.local
-    tls: []
+    hosts:
+      - skywalking.server.gpg123.vip
+    tls: [ ]
     #  - secretName: skywalking-tls
     #    hosts:
     #      - skywalking.local
@@ -117,18 +117,18 @@ ui:
     # loadBalancerIP: 10.2.2.2
     # Annotation example: setup ssl with aws cert when service.type is LoadBalancer
     # service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:EXAMPLE_CERT
-    annotations: {}
+    annotations: { }
     ## Limit load balancer source ips to list of CIDRs (where available)
     # loadBalancerSourceRanges: []
 
 esInit:
-  nodeAffinity: {}
-  nodeSelector: {}
-  tolerations: []
+  nodeAffinity: { }
+  nodeSelector: { }
+  tolerations: [ ]
 
 elasticsearch:
   enabled: false
-  config:               # For users of an existing elasticsearch cluster,takes effect when `elasticsearch.enabled` is false
+  config: # For users of an existing elasticsearch cluster,takes effect when `elasticsearch.enabled` is false
     port:
       http: 9200
     host: elasticsearch # es service on kubernetes or host
@@ -155,7 +155,7 @@ elasticsearch:
 
   # Allows you to add any config files in /usr/share/elasticsearch/config/
   # such as elasticsearch.yml and log4j2.properties
-  esConfig: {}
+  esConfig: { }
   #  elasticsearch.yml: |
   #    key:
   #      nestedkey: value
@@ -165,14 +165,14 @@ elasticsearch:
   # Extra environment variables to append to this nodeGroup
   # This will be appended to the current 'env:' key. You can use any of the kubernetes env
   # syntax here
-  extraEnvs: []
+  extraEnvs: [ ]
   #  - name: MY_ENVIRONMENT_VAR
   #    value: the_value_goes_here
 
   # A list of secrets and their paths to mount inside the pod
   # This is useful for mounting certificates for security and for mounting
   # the X-Pack license
-  secretMounts: []
+  secretMounts: [ ]
   #  - name: elastic-certificates
   #    secretName: elastic-certificates
   #    path: /usr/share/elasticsearch/config/certs
@@ -181,11 +181,11 @@ elasticsearch:
   imageTag: "6.8.6"
   imagePullPolicy: "IfNotPresent"
 
-  podAnnotations: {}
+  podAnnotations: { }
   # iam.amazonaws.com/role: es-cluster
 
   # additionals labels
-  labels: {}
+  labels: { }
 
   esJavaOpts: "-Xmx1g -Xms1g"
 
@@ -197,20 +197,20 @@ elasticsearch:
       cpu: "1000m"
       memory: "2Gi"
 
-  initResources: {}
+  initResources: { }
     # limits:
     #   cpu: "25m"
     #   # memory: "128Mi"
     # requests:
-    #   cpu: "25m"
+  #   cpu: "25m"
   #   memory: "128Mi"
 
-  sidecarResources: {}
+  sidecarResources: { }
     # limits:
     #   cpu: "25m"
     #   # memory: "128Mi"
     # requests:
-    #   cpu: "25m"
+  #   cpu: "25m"
   #   memory: "128Mi"
 
   networkHost: "0.0.0.0"
@@ -245,20 +245,20 @@ elasticsearch:
 
   persistence:
     enabled: false
-    annotations: {}
+    annotations: { }
 
   extraVolumes: ""
-    # - name: extras
+  # - name: extras
   #   emptyDir: {}
 
   extraVolumeMounts: ""
     # - name: extras
-    #   mountPath: /usr/share/extras
+  #   mountPath: /usr/share/extras
   #   readOnly: true
 
   extraInitContainers: ""
     # - name: do-something
-    #   image: busybox
+  #   image: busybox
   #   command: ['do', 'something']
 
   # This is the PriorityClass settings as defined in
@@ -275,7 +275,7 @@ elasticsearch:
 
   # This is the node affinity settings as defined in
   # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
-  nodeAffinity: {}
+  nodeAffinity: { }
 
   # The default is to deploy all pods serially. By setting this to parallel all pods are started at
   # the same time when bootstrapping the cluster
@@ -286,11 +286,11 @@ elasticsearch:
   transportPort: 9300
 
   service:
-    labels: {}
-    labelsHeadless: {}
+    labels: { }
+    labelsHeadless: { }
     type: ClusterIP
     nodePort: ""
-    annotations: {}
+    annotations: { }
     httpPortName: http
     transportPortName: transport
 
@@ -337,21 +337,21 @@ elasticsearch:
   ##
   schedulerName: ""
 
-  imagePullSecrets: []
-  nodeSelector: {}
-  tolerations: []
+  imagePullSecrets: [ ]
+  nodeSelector: { }
+  tolerations: [ ]
 
   # Enabling this will publically expose your Elasticsearch instance.
   # Only enable this if you have security enabled on your cluster
   ingress:
     enabled: true
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
+    annotations: { }
+    # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
     path: /
     hosts:
       - skywalking.server.gpg123.vip
-    tls: []
+    tls: [ ]
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
@@ -362,18 +362,18 @@ elasticsearch:
   # https://github.com/elastic/helm-charts/issues/63
   masterTerminationFix: false
 
-  lifecycle: {}
+  lifecycle: { }
     # preStop:
     #   exec:
     #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
     # postStart:
-    #   exec:
+  #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
 
   sysctlInitContainer:
     enabled: true
 
-  keystore: []
+  keystore: [ ]
 
 satellite:
   name: satellite
@@ -388,17 +388,17 @@ satellite:
   service:
     type: NodePort
   antiAffinity: "soft"
-  nodeAffinity: {}
-  nodeSelector: {}
-  tolerations: []
-  resources: {}
+  nodeAffinity: { }
+  nodeSelector: { }
+  tolerations: [ ]
+  resources: { }
     # limits:
     #   cpu: 4
     #   memory: 8Gi
     # requests:
     #   cpu: 4
-    #   memory: 4Gi
+  #   memory: 4Gi
   podAnnotations:
-    # example: oap-foo
+  # example: oap-foo
   env:
-    # more env, please refer to https://skywalking.apache.org/docs/skywalking-satellite/latest/en/setup/readme/#satellite_configyaml
+  # more env, please refer to https://skywalking.apache.org/docs/skywalking-satellite/latest/en/setup/readme/#satellite_configyaml
