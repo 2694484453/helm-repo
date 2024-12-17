@@ -43,7 +43,6 @@ spec:
   {{- end }}
     port: {{ .Values.alertmanager.service.port }}
     targetPort: {{ .Values.alertmanager.service.targetPort }}
-    nodePort: {{ .Values.alertmanager.service.port }}
     protocol: TCP
   - name: reloader-web
     {{- if semverCompare ">=1.20.0-0" $kubeTargetVersion }}
