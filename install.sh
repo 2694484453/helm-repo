@@ -1,6 +1,11 @@
 mklink C:\Users\Administrator\.kube\config D:\project\helm-repo\config
 #安装prometheus
 helm install prometheus ./prometheus-24.3.0.tgz -n monitoring --create-namespace
+
+#
+helm install prometheus ./kube-prometheus-stack -n monitoring
+helm upgrade prometheus ./kube-prometheus-stack -n monitoring
+helm uninstall prometheus ./kube-prometheus-stack -n monitoring
 kubectl apply -f D:\project\helm-repo\kube-prometheus-stack\charts\crds\crds --server-side
 #
 helm install kubernetes-dashboard ./kubernetes-dashboard-7.5.0.tgz -n kubernetes-dashboard --create-namespace
