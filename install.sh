@@ -1,3 +1,4 @@
+mklink C:\Users\Administrator\.kube\config D:\project\helm-repo\config
 #安装prometheus
 helm install prometheus ./prometheus-24.3.0.tgz -n monitoring --create-namespace
 kubectl apply -f D:\project\helm-repo\kube-prometheus-stack\charts\crds\crds --server-side
