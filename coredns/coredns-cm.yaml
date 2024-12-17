@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  gpg123.vip.server: |
+    gpg123.vip {
+        template IN A gpg123.vip {
+          match .*\.gpg123\.vip
+          answer "{{ .Name }} 60 IN A 47.97.162.27"
+          fallthrough
+        }
+    }
+  gpg123.cn.server: |
+    gpg123.cn {
+        template IN A gpg123.cn {
+          match .*\.gpg123\.cn
+          answer "{{ .Name }} 60 IN A 47.97.162.27"
+          fallthrough
+        }
+    } 

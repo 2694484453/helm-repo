@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: traefik-alert-rules
+spec:
+  groups:
+    - name: Traefik
+      rules:
+        - alert: TooManyRequest
+          expr: avg(traefik_entrypoint_open_connections{job="traefik-dashboard",namespace="kube-system"}) > 5
+          for: 1m
+          labels:
+            severity: critical

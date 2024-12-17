@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aliyunpan-webdev-ingress
+spec:
+  rules:
+    - host: aliyunpan-webdev.gpg123.vip
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aliyunpan-webdev
+                port:
+                  number: 9080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aliyunpan-webdev
+spec:
+  type: ExternalName
+  ## 域名,或者 直接能用ip和端口直接访问的
+  externalName: ecs.gpg123.vip
+  ports:
+    - port: 9080
