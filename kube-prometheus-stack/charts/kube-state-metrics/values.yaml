@@ -1,7 +1,7 @@
 # Default values for kube-state-metrics.
 prometheusScrape: true
 image:
-  registry: registry.k8s.io
+  registry: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/registry.k8s.io
   repository: kube-state-metrics/kube-state-metrics
   # If unset use v + .Charts.appVersion
   tag: ""
