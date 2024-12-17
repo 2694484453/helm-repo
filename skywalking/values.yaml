@@ -39,7 +39,7 @@ oap:
     repository: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/apache/skywalking-oap-server
     tag: 10.1.0 # Must be set explicitly
     pullPolicy: IfNotPresent
-  storageType: mysql
+  storageType: h2
   ports:
     # add more ports here if you need, for example
     # zabbix: 10051
@@ -148,7 +148,7 @@ elasticsearch:
     ingest: "true"
     data: "true"
 
-  replicas: 3
+  replicas: 1
   minimumMasterNodes: 2
 
   esMajorVersion: ""

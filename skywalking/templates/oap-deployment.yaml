@@ -159,7 +159,6 @@ spec:
           {{- end }}
             - name: mysql-host
               mountPath: /oap-libs/mysql-connector-java-8.0.20.jar
-              subPath: mysql-connector-java-8.0.20.jar
       volumes:
         {{- if (.Files.Glob "files/conf.d/oap/**") }}
         - name: skywalking-oap-override
