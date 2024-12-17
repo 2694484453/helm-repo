@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   chart-diy:
   - apiVersion: v2
-    created: "2024-12-09T10:48:47.8518335+08:00"
+    created: "2024-12-17T08:56:41.4095407+08:00"
     digest: e3d71f7e428c1ec953d88abebaac3329084cb0b593c4b44b250637eae53dd82e
     icon: https://demo.png
     name: chart-diy
@@ -12,7 +12,7 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-09T10:48:47.9152963+08:00"
+    created: "2024-12-17T08:56:41.69439+08:00"
     description: A Helm chart for Kubernetes
     digest: 55c7041aa83faa8af4b4b1709a07497c87fd4194764789705a178a15913145fe
     name: code-server
@@ -23,7 +23,7 @@ entries:
   goland:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-09T10:48:47.9152963+08:00"
+    created: "2024-12-17T08:56:41.700999+08:00"
     description: A Helm chart for Kubernetes
     digest: 8bef1285a9041a42ba02e986097941b9ea0e9da705c184c0de8eae1d049e3001
     name: goland
@@ -34,7 +34,7 @@ entries:
   idea-c:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-09T10:48:47.9152963+08:00"
+    created: "2024-12-17T08:56:41.7157895+08:00"
     description: A Helm chart for Kubernetes
     digest: e5b57009998191171a702f0b6f8c4b8b3cc6f7f019a553fe4aedd9eb0966efc3
     name: idea-c
@@ -53,7 +53,7 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 1.9.5
-    created: "2024-12-09T10:48:47.8551321+08:00"
+    created: "2024-12-17T08:56:41.4397075+08:00"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 0e2b1dc67321c6bdc346f43d75683e09a0a4caedb6e55ea2d44d450c23655f72
@@ -76,7 +76,7 @@ entries:
   istiod:
   - apiVersion: v2
     appVersion: 1.24.0-rc.0
-    created: "2024-12-09T10:48:47.856728+08:00"
+    created: "2024-12-17T08:56:41.4737629+08:00"
     description: Helm chart for istio control plane
     digest: ad4652fb4662da90935b20376536e865c0e656f3802964fc3e0c600cd8510d16
     icon: https://istio.io/latest/favicons/android-192x192.png
@@ -101,7 +101,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.73.0
-    created: "2024-12-09T10:48:47.8770622+08:00"
+    created: "2024-12-17T08:56:41.5417372+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -170,7 +170,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.67.1
-    created: "2024-12-09T10:48:47.9353415+08:00"
+    created: "2024-12-17T08:56:41.5075566+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -225,11 +225,11 @@ entries:
     - https://github.com/prometheus-operator/kube-prometheus
     type: application
     urls:
-    - https://helm-repo.gpg123.vip/kubernetes/kube-prometheus-stack-50.3.1.tgz
+    - https://helm-repo.gpg123.vip/kube-prometheus-stack-50.3.1.tgz
     version: 50.3.1
   kubernetes-dashboard:
   - apiVersion: v2
-    created: "2024-12-09T10:48:47.8942464+08:00"
+    created: "2024-12-17T08:56:41.5836146+08:00"
     dependencies:
     - alias: nginx
       condition: nginx.enabled
@@ -274,7 +274,7 @@ entries:
           description: "Updated the _Metrics Server_ OCI image to [v0.7.1](https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.7.1)."
     apiVersion: v2
     appVersion: 0.7.1
-    created: "2024-12-09T10:48:47.8942464+08:00"
+    created: "2024-12-17T08:56:41.5936827+08:00"
     description: Metrics Server is a scalable, efficient source of container resource
       metrics for Kubernetes built-in autoscaling pipelines.
     digest: bed08344ab4b070db463ad63c5effb2ad23a158090ffdb2c1a960895110ee12e
@@ -298,41 +298,50 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/metrics-server-3.12.1.tgz
     version: 3.12.1
-  nginx:
+  opentelemetry-collector:
   - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2024-12-09T10:48:47.9373406+08:00"
-    description: A Helm chart for Kubernetes
-    digest: 613260792b9fa2bb01f60a9cf05ed15ba179ce9d24371cf89cd90442abda7a7f
-    name: nginx
+    appVersion: 0.114.0
+    created: "2024-12-17T08:56:41.59569+08:00"
+    description: OpenTelemetry Collector Helm chart for Kubernetes
+    digest: 5096af4358742a11ded554c821539450d465e1929b7fda0454fcfc99b7e6b031
+    home: https://opentelemetry.io/
+    icon: https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png
+    maintainers:
+    - name: dmitryax
+    - name: jaronoff97
+    - name: TylerHelmuth
+    name: opentelemetry-collector
+    sources:
+    - https://github.com/open-telemetry/opentelemetry-collector
+    - https://github.com/open-telemetry/opentelemetry-collector-contrib
     type: application
     urls:
-    - https://helm-repo.gpg123.vip/nginx/nginx-0.1.1.tgz
-    version: 0.1.1
+    - https://helm-repo.gpg123.vip/opentelemetry-collector-0.110.7.tgz
+    version: 0.110.7
+  opentelemetry-operator:
   - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2024-12-09T10:48:47.9363559+08:00"
-    description: A Helm chart for Kubernetes
-    digest: fe89baa5b32dd9221dad2129080971058d38bbda016ece6f56ab8b4a9a101ba0
-    name: nginx
+    appVersion: 0.114.1
+    created: "2024-12-17T08:56:41.6164917+08:00"
+    description: OpenTelemetry Operator Helm chart for Kubernetes
+    digest: 791283ce2fe0b528310d2b58d396e61bff5b839672c57ebf68f5427c2648dcc2
+    home: https://opentelemetry.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/a718fa97fffec1b9fd14147682e9e3ac0c8817cb/projects/opentelemetry/icon/color/opentelemetry-icon-color.png
+    maintainers:
+    - name: Allex1
+    - name: dmitryax
+    - name: jaronoff97
+    - name: TylerHelmuth
+    name: opentelemetry-operator
+    sources:
+    - https://github.com/open-telemetry/opentelemetry-operator
     type: application
     urls:
-    - https://helm-repo.gpg123.vip/nginx/nginx-0.1.0.tgz
-    version: 0.1.0
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2024-12-09T10:48:47.9363559+08:00"
-    description: A Helm chart for Kubernetes
-    digest: 5f8ee1af6bd429a650db8b757ed99f577646644a5cbbea24c290ad78ab84de3c
-    name: nginx
-    type: application
-    urls:
-    - https://helm-repo.gpg123.vip/nginx/nginx-0.1.0-yys.tgz
-    version: 0.1.0-yys
+    - https://helm-repo.gpg123.vip/opentelemetry-operator-0.75.1.tgz
+    version: 0.75.1
   phpstorm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-09T10:48:47.9162972+08:00"
+    created: "2024-12-17T08:56:41.7279032+08:00"
     description: A Helm chart for Kubernetes
     digest: 2a46a797eeb1ae9983574c3dc9ae2f836ba70229cd70e03328b369a05de43522
     name: phpstorm
@@ -350,7 +359,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.55.0
-    created: "2024-12-09T10:48:47.9067762+08:00"
+    created: "2024-12-17T08:56:41.6391905+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -407,7 +416,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.46.0
-    created: "2024-12-09T10:48:47.9007664+08:00"
+    created: "2024-12-17T08:56:41.6265973+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -455,6 +464,31 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/prometheus-24.3.0.tgz
     version: 24.3.0
+  skywalking:
+  - apiVersion: v2
+    appVersion: 8.9.1
+    created: "2024-12-17T08:56:41.6468679+08:00"
+    description: Apache SkyWalking APM System
+    digest: 56ee5df7ced4cf2ccf8d11b3448149ccf16ca179ad93e86c01ad80dbadedf860
+    home: https://skywalking.apache.org
+    icon: https://raw.githubusercontent.com/apache/skywalking-kubernetes/master/logo/sw-logo-for-chart.jpg
+    keywords:
+    - apm
+    maintainers:
+    - email: hanahmily@gmail.com
+      name: hanahmily
+    - email: innerpeace.zhai@gmail.com
+      name: innerpeacez
+    - email: kezhenxu94@163.com
+      name: kezhenxu94
+    - email: support@kubegems.io
+      name: KubeGems
+    name: skywalking
+    sources:
+    - https://github.com/apache/skywalking-kubernetes
+    urls:
+    - https://helm-repo.gpg123.vip/skywalking-8.9.1.tgz
+    version: 8.9.1
   traefik:
   - annotations:
       artifacthub.io/changes: "- \"fix: disable default HTTPS listener for gateway\"\n-
@@ -465,7 +499,7 @@ entries:
         traefik docker tag to v3.1.1\"\n"
     apiVersion: v2
     appVersion: v3.1.2
-    created: "2024-12-09T10:48:47.9142957+08:00"
+    created: "2024-12-17T08:56:41.6640845+08:00"
     description: A Traefik based Kubernetes ingress controller
     digest: 6ee300287c633830a8c88efa1349a0892491c7b1d4bdd3327dc3068e14daede9
     home: https://traefik.io/
@@ -491,4 +525,4 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/traefik-30.1.0.tgz
     version: 30.1.0
-generated: "2024-12-09T10:48:47.851225+08:00"
+generated: "2024-12-17T08:56:41.397798+08:00"

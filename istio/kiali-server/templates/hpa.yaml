@@ -1,0 +1,19 @@
+{{- if .Values.hpa.enabled }}
+{{- if .Values.hpa.spec }}
+---
+apiVersion: {{ .Values.hpa.api_version }}
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "kiali-server.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "kiali-server.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "kiali-server.fullname" . }}
+  {{- toYaml .Values.hpa.spec | nindent 2 }}
+...
+{{- end }}
+{{- end }}

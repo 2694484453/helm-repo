@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-client
+  namespace: demo
+  labels:
+    app: mysql-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-client
+  template:
+    metadata:
+      name: mysql-client
+      labels:
+        app: mysql-client
+    spec:
+      containers:
+        - name: mysql-client
+          image: arey/mysql-client:latest
+          imagePullPolicy: IfNotPresent
+          command: [ "sh","-c","sleep 99999999" ]
+      restartPolicy: Always
+

@@ -1,0 +1,17 @@
+name: hoppscotch
+apiVersion: v2
+description: hoppscotch:a tools for request!
+type: application
+version: 1.0.0
+appVersion: "1.16.0"
+icon: https://dev-1306623386.cos.ap-shanghai.myqcloud.com/icon/helm.jpg
+keywords:
+  - tools
+  - hoppscotch:latest
+sources:
+  - http://hoppscotch.zcrjjh.com
+annotations:
+  category: tools
+maintainers:
+  - name: admin
+    email: admin@zcrjjh.com

@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hoppscotch-backend
+  labels:
+    app: hoppscotch-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hoppscotch-backend
+  template:
+    metadata:
+      name: hoppscotch-backend
+      labels:
+        app: hoppscotch-backend
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: hoppscotch-backend
+          image: hoppscotch/hoppscotch-backend:latest
+          imagePullPolicy: IfNotPresent
+
+{{/*          command:*/}}
+{{/*            - /bin/sh*/}}
+{{/*            - -c*/}}
+{{/*            - sleep 9999*/}}
+          # pnpx prisma migrate deploy
+          ports:
+            - containerPort: 8888
+              name: backend
+              protocol: TCP
+            - containerPort: 3100
+              name: admin
+              protocol: TCP
+          env:
+            - name: DATABASE_URL
+              value: postgresql://hoppscotch:hoppscotch@ecs.gpg123.vip:5432/hoppscotch
+{{/*            - name: DATABASE_URL*/}}
+{{/*              value: postgresql://postgres:hoppscotch@default.postgresql.svc.cluster.local:5432/hoppscotch  */}}
+            - name: JWT_SECRET
+              value: secretcode123
+            - name: VITE_ALLOWED_AUTH_PROVIDERS
+              value: GITHUB
+            - name: WHITELISTED_ORIGINS
+              value: http://localhost:3170,http://localhost:3000,http://localhost:3100
+            - name: GITHUB_CLIENT_ID
+              value: "Ov23liK4z3MWgKRThgIu"
+            - name: GITHUB_CLIENT_SECRET
+              value: "aB3dE5fG7hI9jK1lM2nO4pQ6rS8tU0vW2xYz"
+            - name: GITHUB_CALLBACK_URL
+              value: http://localhost:3170/v1/auth/github/callback
+            - name: GITHUB_SCOPE
+              value: user:email
+            - name: DATA_ENCRYPTION_KEY
+              value: "2I7/IMOzT3Q0zhOg90qIEG09BUzgd4lV"
+            - name: MAILER_SMTP_ENABLE
+              value: "true"
+            - name: MAILER_USE_CUSTOM_CONFIGS
+              value: "false"
+            - name: MAILER_ADDRESS_FROM
+              value: <from@example.com>
+            - name: MAILER_SMTP_URL
+              value: smtps://user@domain.com:pass@smtp.domain.com
+            - name: MAILER_SMTP_HOST
+              value: smtp.domain.com
+            - name: MAILER_SMTP_PORT
+              value: "587"
+            - name: MAILER_SMTP_SECURE
+              value: "true"
+            - name: MAILER_SMTP_USER
+              value: user@domain.com
+            - name: MAILER_SMTP_PASSWORD
+              value: pass
+            - name: MAILER_TLS_REJECT_UNAUTHORIZED
+              value: "true"
+
+

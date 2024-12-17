@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "kiali-server.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  gateways:
+  {{- range $k,$v := .Values.virtual_service.gateways }}
+  - {{ $v }}
+  {{- end }}
+  hosts:
+  {{- range $k,$v := .Values.virtual_service.hosts }}
+  - {{ $v }}
+  {{- end }}
+  http:
+  - match:
+    - uri:
+        prefix: {{ .Values.server.web_root }}
+    route:
+      - destination:
+          host: {{ include "kiali-server.fullname" . }}
+          port:
+            number: {{ .Values.server.port }}
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ include "kiali-server.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  host: {{ include "kiali-server.fullname" . }}
+  trafficPolicy:
+    tls:
+      mode: DISABLE

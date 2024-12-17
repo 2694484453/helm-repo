@@ -1,0 +1,85 @@
+
+istio_namespace: istio-system # default is where Kiali is installed
+
+auth:
+  openid: {}
+  openshift:
+    client_id_prefix: kiali-server
+  strategy: anonymous
+
+deployment:
+  # This only limits what Kiali will attempt to see, but Kiali Service Account has permissions to see everything.
+  # For more control over what the Kial Service Account can see, use the Kiali Operator
+  accessible_namespaces:
+  - "**"
+  additional_service_yaml: {}
+  affinity:
+    node: {}
+    pod: {}
+    pod_anti: {}
+  custom_dashboards:
+    excludes: ['']
+    includes: ['*']
+  image_name: docker.io/yys/kiali
+  image_pull_policy: "IfNotPresent"
+  image_pull_secrets: []
+  image_version: 1.63
+  logger:
+    log_format: "text"
+    log_level: "info"
+    time_field_format: "2006-01-02T15:04:05Z07:00"
+    sampler_rate: "1"
+  node_selector: {}
+  pod_annotations: {}
+  pod_labels: {}
+  priority_class_name: ""
+  replicas: 1
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+  secret_name: "kiali"
+  service_annotations: {}
+  service_type: ""
+  tolerations: []
+  version_label: 1.63
+  view_only_mode: false
+
+hpa:
+  enabled: false
+  api_version: "autoscaling/v2beta2"
+  spec: {}
+
+external_services:
+  custom_dashboards:
+    enabled: true
+  prometheus:
+    url: http://prometheus-k8s.monitoring:9090
+  istio:
+    root_namespace: istio-system
+  tracing:
+    in_cluster_url: "http://tracing.istio-system:16685/jaeger"
+    use_grpc: true
+  grafana:
+    enabled: true
+    url: "http://192.168.215.18:3300/grafana"
+
+identity: {}
+  #cert_file:
+  #private_key_file:
+
+login_token:
+  signing_key: CHANGEME00000000
+
+server:
+  metrics_enabled: true
+  metrics_port: 9090
+  port: 20001
+  web_root: /kiali
+  cors_allow_all: true
+
+virtual_service:
+  hosts: [yys.yg.com]
+  gateways: [istio-system/biyi-gateway, mesh]

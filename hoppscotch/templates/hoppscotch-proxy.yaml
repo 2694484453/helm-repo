@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hoppscotch-proxy-deploy
+  labels:
+    app: hoppscotch-proxy-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hoppscotch-proxy-app
+  template:
+    metadata:
+      name: hoppscotch-proxy-app
+      labels:
+        app: hoppscotch-proxy-app
+    spec:
+      containers:
+        - name: hoppscotch-proxy
+          image: hoppscotch/proxyscotch
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9159
+              name: proxy
+      restartPolicy: Always
+

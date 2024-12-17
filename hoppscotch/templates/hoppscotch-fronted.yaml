@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hoppscotch-fronted-deploy
+  labels:
+    app: hoppscotch-fronted
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hoppscotch-fronted
+  template:
+    metadata:
+      name: hoppscotch-fronted
+      labels:
+        app: hoppscotch-fronted
+    spec:
+      containers:
+        - name: hoppscotch
+          image: hoppscotch/hoppscotch-frontend
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: web
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: VITE_BASE_URL
+              value: http://{{.Release.Namespace}}.hoppscotch-fronted.svc.cluster.local:3000 #http://192.168.215.21:3000
+            - name: VITE_SHORTCODE_BASE_URL
+              value: http://{{.Release.Namespace}}.hoppscotch-fronted.svc.cluster.local:3000 #http://192.168.215.21:3000
+            - name: VITE_ADMIN_URL
+              value: http://{{.Release.Namespace}}.hoppscotch-backend.svc.cluster.local:3100 #http://192.168.215.21:3100
+            - name: VITE_BACKEND_GQL_URL
+              value: http://192.168.215.21:3170/graphql
+            - name: VITE_BACKEND_WS_URL
+              value: wss://192.168.215.21:3170/graphql
+            - name: VITE_BACKEND_API_URL
+              value: http://192.168.215.21:3170/v1
+            - name: ENABLE_SUBPATH_BASED_ACCESS
+              value: "false"
+            - name: WHITELISTED_ORIGINS
+              value: http://192.168.215.21:3170,http://192.168.215.21:3000,http://192.168.215.21:3100,http://whoami.zcrjjh.com,http://hoppscotch.zcrjjh.com
+      restartPolicy: Always
+
