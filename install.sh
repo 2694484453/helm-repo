@@ -42,7 +42,7 @@ kubectl apply -f ./opentelemetry-operator/conf/crds --kubeconfig ./config
 #安装opentelemetry-collector
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 helm install opentelemetry-collector ./opentelemetry-collector -n opentelemetry  --create-namespace
-helm upgrade opentelemetry-collector ./opentelemetry-collector -n opentelemetry --create-namespace
+helm upgrade opentelemetry-collector ./opentelemetry-collector -n opentelemetry
 helm uninstall opentelemetry-collector ./opentelemetry-collector -n opentelemetry
 
 #
