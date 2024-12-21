@@ -34,8 +34,9 @@ helm install code-server ./ide/code-server -n code-server --create-namespace
 helm upgrade code-server ./ide/code-server -n code-server
 
 #安装opentelemetry-operator
-helm install opentelemetry ./opentelemetry-operator -n opentelemetry --create-namespace --kubeconfig ./config
-helm upgrade opentelemetry ./opentelemetry-operator -n opentelemetry
+helm install opentelemetry-operator ./opentelemetry-operator -n opentelemetry --create-namespace --kubeconfig ./config
+helm upgrade opentelemetry-operator ./opentelemetry-operator -n opentelemetry
+helm uninstall opentelemetry-operator ./opentelemetry-operator -n opentelemetry
 kubectl apply -f ./opentelemetry-operator/conf/crds --kubeconfig ./config
 
 #安装opentelemetry-collector
