@@ -6,7 +6,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 # Valid values are "daemonset", "deployment", and "statefulset".
-mode: ""
+mode: "daemonset"
 
 # Specify which namespace should be used to deploy the resources into
 namespaceOverride: ""
@@ -189,7 +189,7 @@ alternateConfig: {}
 
 image:
   # If you want to use the core image `otel/opentelemetry-collector`, you also need to change `command.name` value to `otelcol`.
-  repository: ""
+  repository: "otel/opentelemetry-collector-k8s"
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -308,7 +308,7 @@ ports:
   metrics:
     # The metrics port is disabled by default. However you need to enable the port
     # in order to use the ServiceMonitor (serviceMonitor.enabled) or PodMonitor (podMonitor.enabled).
-    enabled: false
+    enabled: true
     containerPort: 8888
     servicePort: 8888
     protocol: TCP
@@ -520,7 +520,7 @@ ingress:
 podMonitor:
   # The pod monitor by default scrapes the metrics port.
   # The metrics port needs to be enabled as well.
-  enabled: false
+  enabled: true
   metricsEndpoints:
     - port: metrics
       # interval: 15s
@@ -532,7 +532,7 @@ podMonitor:
 serviceMonitor:
   # The service monitor by default scrapes the metrics port.
   # The metrics port needs to be enabled as well.
-  enabled: false
+  enabled: true
   metricsEndpoints:
     - port: metrics
       # interval: 15s
