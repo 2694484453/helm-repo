@@ -35,7 +35,7 @@ allInOne:
     # - name: jaeger-tls
     #   mountPath: /tls
     #   subPath: ""
-    #   secretName: jaeger-tls
+  #   secretName: jaeger-tls
   #   readOnly: true
   # command line arguments / CLI flags
   # See https://www.jaegertracing.io/docs/cli/
@@ -123,14 +123,14 @@ storage:
       #   value: "9042"
       # - name: CASSANDRA_KEYSPACE
       #   value: jaeger_v1_test
-      # - name: CASSANDRA_TLS_ENABLED
+    # - name: CASSANDRA_TLS_ENABLED
     #   value: "false"
     ## Cassandra related cmd line opts to be configured on the concerned components
     cmdlineParams:
       { }
       # cassandra.servers: cassandra
       # cassandra.port: 9042
-      # cassandra.keyspace: jaeger_v1_test
+    # cassandra.keyspace: jaeger_v1_test
     # cassandra.tls.enabled: "false"
   elasticsearch:
     scheme: http
@@ -157,7 +157,7 @@ storage:
     cmdlineParams:
       { }
       # es.server-urls: http://elasticsearch-master:9200
-      # es.username: elastic
+    # es.username: elastic
     # es.index-prefix: test
     tls:
       enabled: false
@@ -246,7 +246,7 @@ schema:
     #   cpu: 500m
     #   memory: 512Mi
     # requests:
-    #   cpu: 256m
+  #   cpu: 256m
   #   memory: 128Mi
   serviceAccount:
     create: true
@@ -265,7 +265,7 @@ schema:
     #   value: prod
     # - name: TRACE_TTL
     #   value: "172800"
-    # - name: DEPENDENCIES_TTL
+  # - name: DEPENDENCIES_TTL
   #   value: "0"
 
 # For configurable values of the elasticsearch if provisioned, please see:
@@ -342,7 +342,7 @@ ingester:
     #   cpu: 1
     #   memory: 1Gi
     # requests:
-    #   cpu: 500m
+  #   cpu: 500m
   #   memory: 512Mi
   serviceAccount:
     create: true
@@ -391,7 +391,7 @@ agent:
     updateStrategy:
       { }
       # type: RollingUpdate
-      # rollingUpdate:
+    # rollingUpdate:
     #   maxUnavailable: 1
   service:
     annotations: { }
@@ -412,7 +412,7 @@ agent:
     #   cpu: 500m
     #   memory: 512Mi
     # requests:
-    #   cpu: 256m
+  #   cpu: 256m
   #   memory: 128Mi
   serviceAccount:
     create: true
@@ -498,17 +498,17 @@ collector:
     # can accept Zipkin spans in JSON or Thrift
     zipkin:
       { }
-      # port: 9411
+    # port: 9411
     # nodePort:
     otlp:
       grpc:
-         name: otlp-grpc
-         port: 4317
-         nodePort: 4317
+        name: otlp-grpc
+        port: 4317
+        nodePort: 4317
       http:
-         name: otlp-http
-         port: 4318
-         nodePort: 4318
+        name: otlp-http
+        port: 4318
+        nodePort: 4318
     admin:
       name: admin
       targetPort: admin
@@ -539,12 +539,12 @@ collector:
     #     - chart-example.local
     pathType:
   resources:
-     limits:
-       cpu: 1
-       memory: 1Gi
-     requests:
-       cpu: 500m
-     memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 500m
+    memory: 512Mi
   serviceAccount:
     create: true
     # Explicitly mounts the API credentials for the Service Account
@@ -629,13 +629,12 @@ query:
   oAuthSidecar:
     enabled: false
     resources:
-      { }
-      # limits:
-      #   cpu: 500m
-      #   memory: 512Mi
-      # requests:
-      #   cpu: 256m
-    #   memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 256m
+      memory: 128Mi
     image:
       registry: quay.io
       repository: oauth2-proxy/oauth2-proxy
@@ -686,27 +685,27 @@ query:
   replicaCount: 1
   service:
     annotations: { }
-    type: ClusterIP
+    type: NodePort
     # List of IP ranges that are allowed to access the load balancer (if supported)
     loadBalancerSourceRanges: [ ]
     port: 80
     # Specify a custom target port (e.g. port of auth proxy)
-    # targetPort: 8080
+    targetPort: 8080
     # Specify a specific node port when type is NodePort
-    # nodePort: 32500
+    nodePort: 8080
     admin:
       name: admin
       targetPort: admin
   ingress:
-    enabled: false
+    enabled: true
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     # ingressClassName: nginx
     annotations: { }
     labels: { }
     # Used to create an Ingress record.
-    # hosts:
-    #   - chart-example.local
+    hosts:
+      - jaeger.server.gpg123.vip
     # annotations:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -721,13 +720,12 @@ query:
     health:
       exposed: false
   resources:
-    { }
-    # limits:
-    #   cpu: 500m
-    #   memory: 512Mi
-    # requests:
-    #    cpu: 256m
-  #    memory: 128Mi
+     limits:
+       cpu: 500m
+       memory: 512Mi
+     requests:
+      cpu: 256m
+      memory: 128Mi
   serviceAccount:
     create: true
     # Explicitly mounts the API credentials for the Service Account
@@ -810,7 +808,7 @@ spark:
     #   cpu: 500m
     #   memory: 512Mi
     # requests:
-    #   cpu: 256m
+  #   cpu: 256m
   #   memory: 128Mi
   serviceAccount:
     create: true
@@ -846,7 +844,7 @@ esIndexCleaner:
   cmdlineParams: { }
   extraEnv:
     [ ]
-    # - name: ROLLOVER
+  # - name: ROLLOVER
   #   value: 'true'
   schedule: "55 23 * * *"
   successfulJobsHistoryLimit: 3
@@ -858,7 +856,7 @@ esIndexCleaner:
     #   cpu: 500m
     #   memory: 512Mi
     # requests:
-    #   cpu: 256m
+  #   cpu: 256m
   #   memory: 128Mi
   numberOfDays: 7
   serviceAccount:
@@ -905,7 +903,7 @@ esRollover:
     #   cpu: 500m
     #   memory: 512Mi
     # requests:
-    #   cpu: 256m
+  #   cpu: 256m
   #   memory: 128Mi
   serviceAccount:
     create: true
@@ -925,7 +923,7 @@ esRollover:
   initHook:
     extraEnv:
       [ ]
-      # - name: SHARDS
+    # - name: SHARDS
     #   value: "3"
     annotations: { }
     podAnnotations: { }
@@ -961,7 +959,7 @@ esLookback:
     #   cpu: 500m
     #   memory: 512Mi
     # requests:
-    #   cpu: 256m
+  #   cpu: 256m
   #   memory: 128Mi
   serviceAccount:
     create: true
@@ -1021,7 +1019,7 @@ hotrod:
       - chart-example.local
     annotations:
       { }
-      # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
     tls:
     # Secrets must be manually created in the namespace.
@@ -1039,7 +1037,7 @@ hotrod:
     #   cpu: 100m
     #   memory: 128Mi
     # requests:
-    #   cpu: 100m
+  #   cpu: 100m
   #   memory: 128Mi
   serviceAccount:
     create: true

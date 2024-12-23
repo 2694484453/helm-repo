@@ -55,3 +55,4 @@ helm install jaeger ./jaeger -n jaeger --create-namespace
 #es
 helm install elasticsearch ./elasticsearch -n elasticsearch --create-namespace
 helm upgrade elasticsearch ./elasticsearch -n elasticsearch
+helm uninstall elasticsearch -n elasticsearch
