@@ -28,7 +28,7 @@ esMajorVersion: ""
 
 # Allows you to add any config files in /usr/share/elasticsearch/config/
 # such as elasticsearch.yml and log4j2.properties
-esConfig: {}
+esConfig: { }
 #  elasticsearch.yml: |
 #    key:
 #      nestedkey: value
@@ -37,19 +37,19 @@ esConfig: {}
 
 createCert: true
 
-esJvmOptions: {}
+esJvmOptions: { }
 #  processors.options: |
 #    -XX:ActiveProcessorCount=3
 
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs: []
+extraEnvs: [ ]
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
 # Allows you to load environment variables from kubernetes secret or config map
-envFrom: []
+envFrom: [ ]
 # - secretRef:
 #     name: env-secret
 # - configMapRef:
@@ -58,18 +58,18 @@ envFrom: []
 # Disable it to use your own elastic-credential Secret.
 secret:
   enabled: true
-  password: "admin" # generated randomly if not defined
+  password: "elastic" # generated randomly if not defined
 
 # A list of secrets and their paths to mount inside the pod
 # This is useful for mounting certificates for security and for mounting
 # the X-Pack license
-secretMounts: []
+secretMounts: [ ]
 #  - name: elastic-certificates
 #    secretName: elastic-certificates
 #    path: /usr/share/elasticsearch/config/certs
 #    defaultMode: 0755
 
-hostAliases: []
+hostAliases: [ ]
 #- ip: "127.0.0.1"
 #  hostnames:
 #  - "foo.local"
@@ -79,11 +79,11 @@ image: "swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/elasticsearch"
 imageTag: "8.5.1"
 imagePullPolicy: "IfNotPresent"
 
-podAnnotations: {}
+podAnnotations: { }
 # iam.amazonaws.com/role: es-cluster
 
 # additionals labels
-labels: {}
+labels: { }
 
 esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 
@@ -95,25 +95,25 @@ resources:
     cpu: "1000m"
     memory: "2Gi"
 
-initResources: {}
-# limits:
-#   cpu: "25m"
-#   # memory: "128Mi"
-# requests:
-#   cpu: "25m"
-#   memory: "128Mi"
+initResources:
+  limits:
+    cpu: "25m"
+    memory: "128Mi"
+  requests:
+    cpu: "25m"
+    memory: "128Mi"
 
 networkHost: "0.0.0.0"
 
 volumeClaimTemplate:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: [ "ReadWriteOnce" ]
   resources:
     requests:
       storage: 30Gi
 
 rbac:
   create: false
-  serviceAccountAnnotations: {}
+  serviceAccountAnnotations: { }
   serviceAccountName: ""
   automountToken: true
 
@@ -141,23 +141,23 @@ persistence:
   labels:
     # Add default labels for the volumeClaimTemplate of the StatefulSet
     enabled: false
-  annotations: {}
+  annotations: { }
 
-extraVolumes: []
+extraVolumes: [ ]
 # - name: extras
 #   emptyDir: {}
 
-extraVolumeMounts: []
+extraVolumeMounts: [ ]
 # - name: extras
 #   mountPath: /usr/share/extras
 #   readOnly: true
 
-extraContainers: []
+extraContainers: [ ]
 # - name: do-something
 #   image: busybox
 #   command: ['do', 'something']
 
-extraInitContainers: []
+extraInitContainers: [ ]
 # - name: do-something
 #   image: busybox
 #   command: ['do', 'something']
@@ -176,7 +176,7 @@ antiAffinity: "hard"
 
 # This is the node affinity settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
-nodeAffinity: {}
+nodeAffinity: { }
 
 # The default is to deploy all pods serially. By setting this to parallel all pods are started at
 # the same time when bootstrapping the cluster
@@ -193,18 +193,18 @@ transportPort: 9300
 
 service:
   enabled: true
-  labels: {}
-  labelsHeadless: {}
+  labels: { }
+  labelsHeadless: { }
   type: NodePort
   # Consider that all endpoints are considered "ready" even if the Pods themselves are not
   # https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
   publishNotReadyAddresses: false
   nodePort: "9200"
-  annotations: {}
+  annotations: { }
   httpPortName: http
   transportPortName: transport
   loadBalancerIP: ""
-  loadBalancerSourceRanges: []
+  loadBalancerSourceRanges: [ ]
   externalTrafficPolicy: ""
 
 updateStrategy: RollingUpdate
@@ -246,15 +246,15 @@ clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
 ##
 schedulerName: ""
 
-imagePullSecrets: []
-nodeSelector: {}
-tolerations: []
+imagePullSecrets: [ ]
+nodeSelector: { }
+tolerations: [ ]
 
 # Enabling this will publicly expose your Elasticsearch instance.
 # Only enable this if you have security enabled on your cluster
 ingress:
   enabled: true
-  annotations: {}
+  annotations: { }
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
   className: "traefik"
@@ -263,7 +263,7 @@ ingress:
     - host: elasticsearch.server.gpg123.vip
       paths:
         - path: /
-  tls: []
+  tls: [ ]
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
@@ -272,7 +272,7 @@ nameOverride: ""
 fullnameOverride: ""
 healthNameOverride: ""
 
-lifecycle: {}
+lifecycle: { }
 # preStop:
 #   exec:
 #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
@@ -295,7 +295,7 @@ lifecycle: {}
 sysctlInitContainer:
   enabled: true
 
-keystore: []
+keystore: [ ]
 
 networkPolicy:
   ## Enable creation of NetworkPolicy resources. Only Ingress traffic is filtered for now.
