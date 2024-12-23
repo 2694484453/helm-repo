@@ -95,7 +95,7 @@ initContainers:
         mountPath: "/etc/grafana/download_dashboards.sh"
         subPath: download_dashboards.sh
       - name: storage
-        mountPath: "/var/lib/grafana"
+        mountPath: "/home/grafana"
         {{- with .Values.persistence.subPath }}
         subPath: {{ tpl . $root }}
         {{- end }}

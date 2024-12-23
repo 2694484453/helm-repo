@@ -3,9 +3,9 @@ mklink C:\Users\Administrator\.kube\config D:\project\helm-repo\config
 helm install prometheus ./prometheus-24.3.0.tgz -n monitoring --create-namespace
 
 #安装stack
-helm install prometheus ./kube-prometheus-stack -n monitoring
-helm upgrade prometheus ./kube-prometheus-stack -n monitoring
-helm uninstall prometheus ./kube-prometheus-stack -n monitoring
+helm install kube-prometheus-stack ./kube-prometheus-stack -n monitoring
+helm upgrade kube-prometheus-stack ./kube-prometheus-stack -n monitoring
+helm uninstall kube-prometheus-stack ./kube-prometheus-stack -n monitoring
 kubectl apply -f D:\project\helm-repo\kube-prometheus-stack\charts\crds\crds --server-side
 
 #安装dashboard
@@ -33,7 +33,17 @@ helm install code-server ./ide/code-server -n code-server --create-namespace
 
 helm upgrade code-server ./ide/code-server -n code-server
 
-#安装opentelemetry
-helm install opentelemetry ./opentelemetry-operator -n opentelemetry --create-namespace --kubeconfig ./config
-helm upgrade opentelemetry ./opentelemetry-operator -n opentelemetry
+#安装opentelemetry-operator
+helm install opentelemetry-operator ./opentelemetry-operator -n opentelemetry --create-namespace --kubeconfig ./config
+helm upgrade opentelemetry-operator ./opentelemetry-operator -n opentelemetry
+helm uninstall opentelemetry-operator ./opentelemetry-operator -n opentelemetry
 kubectl apply -f ./opentelemetry-operator/conf/crds --kubeconfig ./config
+
+#安装opentelemetry-collector
+helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+helm install opentelemetry-collector ./opentelemetry-collector -n opentelemetry  --create-namespace
+helm upgrade opentelemetry-collector ./opentelemetry-collector -n opentelemetry
+helm uninstall opentelemetry-collector ./opentelemetry-collector -n opentelemetry
+
+#
+helm install my-otel-demo open-telemetry/opentelemetry-demo

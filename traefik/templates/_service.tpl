@@ -79,6 +79,11 @@
     appProtocol: {{ $config.appProtocol }}
     {{- end }}
    {{- end }}
+  - port: 9100
+    name: "metrics"
+    targetPort: metrics
+    nodePort: 9100
+    protocol: TCP
   {{- end }}
  {{- end }}
 {{- end }}
