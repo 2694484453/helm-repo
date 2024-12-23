@@ -34,6 +34,7 @@ spec:
 {{- end }}
   - name: {{ .Values.service.transportPortName | default "transport" }}
     protocol: TCP
+    nodePort: 9300
     port: {{ .Values.transportPort }}
 {{- if .Values.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.loadBalancerIP }}

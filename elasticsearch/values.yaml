@@ -75,7 +75,7 @@ hostAliases: []
 #  - "foo.local"
 #  - "bar.local"
 
-image: "docker.elastic.co/elasticsearch/elasticsearch"
+image: "swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/elasticsearch"
 imageTag: "8.5.1"
 imagePullPolicy: "IfNotPresent"
 
@@ -253,14 +253,14 @@ tolerations: []
 # Enabling this will publicly expose your Elasticsearch instance.
 # Only enable this if you have security enabled on your cluster
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
-  className: "nginx"
+  className: "traefik"
   pathtype: ImplementationSpecific
   hosts:
-    - host: chart-example.local
+    - host: elasticsearch.server.gpg123.vip
       paths:
         - path: /
   tls: []
