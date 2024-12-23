@@ -1,0 +1,132 @@
+{
+  "name": "spring-boot",
+  "info": {
+    "first_deployed": "2024-12-18T15:18:10.0090245+08:00",
+    "last_deployed": "2024-12-18T15:18:10.0090245+08:00",
+    "deleted": "",
+    "description": "Install complete",
+    "status": "deployed",
+    "notes": "1. Get the application URL by running these commands:\n  export POD_NAME=$(kubectl get pods --namespace demo -l \"app.kubernetes.io/name=spring-boot-demo,app.kubernetes.io/instance=spring-boot\" -o jsonpath=\"{.items[0].metadata.name}\")\n  export CONTAINER_PORT=$(kubectl get pod --namespace demo $POD_NAME -o jsonpath=\"{.spec.containers[0].ports[0].containerPort}\")\n  echo \"Visit http://127.0.0.1:8080 to use your application\"\n  kubectl --namespace demo port-forward $POD_NAME 8080:$CONTAINER_PORT\n"
+  },
+  "chart": {
+    "metadata": {
+      "name": "spring-boot-demo",
+      "version": "10.0.4",
+      "description": "A Helm chart for Kubernetes",
+      "apiVersion": "v2",
+      "appVersion": "1.16.0",
+      "type": "application"
+    },
+    "lock": null,
+    "templates": [
+      {
+        "name": "templates/NOTES.txt",
+        "data": "MS4gR2V0IHRoZSBhcHBsaWNhdGlvbiBVUkwgYnkgcnVubmluZyB0aGVzZSBjb21tYW5kczoKe3stIGlmIC5WYWx1ZXMuaW5ncmVzcy5lbmFibGVkIH19Cnt7LSByYW5nZSAkaG9zdCA6PSAuVmFsdWVzLmluZ3Jlc3MuaG9zdHMgfX0KICB7ey0gcmFuZ2UgLnBhdGhzIH19CiAgaHR0cHt7IGlmICQuVmFsdWVzLmluZ3Jlc3MudGxzIH19c3t7IGVuZCB9fTovL3t7ICRob3N0Lmhvc3QgfX17eyAucGF0aCB9fQogIHt7LSBlbmQgfX0Ke3stIGVuZCB9fQp7ey0gZWxzZSBpZiBjb250YWlucyAiTm9kZVBvcnQiIC5WYWx1ZXMuc2VydmljZS50eXBlIH19CiAgZXhwb3J0IE5PREVfUE9SVD0kKGt1YmVjdGwgZ2V0IC0tbmFtZXNwYWNlIHt7IC5SZWxlYXNlLk5hbWVzcGFjZSB9fSAtbyBqc29ucGF0aD0iey5zcGVjLnBvcnRzWzBdLm5vZGVQb3J0fSIgc2VydmljZXMge3sgaW5jbHVkZSAic3ByaW5nLWJvb3QtZGVtby5mdWxsbmFtZSIgLiB9fSkKICBleHBvcnQgTk9ERV9JUD0kKGt1YmVjdGwgZ2V0IG5vZGVzIC0tbmFtZXNwYWNlIHt7IC5SZWxlYXNlLk5hbWVzcGFjZSB9fSAtbyBqc29ucGF0aD0iey5pdGVtc1swXS5zdGF0dXMuYWRkcmVzc2VzWzBdLmFkZHJlc3N9IikKICBlY2hvIGh0dHA6Ly8kTk9ERV9JUDokTk9ERV9QT1JUCnt7LSBlbHNlIGlmIGNvbnRhaW5zICJMb2FkQmFsYW5jZXIiIC5WYWx1ZXMuc2VydmljZS50eXBlIH19CiAgICAgTk9URTogSXQgbWF5IHRha2UgYSBmZXcgbWludXRlcyBmb3IgdGhlIExvYWRCYWxhbmNlciBJUCB0byBiZSBhdmFpbGFibGUuCiAgICAgICAgICAgWW91IGNhbiB3YXRjaCB0aGUgc3RhdHVzIG9mIGJ5IHJ1bm5pbmcgJ2t1YmVjdGwgZ2V0IC0tbmFtZXNwYWNlIHt7IC5SZWxlYXNlLk5hbWVzcGFjZSB9fSBzdmMgLXcge3sgaW5jbHVkZSAic3ByaW5nLWJvb3QtZGVtby5mdWxsbmFtZSIgLiB9fScKICBleHBvcnQgU0VSVklDRV9JUD0kKGt1YmVjdGwgZ2V0IHN2YyAtLW5hbWVzcGFjZSB7eyAuUmVsZWFzZS5OYW1lc3BhY2UgfX0ge3sgaW5jbHVkZSAic3ByaW5nLWJvb3QtZGVtby5mdWxsbmFtZSIgLiB9fSAtLXRlbXBsYXRlICJ7eyJ7eyByYW5nZSAoaW5kZXggLnN0YXR1cy5sb2FkQmFsYW5jZXIuaW5ncmVzcyAwKSB9fXt7Ln19e3sgZW5kIH19In19IikKICBlY2hvIGh0dHA6Ly8kU0VSVklDRV9JUDp7eyAuVmFsdWVzLnNlcnZpY2UucG9ydCB9fQp7ey0gZWxzZSBpZiBjb250YWlucyAiQ2x1c3RlcklQIiAuVmFsdWVzLnNlcnZpY2UudHlwZSB9fQogIGV4cG9ydCBQT0RfTkFNRT0kKGt1YmVjdGwgZ2V0IHBvZHMgLS1uYW1lc3BhY2Uge3sgLlJlbGVhc2UuTmFtZXNwYWNlIH19IC1sICJhcHAua3ViZXJuZXRlcy5pby9uYW1lPXt7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8ubmFtZSIgLiB9fSxhcHAua3ViZXJuZXRlcy5pby9pbnN0YW5jZT17eyAuUmVsZWFzZS5OYW1lIH19IiAtbyBqc29ucGF0aD0iey5pdGVtc1swXS5tZXRhZGF0YS5uYW1lfSIpCiAgZXhwb3J0IENPTlRBSU5FUl9QT1JUPSQoa3ViZWN0bCBnZXQgcG9kIC0tbmFtZXNwYWNlIHt7IC5SZWxlYXNlLk5hbWVzcGFjZSB9fSAkUE9EX05BTUUgLW8ganNvbnBhdGg9Insuc3BlYy5jb250YWluZXJzWzBdLnBvcnRzWzBdLmNvbnRhaW5lclBvcnR9IikKICBlY2hvICJWaXNpdCBodHRwOi8vMTI3LjAuMC4xOjgwODAgdG8gdXNlIHlvdXIgYXBwbGljYXRpb24iCiAga3ViZWN0bCAtLW5hbWVzcGFjZSB7eyAuUmVsZWFzZS5OYW1lc3BhY2UgfX0gcG9ydC1mb3J3YXJkICRQT0RfTkFNRSA4MDgwOiRDT05UQUlORVJfUE9SVAp7ey0gZW5kIH19Cg=="
+      },
+      {
+        "name": "templates/_helpers.tpl",
+        "data": "e3svKgpFeHBhbmQgdGhlIG5hbWUgb2YgdGhlIGNoYXJ0LgoqL319Cnt7LSBkZWZpbmUgInNwcmluZy1ib290LWRlbW8ubmFtZSIgLX19Cnt7LSBkZWZhdWx0IC5DaGFydC5OYW1lIC5WYWx1ZXMubmFtZU92ZXJyaWRlIHwgdHJ1bmMgNjMgfCB0cmltU3VmZml4ICItIiB9fQp7ey0gZW5kIH19Cgp7ey8qCkNyZWF0ZSBhIGRlZmF1bHQgZnVsbHkgcXVhbGlmaWVkIGFwcCBuYW1lLgpXZSB0cnVuY2F0ZSBhdCA2MyBjaGFycyBiZWNhdXNlIHNvbWUgS3ViZXJuZXRlcyBuYW1lIGZpZWxkcyBhcmUgbGltaXRlZCB0byB0aGlzIChieSB0aGUgRE5TIG5hbWluZyBzcGVjKS4KSWYgcmVsZWFzZSBuYW1lIGNvbnRhaW5zIGNoYXJ0IG5hbWUgaXQgd2lsbCBiZSB1c2VkIGFzIGEgZnVsbCBuYW1lLgoqL319Cnt7LSBkZWZpbmUgInNwcmluZy1ib290LWRlbW8uZnVsbG5hbWUiIC19fQp7ey0gaWYgLlZhbHVlcy5mdWxsbmFtZU92ZXJyaWRlIH19Cnt7LSAuVmFsdWVzLmZ1bGxuYW1lT3ZlcnJpZGUgfCB0cnVuYyA2MyB8IHRyaW1TdWZmaXggIi0iIH19Cnt7LSBlbHNlIH19Cnt7LSAkbmFtZSA6PSBkZWZhdWx0IC5DaGFydC5OYW1lIC5WYWx1ZXMubmFtZU92ZXJyaWRlIH19Cnt7LSBpZiBjb250YWlucyAkbmFtZSAuUmVsZWFzZS5OYW1lIH19Cnt7LSAuUmVsZWFzZS5OYW1lIHwgdHJ1bmMgNjMgfCB0cmltU3VmZml4ICItIiB9fQp7ey0gZWxzZSB9fQp7ey0gcHJpbnRmICIlcy0lcyIgLlJlbGVhc2UuTmFtZSAkbmFtZSB8IHRydW5jIDYzIHwgdHJpbVN1ZmZpeCAiLSIgfX0Ke3stIGVuZCB9fQp7ey0gZW5kIH19Cnt7LSBlbmQgfX0KCnt7LyoKQ3JlYXRlIGNoYXJ0IG5hbWUgYW5kIHZlcnNpb24gYXMgdXNlZCBieSB0aGUgY2hhcnQgbGFiZWwuCiovfX0Ke3stIGRlZmluZSAic3ByaW5nLWJvb3QtZGVtby5jaGFydCIgLX19Cnt7LSBwcmludGYgIiVzLSVzIiAuQ2hhcnQuTmFtZSAuQ2hhcnQuVmVyc2lvbiB8IHJlcGxhY2UgIisiICJfIiB8IHRydW5jIDYzIHwgdHJpbVN1ZmZpeCAiLSIgfX0Ke3stIGVuZCB9fQoKe3svKgpDb21tb24gbGFiZWxzCiovfX0Ke3stIGRlZmluZSAic3ByaW5nLWJvb3QtZGVtby5sYWJlbHMiIC19fQpoZWxtLnNoL2NoYXJ0OiB7eyBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLmNoYXJ0IiAuIH19Cnt7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8uc2VsZWN0b3JMYWJlbHMiIC4gfX0Ke3stIGlmIC5DaGFydC5BcHBWZXJzaW9uIH19CmFwcC5rdWJlcm5ldGVzLmlvL3ZlcnNpb246IHt7IC5DaGFydC5BcHBWZXJzaW9uIHwgcXVvdGUgfX0Ke3stIGVuZCB9fQphcHAua3ViZXJuZXRlcy5pby9tYW5hZ2VkLWJ5OiB7eyAuUmVsZWFzZS5TZXJ2aWNlIH19Cnt7LSBlbmQgfX0KCnt7LyoKU2VsZWN0b3IgbGFiZWxzCiovfX0Ke3stIGRlZmluZSAic3ByaW5nLWJvb3QtZGVtby5zZWxlY3RvckxhYmVscyIgLX19CmFwcC5rdWJlcm5ldGVzLmlvL25hbWU6IHt7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8ubmFtZSIgLiB9fQphcHAua3ViZXJuZXRlcy5pby9pbnN0YW5jZToge3sgLlJlbGVhc2UuTmFtZSB9fQp7ey0gZW5kIH19Cgp7ey8qCkNyZWF0ZSB0aGUgbmFtZSBvZiB0aGUgc2VydmljZSBhY2NvdW50IHRvIHVzZQoqL319Cnt7LSBkZWZpbmUgInNwcmluZy1ib290LWRlbW8uc2VydmljZUFjY291bnROYW1lIiAtfX0Ke3stIGlmIC5WYWx1ZXMuc2VydmljZUFjY291bnQuY3JlYXRlIH19Cnt7LSBkZWZhdWx0IChpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLmZ1bGxuYW1lIiAuKSAuVmFsdWVzLnNlcnZpY2VBY2NvdW50Lm5hbWUgfX0Ke3stIGVsc2UgfX0Ke3stIGRlZmF1bHQgImRlZmF1bHQiIC5WYWx1ZXMuc2VydmljZUFjY291bnQubmFtZSB9fQp7ey0gZW5kIH19Cnt7LSBlbmQgfX0K"
+      },
+      {
+        "name": "templates/deployment.yaml",
+        "data": "YXBpVmVyc2lvbjogYXBwcy92MQpraW5kOiBEZXBsb3ltZW50Cm1ldGFkYXRhOgogIG5hbWU6IHt7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8uZnVsbG5hbWUiIC4gfX0KICBsYWJlbHM6CiAgICB7ey0gaW5jbHVkZSAic3ByaW5nLWJvb3QtZGVtby5sYWJlbHMiIC4gfCBuaW5kZW50IDQgfX0Kc3BlYzoKICB7ey0gaWYgbm90IC5WYWx1ZXMuYXV0b3NjYWxpbmcuZW5hYmxlZCB9fQogIHJlcGxpY2FzOiB7eyAuVmFsdWVzLnJlcGxpY2FDb3VudCB9fQogIHt7LSBlbmQgfX0KICBzZWxlY3RvcjoKICAgIG1hdGNoTGFiZWxzOgogICAgICB7ey0gaW5jbHVkZSAic3ByaW5nLWJvb3QtZGVtby5zZWxlY3RvckxhYmVscyIgLiB8IG5pbmRlbnQgNiB9fQogIHRlbXBsYXRlOgogICAgbWV0YWRhdGE6CiAgICAgIHt7LSB3aXRoIC5WYWx1ZXMucG9kQW5ub3RhdGlvbnMgfX0KICAgICAgYW5ub3RhdGlvbnM6CiAgICAgICAge3stIHRvWWFtbCAuIHwgbmluZGVudCA4IH19CiAgICAgIHt7LSBlbmQgfX0KICAgICAgbGFiZWxzOgogICAgICAgIHt7LSBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLnNlbGVjdG9yTGFiZWxzIiAuIHwgbmluZGVudCA4IH19CiAgICBzcGVjOgogICAgICB7ey0gd2l0aCAuVmFsdWVzLmltYWdlUHVsbFNlY3JldHMgfX0KICAgICAgaW1hZ2VQdWxsU2VjcmV0czoKICAgICAgICB7ey0gdG9ZYW1sIC4gfCBuaW5kZW50IDggfX0KICAgICAge3stIGVuZCB9fQogICAgICBzZXJ2aWNlQWNjb3VudE5hbWU6IHt7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8uc2VydmljZUFjY291bnROYW1lIiAuIH19CiAgICAgIHNlY3VyaXR5Q29udGV4dDoKICAgICAgICB7ey0gdG9ZYW1sIC5WYWx1ZXMucG9kU2VjdXJpdHlDb250ZXh0IHwgbmluZGVudCA4IH19CiAgICAgIGNvbnRhaW5lcnM6CiAgICAgICAgLSBuYW1lOiB7eyAuQ2hhcnQuTmFtZSB9fQogICAgICAgICAgc2VjdXJpdHlDb250ZXh0OgogICAgICAgICAgICB7ey0gdG9ZYW1sIC5WYWx1ZXMuc2VjdXJpdHlDb250ZXh0IHwgbmluZGVudCAxMiB9fQogICAgICAgICAgaW1hZ2U6ICJ7eyAuVmFsdWVzLmltYWdlLnJlcG9zaXRvcnkgfX06e3sgLlZhbHVlcy5pbWFnZS50YWcgfCBkZWZhdWx0IC5DaGFydC5BcHBWZXJzaW9uIH19IgogICAgICAgICAgaW1hZ2VQdWxsUG9saWN5OiB7eyAuVmFsdWVzLmltYWdlLnB1bGxQb2xpY3kgfX0KICAgICAgICAgIHBvcnRzOgogICAgICAgICAgICAtIG5hbWU6IGh0dHAKICAgICAgICAgICAgICBjb250YWluZXJQb3J0OiB7eyAuVmFsdWVzLnNlcnZpY2UucG9ydCB9fQogICAgICAgICAgICAgIHByb3RvY29sOiBUQ1AKICAgICAgICAgIGxpdmVuZXNzUHJvYmU6CiAgICAgICAgICAgIGh0dHBHZXQ6CiAgICAgICAgICAgICAgcGF0aDogLwogICAgICAgICAgICAgIHBvcnQ6IGh0dHAKICAgICAgICAgIHJlYWRpbmVzc1Byb2JlOgogICAgICAgICAgICBodHRwR2V0OgogICAgICAgICAgICAgIHBhdGg6IC8KICAgICAgICAgICAgICBwb3J0OiBodHRwCiAgICAgICAgICByZXNvdXJjZXM6CiAgICAgICAgICAgIHt7LSB0b1lhbWwgLlZhbHVlcy5yZXNvdXJjZXMgfCBuaW5kZW50IDEyIH19CiAgICAgIHt7LSB3aXRoIC5WYWx1ZXMubm9kZVNlbGVjdG9yIH19CiAgICAgIG5vZGVTZWxlY3RvcjoKICAgICAgICB7ey0gdG9ZYW1sIC4gfCBuaW5kZW50IDggfX0KICAgICAge3stIGVuZCB9fQogICAgICB7ey0gd2l0aCAuVmFsdWVzLmFmZmluaXR5IH19CiAgICAgIGFmZmluaXR5OgogICAgICAgIHt7LSB0b1lhbWwgLiB8IG5pbmRlbnQgOCB9fQogICAgICB7ey0gZW5kIH19CiAgICAgIHt7LSB3aXRoIC5WYWx1ZXMudG9sZXJhdGlvbnMgfX0KICAgICAgdG9sZXJhdGlvbnM6CiAgICAgICAge3stIHRvWWFtbCAuIHwgbmluZGVudCA4IH19CiAgICAgIHt7LSBlbmQgfX0K"
+      },
+      {
+        "name": "templates/hpa.yaml",
+        "data": "e3stIGlmIC5WYWx1ZXMuYXV0b3NjYWxpbmcuZW5hYmxlZCB9fQphcGlWZXJzaW9uOiBhdXRvc2NhbGluZy92MmJldGExCmtpbmQ6IEhvcml6b250YWxQb2RBdXRvc2NhbGVyCm1ldGFkYXRhOgogIG5hbWU6IHt7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8uZnVsbG5hbWUiIC4gfX0KICBsYWJlbHM6CiAgICB7ey0gaW5jbHVkZSAic3ByaW5nLWJvb3QtZGVtby5sYWJlbHMiIC4gfCBuaW5kZW50IDQgfX0Kc3BlYzoKICBzY2FsZVRhcmdldFJlZjoKICAgIGFwaVZlcnNpb246IGFwcHMvdjEKICAgIGtpbmQ6IERlcGxveW1lbnQKICAgIG5hbWU6IHt7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8uZnVsbG5hbWUiIC4gfX0KICBtaW5SZXBsaWNhczoge3sgLlZhbHVlcy5hdXRvc2NhbGluZy5taW5SZXBsaWNhcyB9fQogIG1heFJlcGxpY2FzOiB7eyAuVmFsdWVzLmF1dG9zY2FsaW5nLm1heFJlcGxpY2FzIH19CiAgbWV0cmljczoKICAgIHt7LSBpZiAuVmFsdWVzLmF1dG9zY2FsaW5nLnRhcmdldENQVVV0aWxpemF0aW9uUGVyY2VudGFnZSB9fQogICAgLSB0eXBlOiBSZXNvdXJjZQogICAgICByZXNvdXJjZToKICAgICAgICBuYW1lOiBjcHUKICAgICAgICB0YXJnZXRBdmVyYWdlVXRpbGl6YXRpb246IHt7IC5WYWx1ZXMuYXV0b3NjYWxpbmcudGFyZ2V0Q1BVVXRpbGl6YXRpb25QZXJjZW50YWdlIH19CiAgICB7ey0gZW5kIH19CiAgICB7ey0gaWYgLlZhbHVlcy5hdXRvc2NhbGluZy50YXJnZXRNZW1vcnlVdGlsaXphdGlvblBlcmNlbnRhZ2UgfX0KICAgIC0gdHlwZTogUmVzb3VyY2UKICAgICAgcmVzb3VyY2U6CiAgICAgICAgbmFtZTogbWVtb3J5CiAgICAgICAgdGFyZ2V0QXZlcmFnZVV0aWxpemF0aW9uOiB7eyAuVmFsdWVzLmF1dG9zY2FsaW5nLnRhcmdldE1lbW9yeVV0aWxpemF0aW9uUGVyY2VudGFnZSB9fQogICAge3stIGVuZCB9fQp7ey0gZW5kIH19Cg=="
+      },
+      {
+        "name": "templates/ingress.yaml",
+        "data": "e3stIGlmIC5WYWx1ZXMuaW5ncmVzcy5lbmFibGVkIC19fQp7ey0gJGZ1bGxOYW1lIDo9IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8uZnVsbG5hbWUiIC4gLX19Cnt7LSAkc3ZjUG9ydCA6PSAuVmFsdWVzLnNlcnZpY2UucG9ydCAtfX0Ke3stIGlmIGFuZCAuVmFsdWVzLmluZ3Jlc3MuY2xhc3NOYW1lIChub3QgKHNlbXZlckNvbXBhcmUgIj49MS4xOC0wIiAuQ2FwYWJpbGl0aWVzLkt1YmVWZXJzaW9uLkdpdFZlcnNpb24pKSB9fQogIHt7LSBpZiBub3QgKGhhc0tleSAuVmFsdWVzLmluZ3Jlc3MuYW5ub3RhdGlvbnMgImt1YmVybmV0ZXMuaW8vaW5ncmVzcy5jbGFzcyIpIH19CiAge3stICRfIDo9IHNldCAuVmFsdWVzLmluZ3Jlc3MuYW5ub3RhdGlvbnMgImt1YmVybmV0ZXMuaW8vaW5ncmVzcy5jbGFzcyIgLlZhbHVlcy5pbmdyZXNzLmNsYXNzTmFtZX19CiAge3stIGVuZCB9fQp7ey0gZW5kIH19Cnt7LSBpZiBzZW12ZXJDb21wYXJlICI+PTEuMTktMCIgLkNhcGFiaWxpdGllcy5LdWJlVmVyc2lvbi5HaXRWZXJzaW9uIC19fQphcGlWZXJzaW9uOiBuZXR3b3JraW5nLms4cy5pby92MQp7ey0gZWxzZSBpZiBzZW12ZXJDb21wYXJlICI+PTEuMTQtMCIgLkNhcGFiaWxpdGllcy5LdWJlVmVyc2lvbi5HaXRWZXJzaW9uIC19fQphcGlWZXJzaW9uOiBuZXR3b3JraW5nLms4cy5pby92MWJldGExCnt7LSBlbHNlIC19fQphcGlWZXJzaW9uOiBleHRlbnNpb25zL3YxYmV0YTEKe3stIGVuZCB9fQpraW5kOiBJbmdyZXNzCm1ldGFkYXRhOgogIG5hbWU6IHt7ICRmdWxsTmFtZSB9fQogIGxhYmVsczoKICAgIHt7LSBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLmxhYmVscyIgLiB8IG5pbmRlbnQgNCB9fQogIHt7LSB3aXRoIC5WYWx1ZXMuaW5ncmVzcy5hbm5vdGF0aW9ucyB9fQogIGFubm90YXRpb25zOgogICAge3stIHRvWWFtbCAuIHwgbmluZGVudCA0IH19CiAge3stIGVuZCB9fQpzcGVjOgogIHt7LSBpZiBhbmQgLlZhbHVlcy5pbmdyZXNzLmNsYXNzTmFtZSAoc2VtdmVyQ29tcGFyZSAiPj0xLjE4LTAiIC5DYXBhYmlsaXRpZXMuS3ViZVZlcnNpb24uR2l0VmVyc2lvbikgfX0KICBpbmdyZXNzQ2xhc3NOYW1lOiB7eyAuVmFsdWVzLmluZ3Jlc3MuY2xhc3NOYW1lIH19CiAge3stIGVuZCB9fQogIHt7LSBpZiAuVmFsdWVzLmluZ3Jlc3MudGxzIH19CiAgdGxzOgogICAge3stIHJhbmdlIC5WYWx1ZXMuaW5ncmVzcy50bHMgfX0KICAgIC0gaG9zdHM6CiAgICAgICAge3stIHJhbmdlIC5ob3N0cyB9fQogICAgICAgIC0ge3sgLiB8IHF1b3RlIH19CiAgICAgICAge3stIGVuZCB9fQogICAgICBzZWNyZXROYW1lOiB7eyAuc2VjcmV0TmFtZSB9fQogICAge3stIGVuZCB9fQogIHt7LSBlbmQgfX0KICBydWxlczoKICAgIHt7LSByYW5nZSAuVmFsdWVzLmluZ3Jlc3MuaG9zdHMgfX0KICAgIC0gaG9zdDoge3sgLmhvc3QgfCBxdW90ZSB9fQogICAgICBodHRwOgogICAgICAgIHBhdGhzOgogICAgICAgICAge3stIHJhbmdlIC5wYXRocyB9fQogICAgICAgICAgLSBwYXRoOiB7eyAucGF0aCB9fQogICAgICAgICAgICB7ey0gaWYgYW5kIC5wYXRoVHlwZSAoc2VtdmVyQ29tcGFyZSAiPj0xLjE4LTAiICQuQ2FwYWJpbGl0aWVzLkt1YmVWZXJzaW9uLkdpdFZlcnNpb24pIH19CiAgICAgICAgICAgIHBhdGhUeXBlOiB7eyAucGF0aFR5cGUgfX0KICAgICAgICAgICAge3stIGVuZCB9fQogICAgICAgICAgICBiYWNrZW5kOgogICAgICAgICAgICAgIHt7LSBpZiBzZW12ZXJDb21wYXJlICI+PTEuMTktMCIgJC5DYXBhYmlsaXRpZXMuS3ViZVZlcnNpb24uR2l0VmVyc2lvbiB9fQogICAgICAgICAgICAgIHNlcnZpY2U6CiAgICAgICAgICAgICAgICBuYW1lOiB7eyAkZnVsbE5hbWUgfX0KICAgICAgICAgICAgICAgIHBvcnQ6CiAgICAgICAgICAgICAgICAgIG51bWJlcjoge3sgJHN2Y1BvcnQgfX0KICAgICAgICAgICAgICB7ey0gZWxzZSB9fQogICAgICAgICAgICAgIHNlcnZpY2VOYW1lOiB7eyAkZnVsbE5hbWUgfX0KICAgICAgICAgICAgICBzZXJ2aWNlUG9ydDoge3sgJHN2Y1BvcnQgfX0KICAgICAgICAgICAgICB7ey0gZW5kIH19CiAgICAgICAgICB7ey0gZW5kIH19CiAgICB7ey0gZW5kIH19Cnt7LSBlbmQgfX0K"
+      },
+      {
+        "name": "templates/service.yaml",
+        "data": "YXBpVmVyc2lvbjogdjEKa2luZDogU2VydmljZQptZXRhZGF0YToKICBuYW1lOiB7eyBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLmZ1bGxuYW1lIiAuIH19CiAgbGFiZWxzOgogICAge3stIGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8ubGFiZWxzIiAuIHwgbmluZGVudCA0IH19CnNwZWM6CiAgdHlwZToge3sgLlZhbHVlcy5zZXJ2aWNlLnR5cGUgfX0KICBwb3J0czoKICAgIC0gcG9ydDoge3sgLlZhbHVlcy5zZXJ2aWNlLnBvcnQgfX0KICAgICAgdGFyZ2V0UG9ydDogaHR0cAogICAgICBwcm90b2NvbDogVENQCiAgICAgIG5hbWU6IGh0dHAKICBzZWxlY3RvcjoKICAgIHt7LSBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLnNlbGVjdG9yTGFiZWxzIiAuIHwgbmluZGVudCA0IH19Cg=="
+      },
+      {
+        "name": "templates/serviceaccount.yaml",
+        "data": "e3stIGlmIC5WYWx1ZXMuc2VydmljZUFjY291bnQuY3JlYXRlIC19fQphcGlWZXJzaW9uOiB2MQpraW5kOiBTZXJ2aWNlQWNjb3VudAptZXRhZGF0YToKICBuYW1lOiB7eyBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLnNlcnZpY2VBY2NvdW50TmFtZSIgLiB9fQogIGxhYmVsczoKICAgIHt7LSBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLmxhYmVscyIgLiB8IG5pbmRlbnQgNCB9fQogIHt7LSB3aXRoIC5WYWx1ZXMuc2VydmljZUFjY291bnQuYW5ub3RhdGlvbnMgfX0KICBhbm5vdGF0aW9uczoKICAgIHt7LSB0b1lhbWwgLiB8IG5pbmRlbnQgNCB9fQogIHt7LSBlbmQgfX0Ke3stIGVuZCB9fQo="
+      },
+      {
+        "name": "templates/tests/test-connection.yaml",
+        "data": "YXBpVmVyc2lvbjogdjEKa2luZDogUG9kCm1ldGFkYXRhOgogIG5hbWU6ICJ7eyBpbmNsdWRlICJzcHJpbmctYm9vdC1kZW1vLmZ1bGxuYW1lIiAuIH19LXRlc3QtY29ubmVjdGlvbiIKICBsYWJlbHM6CiAgICB7ey0gaW5jbHVkZSAic3ByaW5nLWJvb3QtZGVtby5sYWJlbHMiIC4gfCBuaW5kZW50IDQgfX0KICBhbm5vdGF0aW9uczoKICAgICJoZWxtLnNoL2hvb2siOiB0ZXN0CnNwZWM6CiAgY29udGFpbmVyczoKICAgIC0gbmFtZTogd2dldAogICAgICBpbWFnZTogYnVzeWJveAogICAgICBjb21tYW5kOiBbJ3dnZXQnXQogICAgICBhcmdzOiBbJ3t7IGluY2x1ZGUgInNwcmluZy1ib290LWRlbW8uZnVsbG5hbWUiIC4gfX06e3sgLlZhbHVlcy5zZXJ2aWNlLnBvcnQgfX0nXQogIHJlc3RhcnRQb2xpY3k6IE5ldmVyCg=="
+      }
+    ],
+    "values": {
+      "affinity": {},
+      "autoscaling": {
+        "enabled": false,
+        "maxReplicas": 100,
+        "minReplicas": 1,
+        "targetCPUUtilizationPercentage": 80
+      },
+      "fullnameOverride": "",
+      "image": {
+        "pullPolicy": "IfNotPresent",
+        "repository": "registry.cn-hangzhou.aliyuncs.com/gpg_dev/spring-boot-demo",
+        "tag": "0.0.2"
+      },
+      "imagePullSecrets": [],
+      "ingress": {
+        "annotations": {},
+        "className": "",
+        "enabled": false,
+        "hosts": [
+          {
+            "host": "chart-example.local",
+            "paths": [
+              {
+                "path": "/",
+                "pathType": "ImplementationSpecific"
+              }
+            ]
+          }
+        ],
+        "tls": []
+      },
+      "nameOverride": "",
+      "nodeSelector": {},
+      "podAnnotations": {},
+      "podSecurityContext": {},
+      "replicaCount": 1,
+      "resources": {},
+      "securityContext": {},
+      "service": {
+        "port": 8090,
+        "type": "ClusterIP"
+      },
+      "serviceAccount": {
+        "annotations": {},
+        "create": true,
+        "name": ""
+      },
+      "tolerations": []
+    },
+    "schema": null,
+    "files": [
+      {
+        "name": ".helmignore",
+        "data": "IyBQYXR0ZXJucyB0byBpZ25vcmUgd2hlbiBidWlsZGluZyBwYWNrYWdlcy4KIyBUaGlzIHN1cHBvcnRzIHNoZWxsIGdsb2IgbWF0Y2hpbmcsIHJlbGF0aXZlIHBhdGggbWF0Y2hpbmcsIGFuZAojIG5lZ2F0aW9uIChwcmVmaXhlZCB3aXRoICEpLiBPbmx5IG9uZSBwYXR0ZXJuIHBlciBsaW5lLgouRFNfU3RvcmUKIyBDb21tb24gVkNTIGRpcnMKLmdpdC8KLmdpdGlnbm9yZQouYnpyLwouYnpyaWdub3JlCi5oZy8KLmhnaWdub3JlCi5zdm4vCiMgQ29tbW9uIGJhY2t1cCBmaWxlcwoqLnN3cAoqLmJhawoqLnRtcAoqLm9yaWcKKn4KIyBWYXJpb3VzIElERXMKLnByb2plY3QKLmlkZWEvCioudG1wcm9qCi52c2NvZGUvCg=="
+      }
+    ]
+  },
+  "manifest": "---\n# Source: spring-boot-demo/templates/serviceaccount.yaml\napiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: spring-boot-spring-boot-demo\n  labels:\n    helm.sh/chart: spring-boot-demo-10.0.4\n    app.kubernetes.io/name: spring-boot-demo\n    app.kubernetes.io/instance: spring-boot\n    app.kubernetes.io/version: \"1.16.0\"\n    app.kubernetes.io/managed-by: Helm\n---\n# Source: spring-boot-demo/templates/service.yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: spring-boot-spring-boot-demo\n  labels:\n    helm.sh/chart: spring-boot-demo-10.0.4\n    app.kubernetes.io/name: spring-boot-demo\n    app.kubernetes.io/instance: spring-boot\n    app.kubernetes.io/version: \"1.16.0\"\n    app.kubernetes.io/managed-by: Helm\nspec:\n  type: ClusterIP\n  ports:\n    - port: 8090\n      targetPort: http\n      protocol: TCP\n      name: http\n  selector:\n    app.kubernetes.io/name: spring-boot-demo\n    app.kubernetes.io/instance: spring-boot\n---\n# Source: spring-boot-demo/templates/deployment.yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: spring-boot-spring-boot-demo\n  labels:\n    helm.sh/chart: spring-boot-demo-10.0.4\n    app.kubernetes.io/name: spring-boot-demo\n    app.kubernetes.io/instance: spring-boot\n    app.kubernetes.io/version: \"1.16.0\"\n    app.kubernetes.io/managed-by: Helm\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app.kubernetes.io/name: spring-boot-demo\n      app.kubernetes.io/instance: spring-boot\n  template:\n    metadata:\n      labels:\n        app.kubernetes.io/name: spring-boot-demo\n        app.kubernetes.io/instance: spring-boot\n    spec:\n      serviceAccountName: spring-boot-spring-boot-demo\n      securityContext:\n        {}\n      containers:\n        - name: spring-boot-demo\n          securityContext:\n            {}\n          image: \"registry.cn-hangzhou.aliyuncs.com/gpg_dev/spring-boot-demo:0.0.2\"\n          imagePullPolicy: IfNotPresent\n          ports:\n            - name: http\n              containerPort: 8090\n              protocol: TCP\n          livenessProbe:\n            httpGet:\n              path: /\n              port: http\n          readinessProbe:\n            httpGet:\n              path: /\n              port: http\n          resources:\n            {}\n",
+  "hooks": [
+    {
+      "name": "spring-boot-spring-boot-demo-test-connection",
+      "kind": "Pod",
+      "path": "spring-boot-demo/templates/tests/test-connection.yaml",
+      "manifest": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: \"spring-boot-spring-boot-demo-test-connection\"\n  labels:\n    helm.sh/chart: spring-boot-demo-10.0.4\n    app.kubernetes.io/name: spring-boot-demo\n    app.kubernetes.io/instance: spring-boot\n    app.kubernetes.io/version: \"1.16.0\"\n    app.kubernetes.io/managed-by: Helm\n  annotations:\n    \"helm.sh/hook\": test\nspec:\n  containers:\n    - name: wget\n      image: busybox\n      command: ['wget']\n      args: ['spring-boot-spring-boot-demo:8090']\n  restartPolicy: Never",
+      "events": [
+        "test"
+      ],
+      "last_run": {
+        "started_at": "",
+        "completed_at": "",
+        "phase": ""
+      }
+    }
+  ],
+  "version": 1,
+  "namespace": "demo"
+}
