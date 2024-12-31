@@ -51,6 +51,8 @@ helm install my-otel-demo open-telemetry/opentelemetry-demo
 #
 helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm install jaeger ./jaeger -n jaeger --create-namespace
+helm upgrade jaeger ./jaeger -n jaeger
+helm uninstall jaeger -n jaeger
 
 #es
 helm install elasticsearch ./elasticsearch -n elasticsearch --create-namespace
