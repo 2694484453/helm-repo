@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: spring-boot-demo-tsvc
+  namespace: demo
+spec:
+  weighted:
+    services:
+      - name: spring-boot-demo-svc
+        port: 8090
+        weight: 1          # 定义权重
+        kind: Service      # 可选，默认就是 Service

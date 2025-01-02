@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: spring-boot-demo-traefik-ingress-route
+  namespace: demo
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`spring-boot-demo.zcrjjh.com`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: spring-boot-demo-svc
+          port: http
+          kind: Service
+

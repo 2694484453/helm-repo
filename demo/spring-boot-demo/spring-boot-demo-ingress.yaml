@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-boot-demo-ingress
+  namespace: demo
+spec:
+  rules:
+    - host: spring-boot-demo.zcrjjh.com #spring-boot-demo-svc.demo.svc.cluster.local #
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: spring-boot-demo-svc
+                port:
+                  number: 8090
