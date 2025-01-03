@@ -5,10 +5,7 @@ metadata:
   namespace: opentelemetry
   labels:
     app.kubernetes.io/name: opentelemetry-operator
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: /metrics
-    prometheus.io/port: "8080"
+    release: kube-prometheus-stack
 spec:
   namespaceSelector:
     matchNames:
