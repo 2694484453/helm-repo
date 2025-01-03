@@ -1,0 +1,48 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: aggregated-trace-metrics
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: aggregated-trace-metrics
+    release: kube-prometheus-stack
+spec:
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: aggregated-trace-metrics
+  endpoints:
+    - port: aggregated-trace-metrics
+      path: /metrics
+      interval: 15s
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: aggregated-trace-metrics
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: aggregated-trace-metrics
+subsets:
+  - addresses:
+    - ip: 124.221.2.29
+    ports:
+      - name: aggregated-trace-metrics
+        port: 8889
+        protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gpu-metrics-svc
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: aggregated-trace-metrics
+spec:
+  clusterIP: None
+  ports:
+    - name: aggregated-trace-metrics
+      port: 8889
+      protocol: TCP
+      targetPort: 8889
