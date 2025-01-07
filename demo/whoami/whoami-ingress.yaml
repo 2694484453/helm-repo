@@ -4,9 +4,18 @@ metadata:
   name: whoami-ingress
   namespace: demo
 spec:
-  #ingressClassName: traefik
   rules:
-    - host: whoami.zcrjjh.com #spring-boot-demo-svc.demo.svc.cluster.local #
+    - host: whoami.zcrjjh.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80
+    - host: whoami.zcrjjh.com
       http:
         paths:
           - path: /

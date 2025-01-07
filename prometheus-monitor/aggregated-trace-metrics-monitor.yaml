@@ -18,21 +18,6 @@ spec:
       interval: 15s
 ---
 apiVersion: v1
-kind: Endpoints
-metadata:
-  name: aggregated-trace-metrics
-  namespace: monitoring
-  labels:
-    app.kubernetes.io/name: aggregated-trace-metrics
-subsets:
-  - addresses:
-    - ip: 124.221.2.29
-    ports:
-      - name: aggregated-trace-metrics
-        port: 8889
-        protocol: TCP
----
-apiVersion: v1
 kind: Service
 metadata:
   name: gpu-metrics-svc

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: endpoint-prometheus-metrics
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: prometheus-metrics
+subsets:
+  - addresses:
+      - ip: 124.221.2.29
+    ports:
+      - name: aggregated-trace-metrics
+        port: 8889
+      - name: jaeger
+        port: 188
+  - addresses:
+      - ip: 47.97.162.27
+    ports:
+      - name: traefik
+        port: 9100
