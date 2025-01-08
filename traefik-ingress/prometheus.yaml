@@ -14,5 +14,4 @@ spec:
               service:
                 name: prometheus-server
                 port:
-                  number: 9090
-
+                  name: http
