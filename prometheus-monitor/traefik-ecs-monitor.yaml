@@ -4,7 +4,7 @@ metadata:
   name: traefik-ecs
   namespace: monitoring
   labels:
-    app.kubernetes.io/name: traefik-ecs-metrics
+    app.kubernetes.io/name: traefik-ecs
 spec:
   type: ExternalName
   externalName: ecs.gpg123.vip
@@ -18,12 +18,11 @@ metadata:
   name: traefik-ecs-monitor
   namespace: monitoring
   labels:
-    app.kubernetes.io/name: traefik-ecs-metrics
-    release: kube-prometheus-stack
+    app.kubernetes.io/name: traefik-ecs
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: traefik-ecs-metrics
+      app.kubernetes.io/name: traefik-ecs
   endpoints:
     - port: traefik
       path: /metrics

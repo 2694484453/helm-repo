@@ -5,10 +5,10 @@ metadata:
   namespace: monitoring
   labels:
     app.kubernetes.io/name: spring-boot-demo
-    release: kube-prometheus-stack
 spec:
   namespaceSelector:
-    any: true
+    matchNames:
+      - demo
   selector:
     matchLabels:
       app.kubernetes.io/name: spring-boot-demo
