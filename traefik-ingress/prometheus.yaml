@@ -6,7 +6,7 @@ metadata:
 spec:
   rules:
     - host: prometheus.gpg123.vip
-    - http:
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -14,5 +14,5 @@ spec:
               service:
                 name: prometheus-server
                 port:
-                  number: 80
+                  number: 9090
 
