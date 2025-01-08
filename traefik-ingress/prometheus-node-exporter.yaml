@@ -5,7 +5,8 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-    - http:
+    - host: node-exporter.gpg123.vip
+      http:
         paths:
           - path: /
             pathType: Prefix
