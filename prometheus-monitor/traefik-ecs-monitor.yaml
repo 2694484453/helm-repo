@@ -3,23 +3,30 @@ kind: Service
 metadata:
   name: traefik-ecs
   namespace: monitoring
+  labels:
+    kubernetes.io/service-name: traefik-ecs
 spec:
-  type: ExternalName
-  externalName: ecs.gpg123.vip
+  selector:
+    app.kubernetes.io/name: traefik-ecs
   ports:
     - port: 9100
+      protocol: TCP
+      name: traefik
 ---
 apiVersion: v1
 kind: Endpoints
 metadata:
   name: traefik-ecs
   namespace: monitoring
+  labels:
+    app.kubernetes.io/name: traefik-ecs
 subsets:
   - addresses:
       - ip: 47.97.162.27
     ports:
       - port: 9100
         protocol: TCP
+        name: traefik
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -28,11 +35,10 @@ metadata:
   namespace: monitoring
   labels:
     app.kubernetes.io/name: prometheus-metrics
-    prometheus: kube-prometheus
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: prometheus-metrics
+      kubernetes.io/service-name: traefik-ecs
   endpoints:
     - port: traefik
       path: /metrics
