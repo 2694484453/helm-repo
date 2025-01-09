@@ -2,6 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: traefik-alert-rules
+  namespace: monitoring
 spec:
   groups:
     - name: Traefik

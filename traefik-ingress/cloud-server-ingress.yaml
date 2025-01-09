@@ -1,18 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: traefik-ingress
+  name: cloud-server-ingress
   namespace: monitoring
 spec:
   rules:
-    - host: traefik.server.gpg123.vip
+    - host: cloud-server.gpg123.vip
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: traefik-ecs
+                name: cloud-server
                 port:
-                  name: traefik
+                  name: http
 
