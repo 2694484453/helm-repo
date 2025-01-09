@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   rules:
-    - host: spring-boot-demo.server.gpg123.vip
+    - host: spring-boot-demo.gpg123.vip
       http:
         paths:
           - path: /

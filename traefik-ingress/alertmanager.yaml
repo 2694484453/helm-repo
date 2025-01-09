@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-    - host: alertmanager.gpg123.vip
+    - host: alertmanager.server.gpg123.vip
       http:
         paths:
           - path: /
