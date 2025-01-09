@@ -1,7 +1,7 @@
 mklink C:\Users\Administrator\.kube\config D:\project\helm-repo\config
 #安装prometheus
-helm install prometheus ./prometheus-24.3.0.tgz -n monitoring --create-namespace
-
+helm install prometheus ./prometheus-26.1.0.tgz -n monitoring --create-namespace
+helm uninstall prometheus -n monitoring
 #安装stack
 helm install kube-prometheus-stack ./kube-prometheus-stack -n monitoring
 helm upgrade kube-prometheus-stack ./kube-prometheus-stack -n monitoring
