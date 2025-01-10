@@ -15,3 +15,13 @@ spec:
                 name: prometheus-server
                 port:
                   name: http
+    - host: prometheus.gpg123.vip
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-server
+                port:
+                  name: http

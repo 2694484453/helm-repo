@@ -15,5 +15,13 @@ spec:
                 name: prometheus-alertmanager
                 port:
                   number: 9093
-
-
+    - host: alertmanager.gpg123.vip
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-alertmanager
+                port:
+                  number: 9093
