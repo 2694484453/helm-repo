@@ -1,30 +1,28 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cloud-server
+  name: node-exporter
   namespace: monitoring
   labels:
-    app.kubernetes.io/name: cloud-server
+    app.kubernetes.io/name: node-exporter
   annotations:
-    prometheus.io/path: /actuator/prometheus
     prometheus.io/scrape: 'true'
 spec:
   ports:
-    - port: 9099
-      name: metrics
-      protocol: TCP
-      targetPort: 9099
+    - protocol: TCP
+      port: 9100
+      targetPort: 9100
+      name: ecs-metrics
 ---
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: cloud-server
+  name: node-exporter
   namespace: monitoring
 subsets:
   - addresses:
       - ip: 47.97.162.27
     ports:
-      - port: 9099
+      - port: 9100
         protocol: TCP
-        name: metrics
-
+        name: ecs-metrics
