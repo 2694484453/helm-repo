@@ -5,46 +5,48 @@ metadata:
   namespace: monitoring
   labels:
     app.kubernetes.io/name: cloud-server
+  annotations:
+    prometheus.io/path: /actuator/prometheus
+    prometheus.io/scrape: 'true'
 spec:
   type: ExternalName
-  externalName: 47.97.162.27
-  clusterIP: ""
+  externalName: ecs.gpg123.vip
   ports:
     - port: 9099
       name: metrics
       protocol: TCP
       targetPort: 9099
 ---
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: cloud-server
-  namespace: monitoring
-  labels:
-    app.kubernetes.io/name: cloud-server
-subsets:
-  - addresses:
-      - ip: 47.97.162.27
-    ports:
-      - port: 9099
-        protocol: TCP
-        name: metrics
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: cloud-server-monitor
-  namespace: monitoring
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: cloud-server
-  endpoints:
-    - port: metrics
-      path: /actuator/prometheus
-      interval: 15s
-  namespaceSelector:
-    matchNames:
-      - monitoring
+#apiVersion: v1
+#kind: Endpoints
+#metadata:
+#  name: cloud-server
+#  namespace: monitoring
+#  labels:
+#    app.kubernetes.io/name: cloud-server
+#subsets:
+#  - addresses:
+#      - ip: 47.97.162.27
+#    ports:
+#      - port: 9099
+#        protocol: TCP
+#        name: metrics
+#---
+#apiVersion: monitoring.coreos.com/v1
+#kind: ServiceMonitor
+#metadata:
+#  name: cloud-server-monitor
+#  namespace: monitoring
+#spec:
+#  selector:
+#    matchLabels:
+#      app.kubernetes.io/name: cloud-server
+#  endpoints:
+#    - port: metrics
+#      path: /actuator/prometheus
+#      interval: 15s
+#  namespaceSelector:
+#    matchNames:
+#      - monitoring
 #ping cloud-server.monitoring.svc.cluster.local
 #wget

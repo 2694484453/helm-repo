@@ -5,6 +5,8 @@ metadata:
   namespace: monitoring
   labels:
     kubernetes.io/service-name: traefik-ecs
+  annotations:
+    prometheus.io/scrape: 'true'
 spec:
   selector:
     app.kubernetes.io/name: traefik-ecs
@@ -27,22 +29,3 @@ subsets:
       - port: 9100
         protocol: TCP
         name: traefik
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: traefik-ecs-monitor
-  namespace: monitoring
-  labels:
-    app.kubernetes.io/name: prometheus-metrics
-spec:
-  selector:
-    matchLabels:
-      kubernetes.io/service-name: traefik-ecs
-  endpoints:
-    - port: traefik
-      path: /metrics
-      interval: 15s
-  namespaceSelector:
-    matchNames:
-      - monitoring
