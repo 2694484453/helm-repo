@@ -10,8 +10,8 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 9100
-      targetPort: 9100
+      port: 19100
+      targetPort: 19100
       name: ecs-metrics
 ---
 apiVersion: v1
@@ -23,6 +23,6 @@ subsets:
   - addresses:
       - ip: 47.97.162.27
     ports:
-      - port: 9100
+      - port: 19100
         protocol: TCP
         name: ecs-metrics
