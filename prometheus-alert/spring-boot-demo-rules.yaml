@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: spring-boot-demo-rule
+  namespace: demo
+  labels:
+    app: spring-boot-demo
+    app.kubernetes.io/name: alertmanager
+spec:
+  groups:
+    - name: spring-boot-demo
+      rules:
+        - alert: cpuOverload
+          expr: system_cpu_usage{application="spring-boot-demo"}  >= 0.02
+          for: 1m
+          labels:
+            severity: critical
+        - alert: jvm线程数量超出15
+          expr: jvm_threads_live_threads{application="spring-boot-demo"} >= 15
+          for: 1m
+          labels:
+            severity: critical
+        - alert: jvm线程数量超出10
+          expr: jvm_threads_live_threads{application="spring-boot-demo"} >= 10
+          for: 1m
+          labels:
+            severity: warning

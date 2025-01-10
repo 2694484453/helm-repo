@@ -1,22 +1,3 @@
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: aggregated-trace-metrics
-  namespace: monitoring
-  labels:
-    app.kubernetes.io/name: aggregated-trace-metrics
-    release: kube-prometheus-stack
-spec:
-  namespaceSelector:
-    any: true
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: aggregated-trace-metrics
-  endpoints:
-    - port: aggregated-trace-metrics
-      path: /metrics
-      interval: 15s
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -31,3 +12,5 @@ spec:
       port: 8889
       protocol: TCP
       targetPort: 8889
+---
+
