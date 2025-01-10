@@ -8,8 +8,6 @@ metadata:
   annotations:
     prometheus.io/scrape: 'true'
 spec:
-  selector:
-    app.kubernetes.io/name: traefik-ecs
   ports:
     - port: 9100
       protocol: TCP
