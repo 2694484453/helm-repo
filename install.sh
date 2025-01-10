@@ -1,12 +1,18 @@
 mklink C:\Users\Administrator\.kube\config D:\project\helm-repo\config
 #安装prometheus
-helm install prometheus ./prometheus-26.1.0.tgz -n monitoring --create-namespace
+helm install prometheus ./prometheus -n monitoring --create-namespace
+helm upgrade prometheus ./prometheus -n monitoring
 helm uninstall prometheus -n monitoring
 #安装stack
 helm install kube-prometheus-stack ./kube-prometheus-stack -n monitoring
 helm upgrade kube-prometheus-stack ./kube-prometheus-stack -n monitoring
 helm uninstall kube-prometheus-stack ./kube-prometheus-stack -n monitoring
 kubectl apply -f D:\project\helm-repo\kube-prometheus-stack\charts\crds\crds --server-side
+#admisson
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm install prometheus-operator-admission-webhook ./prometheus-operator-admission-webhook -n monitoring
+helm uninstall prometheus-operator-admission-webhook -n monitoring
+
 
 #安装dashboard
 helm install kubernetes-dashboard ./kubernetes-dashboard-7.5.0.tgz -n kubernetes-dashboard --create-namespace
