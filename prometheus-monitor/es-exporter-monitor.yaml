@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: es-exporter
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: es-exporter
+  annotations:
+    prometheus.io/scrape: 'true'
+spec:
+  ports:
+    - protocol: TCP
+      port: 9108
+      targetPort: 9108
+      name: metrics
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: es-exporter
+  namespace: monitoring
+subsets:
+  - addresses:
+      - ip: 124.221.2.29
+    ports:
+      - port: 9108
+        protocol: TCP
+        name: metrics
