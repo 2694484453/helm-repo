@@ -1,16 +1,29 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gpu-metrics-svc
+  name: aggregated-trace-metrics
   namespace: monitoring
   labels:
     app.kubernetes.io/name: aggregated-trace-metrics
+  annotations:
+    prometheus.io/scrape: 'true'
 spec:
-  clusterIP: None
   ports:
     - name: aggregated-trace-metrics
       port: 8889
       protocol: TCP
       targetPort: 8889
 ---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: aggregated-trace-metrics
+  namespace: monitoring
+subsets:
+  - addresses:
+      - ip: 124.221.2.29
+    ports:
+      - port: 8889
+        protocol: TCP
+        name: aggregated-trace-metrics
 
