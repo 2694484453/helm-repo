@@ -1,4 +1,4 @@
-mklink C:\Users\Administrator\.kube\config D:\project\helm-repo\config
+mklink C:\Users\Administrator\.kube\config D:\project\helm-repo\cluster\config
 #安装prometheus
 helm install prometheus ./prometheus -n monitoring --create-namespace
 helm upgrade prometheus ./prometheus -n monitoring

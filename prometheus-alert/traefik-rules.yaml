@@ -5,13 +5,19 @@ metadata:
   namespace: monitoring
 spec:
   groups:
-    - name: traefik.rules
+    - name: traefik-demo
       rules:
         - alert: TooManyRequest
           expr: avg(traefik_entrypoint_open_connections{job="traefik-dashboard",namespace="kube-system"}) > 5
           for: 1m
           labels:
             severity: critical
+          annotations:
+            description: |
+              节点 {{$labels.instance }}
+              挂载目录 {{ $labels.mountpoint }}
+              当前可用空间 {{ printf "%.2f" $value }}%
+            summary: "111"
         - alert: HighCpuUsage
           expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
           for: 5m

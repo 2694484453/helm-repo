@@ -8,8 +8,8 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 8888
-      targetPort: 8888
+      port: 18888
+      targetPort: 18888
       name: metrics
 ---
 apiVersion: v1
@@ -21,7 +21,7 @@ subsets:
   - addresses:
       - ip: 124.221.2.29
     ports:
-      - port: 8888
+      - port: 18888
         protocol: TCP
         name: metrics
 
