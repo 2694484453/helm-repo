@@ -12,7 +12,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prometheus-alertmanager
+                name: kube-prometheus-stack-alertmanager
                 port:
                   number: 9093
     - host: alertmanager.gpg123.vip
@@ -22,6 +22,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prometheus-alertmanager
+                name: kube-prometheus-stack-alertmanager
                 port:
                   number: 9093

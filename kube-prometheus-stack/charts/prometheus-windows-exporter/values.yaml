@@ -37,9 +37,9 @@ global:
   imageRegistry: ""
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 9182
-  nodePort:
+  nodePort: 9182
   portName: metrics
   annotations: {}
 

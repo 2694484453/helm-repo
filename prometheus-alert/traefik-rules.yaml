@@ -3,9 +3,12 @@ kind: PrometheusRule
 metadata:
   name: traefik-rule
   namespace: monitoring
+  labels:
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/instance: prometheus
 spec:
   groups:
-    - name: traefik-demo
+    - name: traefik-demo.rules
       rules:
         - alert: TooManyRequest
           expr: avg(traefik_entrypoint_open_connections{job="traefik-dashboard",namespace="kube-system"}) > 5

@@ -12,9 +12,9 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prometheus-server
+                name: kube-prometheus-stack-prometheus
                 port:
-                  name: http
+                  number: 9090
     - host: prometheus.gpg123.vip
       http:
         paths:
@@ -22,6 +22,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prometheus-server
+                name: kube-prometheus-stack-prometheus
                 port:
-                  name: http
+                  number: 9090

@@ -5,6 +5,7 @@ metadata:
   namespace: monitoring
   labels:
     app.kubernetes.io/name: traefik
+    release: kube-prometheus-stack
 spec:
   namespaceSelector:
     matchNames:
@@ -16,3 +17,4 @@ spec:
     - port: metrics
       path: /metrics
       interval: 15s
+
