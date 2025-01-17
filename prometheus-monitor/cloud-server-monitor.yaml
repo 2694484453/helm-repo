@@ -43,5 +43,5 @@ spec:
   endpoints:
     - port: metrics           # 采集节点端口（svc定义）
       interval: 10s           # 采集频率根据实际需求配置，prometheus默认15s
-      path: /metrics          # 默认地址/metrics
+      path: /actuator/prometheus          # 默认地址/metrics
 
