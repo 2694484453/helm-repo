@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-    - host: prometheus.server.gpg123.vip
+    - host: prometheus.gpg123.vip
       http:
         paths:
           - path: /

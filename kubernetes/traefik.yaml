@@ -44,4 +44,11 @@ spec:
       letsencrypt:
         email: "2694484453@qq.com"
         storage: /data/acme.json
-
+    tracing:
+      otlp:
+        enabled: true
+        http:
+         enabled: true
+         endpoint: http://124.221.2.29:4318/v1/metrics
+         tls:
+           insecureSkipVerify: true

@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-    - host: traefik.server.gpg123.vip
+    - host: traefik.gpg123.vip
       http:
         paths:
           - path: /
