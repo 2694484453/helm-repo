@@ -1,28 +1,20 @@
+# helm-repo
 
-# 一级标题
+#### 介绍
+个人helm-chart仓库
 
-## 二级标题
+#### https://artifacthub.io/packages/search?ts_query_web=gpg-dev&sort=relevance&page=1
 
-### 三级标题
+#### 软件架构
+软件架构说明
+helm & kubernetes
 
-### 2.2 字体
+#### 安装教程
 
-粗体、斜体、粗体和斜体，删除线，需要在文字前后加不同的标记符号。如下：
+helm repo add gpg-dev https://helm-repo.gpg123.vip
 
-**这个是粗体**
+#### 使用说明
 
-*这个是斜体*
+helm install release gpg-dev/xxx
 
-***这个是粗体加斜体***
-
-~这里想用删除线~~
-
-注：如果想给字体换颜色、字体或者居中显示，需要使用内嵌HTML来实现。
-
-### 2.3 无序列表
-
-无序列表的使用，在符号`-`后加空格使用。如下：
-
-- 无序列表 1
-- 无序列表 2
-- 无序列表 3
+#### 参与贡献
