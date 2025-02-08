@@ -37,7 +37,7 @@ spec:
           volumeMounts:
             - mountPath: /root/.config/code-server
               name: cm
-            - mountPath: /home/coder
+            - mountPath: /home/coder/{{.Values.user}}
               name: host-code
             - mountPath: /root/.local/share/code-server
               name: host-config
