@@ -2,6 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{.Release.Name}}-ingress
+  labels:
+    app.kubernetes.io/name: {{.Release.Name}}
+    app.kubernetes.io/user: {{.Values.user}}
 spec:
   rules:
     - host: {{.Release.Name}}.ide.gpg123.vip

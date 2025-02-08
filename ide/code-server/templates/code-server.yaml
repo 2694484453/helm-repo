@@ -3,17 +3,20 @@ kind: Deployment
 metadata:
   name: {{.Release.Name}}
   labels:
-    app: {{.Release.Name}}
+    app.kubernetes.io/name: {{.Release.Name}}
+    app.kubernetes.io/user: {{.Values.user}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{.Release.Name}}
+      app.kubernetes.io/name: {{.Release.Name}}
+      app.kubernetes.io/user: {{.Values.user}}
   template:
     metadata:
       name: {{.Release.Name}}
       labels:
-        app: {{.Release.Name}}
+        app.kubernetes.io/name: {{.Release.Name}}
+        app.kubernetes.io/user: {{.Values.user}}
     spec:
       containers:
         - name: code-server
@@ -27,11 +30,10 @@ spec:
             - containerPort: 8080
               name: code-server
               protocol: TCP
+          {{- if .Values.env }}
           env:
-            - name: USER
-              value: root
-            - name: PASSWORD
-              value: root
+            {{ toYaml .Values.env | indent 12 }}
+          {{- end }}
           volumeMounts:
             - mountPath: /root/.config/code-server
               name: cm
@@ -39,6 +41,10 @@ spec:
               name: host-code
             - mountPath: /root/.local/share/code-server
               name: host-config
+              {{- range $name,$path := .Values.init }}
+            - mountPath: {{$path}}
+              name: {{$name}}
+              {{- end }}
       volumes:
         - name: cm
           configMap:
@@ -49,5 +55,9 @@ spec:
         - name: host-config
           hostPath:
             path: /home/ide/config/configData
+        {{- range $name,$path := .Values.init }}
+        - hostPath: {{$path}}
+          name: {{$name}}
+          {{- end }}
       restartPolicy: Always
 

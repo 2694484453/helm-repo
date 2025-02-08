@@ -1,1 +1,8 @@
-user: zhangsan
+#用户
+user: default
+#环境变量
+env: {}
+#初始化
+init:
+  - name: jdk8
+    path: /home/ide/config/jdk8
