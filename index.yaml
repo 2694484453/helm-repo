@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   chart-diy:
   - apiVersion: v2
-    created: "2024-12-17T08:56:41.4095407+08:00"
+    created: "2025-02-09T01:25:07.4002259+08:00"
     digest: e3d71f7e428c1ec953d88abebaac3329084cb0b593c4b44b250637eae53dd82e
     icon: https://demo.png
     name: chart-diy
@@ -12,7 +12,17 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-17T08:56:41.69439+08:00"
+    created: "2025-02-09T01:25:07.5408127+08:00"
+    description: A Helm chart for Kubernetes
+    digest: ff0e174957ae55336d1324db0c7ff87b47affa98e8021f8ade52b34dd655d170
+    name: code-server
+    type: application
+    urls:
+    - https://helm-repo.gpg123.vip/ide/code-server-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-02-09T01:25:07.5408127+08:00"
     description: A Helm chart for Kubernetes
     digest: 55c7041aa83faa8af4b4b1709a07497c87fd4194764789705a178a15913145fe
     name: code-server
@@ -20,10 +30,27 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/ide/code-server-0.1.0.tgz
     version: 0.1.0
+  elasticsearch:
+  - apiVersion: v1
+    appVersion: 8.5.1
+    created: "2025-02-09T01:25:07.4027651+08:00"
+    description: Official Elastic helm chart for Elasticsearch
+    digest: 8a5e70ec72dc480c8a01b079bf7240722da7d017f5683178e23a745d418448ba
+    home: https://github.com/elastic/helm-charts
+    icon: https://helm.elastic.co/icons/elasticsearch.png
+    maintainers:
+    - email: helm-charts@elastic.co
+      name: Elastic
+    name: elasticsearch
+    sources:
+    - https://github.com/elastic/elasticsearch
+    urls:
+    - https://helm-repo.gpg123.vip/elasticsearch-8.5.1.tgz
+    version: 8.5.1
   goland:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-17T08:56:41.700999+08:00"
+    created: "2025-02-09T01:25:07.5417992+08:00"
     description: A Helm chart for Kubernetes
     digest: 8bef1285a9041a42ba02e986097941b9ea0e9da705c184c0de8eae1d049e3001
     name: goland
@@ -34,7 +61,7 @@ entries:
   idea-c:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-17T08:56:41.7157895+08:00"
+    created: "2025-02-09T01:25:07.5423025+08:00"
     description: A Helm chart for Kubernetes
     digest: e5b57009998191171a702f0b6f8c4b8b3cc6f7f019a553fe4aedd9eb0966efc3
     name: idea-c
@@ -53,7 +80,7 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 1.9.5
-    created: "2024-12-17T08:56:41.4397075+08:00"
+    created: "2025-02-09T01:25:07.4057876+08:00"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 0e2b1dc67321c6bdc346f43d75683e09a0a4caedb6e55ea2d44d450c23655f72
@@ -76,7 +103,7 @@ entries:
   istiod:
   - apiVersion: v2
     appVersion: 1.24.0-rc.0
-    created: "2024-12-17T08:56:41.4737629+08:00"
+    created: "2025-02-09T01:25:07.4067696+08:00"
     description: Helm chart for istio control plane
     digest: ad4652fb4662da90935b20376536e865c0e656f3802964fc3e0c600cd8510d16
     icon: https://istio.io/latest/favicons/android-192x192.png
@@ -90,6 +117,56 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/istiod-1.24.0-rc.0.tgz
     version: 1.24.0-rc.0
+  jaeger:
+  - apiVersion: v2
+    appVersion: 1.53.0
+    created: "2025-02-09T01:25:07.4227423+08:00"
+    dependencies:
+    - condition: provisionDataStore.cassandra
+      name: cassandra
+      repository: https://charts.helm.sh/incubator
+      version: 0.15.3
+    - condition: provisionDataStore.elasticsearch
+      name: elasticsearch
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.0.4
+    - condition: provisionDataStore.kafka
+      name: kafka
+      repository: https://charts.bitnami.com/bitnami
+      version: 26.6.2
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    description: A Jaeger Helm chart for Kubernetes
+    digest: 12c2173b03faf892655634b72c452d11c3f78518f47b2028ba93b04fbc89ec42
+    home: https://jaegertracing.io
+    icon: https://www.jaegertracing.io/img/jaeger-icon-reverse-color.svg
+    keywords:
+    - jaeger
+    - opentracing
+    - tracing
+    - instrumentation
+    kubeVersion: '>= 1.21-0'
+    maintainers:
+    - email: david.vonthenen@dell.com
+      name: dvonthenen
+    - email: ankit.mehta@appian.com
+      name: mehta-ankit
+    - email: michael.lorant@fairfaxmedia.com.au
+      name: mikelorant
+    - email: naseem@transit.app
+      name: naseemkullah
+    - email: me@pavelnikolov.net
+      name: pavelnikolov
+    - email: jkowall@kowall.net
+      name: jkowall
+    name: jaeger
+    sources:
+    - https://hub.docker.com/u/jaegertracing/
+    type: application
+    urls:
+    - https://helm-repo.gpg123.vip/jaeger-3.3.3.tgz
+    version: 3.3.3
   kube-prometheus-stack:
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -101,7 +178,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.73.0
-    created: "2024-12-17T08:56:41.5417372+08:00"
+    created: "2025-02-09T01:25:07.4599583+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -170,7 +247,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.67.1
-    created: "2024-12-17T08:56:41.5075566+08:00"
+    created: "2025-02-09T01:25:07.4404919+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -229,7 +306,7 @@ entries:
     version: 50.3.1
   kubernetes-dashboard:
   - apiVersion: v2
-    created: "2024-12-17T08:56:41.5836146+08:00"
+    created: "2025-02-09T01:25:07.4747086+08:00"
     dependencies:
     - alias: nginx
       condition: nginx.enabled
@@ -274,7 +351,7 @@ entries:
           description: "Updated the _Metrics Server_ OCI image to [v0.7.1](https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.7.1)."
     apiVersion: v2
     appVersion: 0.7.1
-    created: "2024-12-17T08:56:41.5936827+08:00"
+    created: "2025-02-09T01:25:07.475708+08:00"
     description: Metrics Server is a scalable, efficient source of container resource
       metrics for Kubernetes built-in autoscaling pipelines.
     digest: bed08344ab4b070db463ad63c5effb2ad23a158090ffdb2c1a960895110ee12e
@@ -301,7 +378,7 @@ entries:
   opentelemetry-collector:
   - apiVersion: v2
     appVersion: 0.114.0
-    created: "2024-12-17T08:56:41.59569+08:00"
+    created: "2025-02-09T01:25:07.4787079+08:00"
     description: OpenTelemetry Collector Helm chart for Kubernetes
     digest: 5096af4358742a11ded554c821539450d465e1929b7fda0454fcfc99b7e6b031
     home: https://opentelemetry.io/
@@ -318,10 +395,51 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/opentelemetry-collector-0.110.7.tgz
     version: 0.110.7
+  opentelemetry-demo:
+  - apiVersion: v2
+    appVersion: 1.12.0
+    created: "2025-02-09T01:25:07.5082125+08:00"
+    dependencies:
+    - condition: opentelemetry-collector.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.110.3
+    - condition: jaeger.enabled
+      name: jaeger
+      repository: https://jaegertracing.github.io/helm-charts
+      version: 3.3.3
+    - condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 26.0.0
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 8.6.4
+    - condition: opensearch.enabled
+      name: opensearch
+      repository: https://opensearch-project.github.io/helm-charts
+      version: 2.27.1
+    description: opentelemetry demo helm chart
+    digest: b2f64af2c45b7683aedb7d10579b68d65da52afb7136d8ed4e567a065d32df8e
+    home: https://opentelemetry.io/
+    icon: https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png
+    maintainers:
+    - name: dmitryax
+    - name: jaronoff97
+    - name: puckpuck
+    - name: tylerhelmuth
+    name: opentelemetry-demo
+    sources:
+    - https://github.com/open-telemetry/opentelemetry-demo
+    type: application
+    urls:
+    - https://helm-repo.gpg123.vip/opentelemetry-demo-0.33.8.tgz
+    version: 0.33.8
   opentelemetry-operator:
   - apiVersion: v2
     appVersion: 0.114.1
-    created: "2024-12-17T08:56:41.6164917+08:00"
+    created: "2025-02-09T01:25:07.5137423+08:00"
     description: OpenTelemetry Operator Helm chart for Kubernetes
     digest: 791283ce2fe0b528310d2b58d396e61bff5b839672c57ebf68f5427c2648dcc2
     home: https://opentelemetry.io/
@@ -341,7 +459,7 @@ entries:
   phpstorm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-17T08:56:41.7279032+08:00"
+    created: "2025-02-09T01:25:07.5428429+08:00"
     description: A Helm chart for Kubernetes
     digest: 2a46a797eeb1ae9983574c3dc9ae2f836ba70229cd70e03328b369a05de43522
     name: phpstorm
@@ -358,8 +476,65 @@ entries:
         - name: Upstream Project
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
+    appVersion: v3.1.0
+    created: "2025-02-09T01:25:07.5317748+08:00"
+    dependencies:
+    - condition: alertmanager.enabled
+      name: alertmanager
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 1.13.*
+    - condition: kube-state-metrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 5.28.*
+    - condition: prometheus-node-exporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.43.*
+    - condition: prometheus-pushgateway.enabled
+      name: prometheus-pushgateway
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 2.16.*
+    description: Prometheus is a monitoring system and time series database.
+    digest: ff7cbe123da24e641c679924af793e0502f92f58651ccc98999a885eba5b416d
+    home: https://prometheus.io/
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - monitoring
+    - prometheus
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: naseem@transit.app
+      name: naseemkullah
+    - email: rootsandtrees@posteo.de
+      name: zeritti
+    name: prometheus
+    sources:
+    - https://github.com/prometheus/alertmanager
+    - https://github.com/prometheus/prometheus
+    - https://github.com/prometheus/pushgateway
+    - https://github.com/prometheus/node_exporter
+    - https://github.com/kubernetes/kube-state-metrics
+    type: application
+    urls:
+    - https://helm-repo.gpg123.vip/prometheus-26.1.0.tgz
+    version: 26.1.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus/prometheus
+    apiVersion: v2
     appVersion: v2.55.0
-    created: "2024-12-17T08:56:41.6391905+08:00"
+    created: "2025-02-09T01:25:07.5242736+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -416,7 +591,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.46.0
-    created: "2024-12-17T08:56:41.6265973+08:00"
+    created: "2025-02-09T01:25:07.5197424+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -464,10 +639,41 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/prometheus-24.3.0.tgz
     version: 24.3.0
+  prometheus-operator-admission-webhook:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/prometheus-operator
+    apiVersion: v2
+    appVersion: 0.79.2
+    created: "2025-02-09T01:25:07.5327918+08:00"
+    description: Prometheus Operator Admission Webhook
+    digest: 1a3f10e238780280fb043b9c427d0c487163bb229e05fef109c2d3aa6c0a6a78
+    home: https://github.com/prometheus-operator/prometheus-operator
+    icon: https://github.com/prometheus-operator/prometheus-operator/raw/main/Documentation/logos/prometheus-operator-logo.png
+    keywords:
+    - admission
+    - monitoring
+    - prometheus-operator
+    - webhook
+    maintainers:
+    - email: rootsandtrees@posteo.de
+      name: zeritti
+    name: prometheus-operator-admission-webhook
+    sources:
+    - https://github.com/prometheus-operator/prometheus-operator
+    - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-operator-admission-webhook
+    type: application
+    urls:
+    - https://helm-repo.gpg123.vip/prometheus-operator-admission-webhook-0.18.1.tgz
+    version: 0.18.1
   skywalking:
   - apiVersion: v2
     appVersion: 8.9.1
-    created: "2024-12-17T08:56:41.6468679+08:00"
+    created: "2025-02-09T01:25:07.5337968+08:00"
     description: Apache SkyWalking APM System
     digest: 56ee5df7ced4cf2ccf8d11b3448149ccf16ca179ad93e86c01ad80dbadedf860
     home: https://skywalking.apache.org
@@ -499,7 +705,7 @@ entries:
         traefik docker tag to v3.1.1\"\n"
     apiVersion: v2
     appVersion: v3.1.2
-    created: "2024-12-17T08:56:41.6640845+08:00"
+    created: "2025-02-09T01:25:07.5398145+08:00"
     description: A Traefik based Kubernetes ingress controller
     digest: 6ee300287c633830a8c88efa1349a0892491c7b1d4bdd3327dc3068e14daede9
     home: https://traefik.io/
@@ -525,4 +731,4 @@ entries:
     urls:
     - https://helm-repo.gpg123.vip/traefik-30.1.0.tgz
     version: 30.1.0
-generated: "2024-12-17T08:56:41.397798+08:00"
+generated: "2025-02-09T01:25:07.4002259+08:00"
