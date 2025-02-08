@@ -1,5 +1,3 @@
-# helm-repo
-
 #### 介绍
 个人helm-chart仓库
 
