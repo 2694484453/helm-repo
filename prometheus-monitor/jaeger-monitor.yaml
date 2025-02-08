@@ -3,13 +3,13 @@ kind: Service
 metadata:
   name: jaeger
   namespace: monitoring
-  annotations:
-    prometheus.io/scrape: 'true'
+  labels:
+    app.kubernetes.io/name: jaeger
 spec:
   ports:
     - protocol: TCP
-      port: 18888
-      targetPort: 18888
+      port: 8888
+      targetPort: 8888
       name: metrics
 ---
 apiVersion: v1
@@ -19,9 +19,29 @@ metadata:
   namespace: monitoring
 subsets:
   - addresses:
-      - ip: 124.221.2.29
+      - ip: 47.97.162.27
     ports:
-      - port: 18888
+      - port: 8888
         protocol: TCP
         name: metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jaeger
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: jaeger
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:            # Service选择器
+      app.kubernetes.io/name: jaeger
+  namespaceSelector:        # Namespace选择器
+    matchNames:
+      - monitoring
+  endpoints:
+    - port: metrics           # 采集节点端口（svc定义）
+      interval: 10s           # 采集频率根据实际需求配置，prometheus默认15s
+      path: /metrics       # 默认地址/metrics
 

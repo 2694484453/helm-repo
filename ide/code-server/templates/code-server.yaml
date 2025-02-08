@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: code-server
+  name: {{.Release.Name}}
   labels:
-    app: code-server
+    app: {{.Release.Name}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: code-server
+      app: {{.Release.Name}}
   template:
     metadata:
-      name: code-server
+      name: {{.Release.Name}}
       labels:
-        app: code-server
+        app: {{.Release.Name}}
     spec:
       containers:
         - name: code-server
@@ -42,12 +42,12 @@ spec:
       volumes:
         - name: cm
           configMap:
-            name: code-server-cm
+            name: {{.Release.Name}}-cm
         - name: host-code
           hostPath:
-            path: /home/ide/code-server/coder
+            path: /home/ide/userData/{{.Values.user}}
         - name: host-config
           hostPath:
-            path: /home/ide/code-server/configData
+            path: /home/ide/config/configData
       restartPolicy: Always
 
