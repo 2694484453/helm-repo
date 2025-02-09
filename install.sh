@@ -69,3 +69,4 @@ helm uninstall elasticsearch -n elasticsearch
 
 #ide
 helm install --set user=admin cloud-server gpg_dev/code-server --version 1.0.0 -n ide --create-namespace
+helm uninstall cloud-server -n ide
