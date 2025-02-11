@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: opentelemetry
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: opentelemetry
+spec:
+  ports:
+    - protocol: TCP
+      port: 8888
+      targetPort: 8888
+      name: metrics
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: opentelemetry
+  namespace: monitoring
+subsets:
+  - addresses:
+      - ip: 124.221.2.29
+    ports:
+      - port: 8888
+        protocol: TCP
+        name: metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: opentelemetry
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: opentelemetry
+    release: kube-prometheus-stack
+spec:
+  namespaceSelector:
+    matchNames:
+      - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opentelemetry
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15s
