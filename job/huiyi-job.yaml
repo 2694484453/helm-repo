@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mysql-job
+spec:
+  template:
+    metadata:
+      name: myjob
+    spec:
+      containers:
+        - name: mysql-client
+          image: arey/mysql-client:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MYSQL_HOST
+              value: "mysql8-jds.mysql8-jds.svc.cluster.local"
+            - name: MYSQL_PORT
+              value: "3308"
+            - name: MYSQL_DB
+              value: "kz_huiyi"
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PWD
+              value: root
+            - name: SQL_NAME
+              value: init.sql
+          command: [ "sh","-c","echo \"starting init mysql...\" && cd /sql && mysql -h $MYSQL_HOST -P $MYSQL_PORT -u $MYSQL_USER -p$MYSQL_PWD -e \"CREATE DATABASE IF NOT EXISTS kz_huiyi;\" && mysql -h $MYSQL_HOST -P $MYSQL_PORT -u $MYSQL_USER -p$MYSQL_PWD --default-character-set=utf8 $MYSQL_DB < ./$SQL_NAME && echo \"init has done...\"" ]
+          #command: [ "sh","-c","sleep 9999" ]
+      restartPolicy: OnFailure
