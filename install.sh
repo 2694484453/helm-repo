@@ -6,7 +6,7 @@ helm uninstall prometheus -n monitoring
 kubectl delete ns monitoring
 kubectl create ns monitoring
 #安装stack
-helm install kube-prometheus-stack ./kube-prometheus-stack -n monitoring
+helm install kube-prometheus-stack ./kube-prometheus-stack -n monitoring --create-namespace
 helm upgrade kube-prometheus-stack ./kube-prometheus-stack -n monitoring
 helm uninstall kube-prometheus-stack ./kube-prometheus-stack -n monitoring
 kubectl apply -f D:\project\helm-repo\kube-prometheus-stack\charts\crds\crds --server-side
