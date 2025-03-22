@@ -2066,7 +2066,7 @@ nodeExporter:
     linux:
       enabled: true
     darwin:
-      enabled: true
+      enabled: false
 
   ## ForceDeployDashboard Create dashboard configmap even if nodeExporter deployment has been disabled
   ##
