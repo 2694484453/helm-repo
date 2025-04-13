@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cloud-server-deploy
+  namespace: cloud-server
   labels:
     app: cloud-server
 spec:
@@ -17,7 +18,7 @@ spec:
     spec:
       containers:
         - name: cloud-server
-          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/cloud-server:2025-04-11-03-00-02
+          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/cloud-server:2025-04-14-01-04-42
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9099

@@ -73,4 +73,5 @@ helm uninstall cloud-server -n ide
 
 #
 helm install cloud-server cloud-server -n cloud-server --create-namespace
+helm upgrade cloud-server cloud-server -n cloud-server
 helm uninstall cloud-server -n cloud-server
