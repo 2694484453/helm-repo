@@ -4,7 +4,7 @@ metadata:
   name: cloud-server-ingress
 spec:
   rules:
-    - host: my-server.gpg123.vip
+    - host: cloud-server.gpg123.vip
       http:
         paths:
           - path: /
