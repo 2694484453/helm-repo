@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-server-deploy
+  labels:
+    app: cloud-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cloud-server
+  template:
+    metadata:
+      name: cloud-server
+      labels:
+        app: cloud-server
+    spec:
+      containers:
+        - name: cloud-server
+          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/cloud-server:2025-04-11-03-00-02
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9099
+              protocol: TCP
+      restartPolicy: Always
+      
