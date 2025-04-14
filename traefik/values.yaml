@@ -4,9 +4,9 @@
 
 image:
   # -- Traefik image host registry
-  registry: dockerpull.com
+  registry: docker.io
   # -- Traefik image repository
-  repository: traefik
+  repository: rancher/mirrored-library-traefik
   # -- defaults to appVersion
   tag:
   # -- Traefik image pull policy
