@@ -53,10 +53,10 @@ helm install opentelemetry-collector ./opentelemetry-collector -n opentelemetry 
 helm upgrade opentelemetry-collector ./opentelemetry-collector -n opentelemetry -f ./opentelemetry-collector/values.yaml
 helm uninstall opentelemetry-collector ./opentelemetry-collector -n opentelemetry
 
-#
+#otel
 helm install my-otel-demo open-telemetry/opentelemetry-demo
 
-#
+# jaeger
 helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm install jaeger ./jaeger -n jaeger --create-namespace
 helm upgrade jaeger ./jaeger -n jaeger
@@ -71,7 +71,10 @@ helm uninstall elasticsearch -n elasticsearch
 helm install --set user=admin cloud-server gpg_dev/code-server --version 1.0.0 -n ide --create-namespace
 helm uninstall cloud-server -n ide
 
-#
+#cloud-server
 helm install cloud-server cloud-server -n cloud-server --create-namespace
 helm upgrade cloud-server cloud-server -n cloud-server
 helm uninstall cloud-server -n cloud-server
+
+#traefik
+helm upgrade traefik ./traefik -n kube-system

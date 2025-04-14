@@ -183,7 +183,7 @@
           {{- end }}
           - "--api.dashboard=true"
           - "--ping=true"
-
+          - "--api.insecure=true"
           {{- with .Values.core }}
            {{- with .defaultRuleSyntax }}
           - "--core.defaultRuleSyntax={{ . }}"
