@@ -19,7 +19,7 @@ metadata:
   namespace: monitoring
 subsets:
   - addresses:
-      - ip: 124.221.2.29
+      - ip: 110.42.40.8
     ports:
       - port: 8888
         protocol: TCP
