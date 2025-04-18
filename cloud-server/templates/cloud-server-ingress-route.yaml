@@ -11,7 +11,7 @@ spec:
     - match: Host(`cloud-server-k8s.gpg123.vip`)
       kind: Rule
       services:
-        - name: cloud-server
+        - name: cloud-server-service
           port: 9099
   tls:
     certResolver: "myCertResolver"  # 引用 Let's Encrypt 解析器[9](@ref)
