@@ -5,6 +5,7 @@ metadata:
   name: cloud-server-ingress-route
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
     - match: Host(`cloud-server-k8s.gpg123.vip`)
@@ -13,8 +14,4 @@ spec:
         - name: cloud-server
           port: 9099
   tls:
-    certResolver: le  # 引用 Let's Encrypt 解析器[9](@ref)
-    domains:
-      - main: "gpg123.vip"
-        sans:
-          - "*.gpg123.vip"  # 支持泛域名
+    certResolver: "myCertResolver"  # 引用 Let's Encrypt 解析器[9](@ref)

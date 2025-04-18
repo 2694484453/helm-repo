@@ -565,9 +565,9 @@ globalArguments:
 # See [CLI Reference](https://docs.traefik.io/reference/static-configuration/cli/)
 # Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
 additionalArguments:
-  - "--certificatesResolvers.letsencrypt.acme.email=2694484453@qq.com"
-  - "--certificatesResolvers.letsencrypt.acme.storage=/data/acme.json"
-  - "--certificatesResolvers.letsencrypt.acme.httpChallenge.entryPoint=web"
+  - "--certificatesResolvers.myCertResolver.acme.email=2694484453@qq.com"
+  - "--certificatesResolvers.myCertResolver.acme.storage=/data/acme.json"
+  - "--certificatesResolvers.myCertResolver.acme.httpChallenge.entryPoint=web"
 
 # -- Environment variables to be passed to Traefik's binary
 # @default -- See _values.yaml_
