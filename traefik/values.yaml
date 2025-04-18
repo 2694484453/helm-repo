@@ -152,16 +152,16 @@ gateway:
       namespacePolicy:
     # websecure listener is disabled by default because certificateRefs needs to be added,
     # or you may specify TLS protocol with Passthrough mode and add "--providers.kubernetesGateway.experimentalChannel=true" in additionalArguments section.
-    # websecure:
+    websecure:
     #   # -- Port is the network port. Multiple listeners may use the same port, subject to the Listener compatibility rules.
     #   # The port must match a port declared in ports section.
-    #   port: 8443
+      port: 8443
     #   # -- Optional hostname. See [Hostname](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.Hostname)
     #   hostname:
     #   # Specify expected protocol on this listener See [ProtocolType](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.ProtocolType)
-    #   protocol: HTTPS
+      protocol: HTTPS
     #   # -- Routes are restricted to namespace of the gateway [by default](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.FromNamespaces)
-    #   namespacePolicy:
+      namespacePolicy:
     #   # -- Add certificates for TLS or HTTPS protocols. See [GatewayTLSConfig](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1.GatewayTLSConfig)
     #   certificateRefs:
     #   # -- TLS behavior for the TLS session initiated by the client. See [TLSModeType](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.TLSModeType).
@@ -343,7 +343,7 @@ logs:
     # noColor: true
   access:
     # -- To enable access logs
-    enabled: false
+    enabled: true
     # -- Set [access log format](https://doc.traefik.io/traefik/observability/access-logs/#format)
     format:
     # filePath: "/var/log/traefik/access.log
@@ -399,7 +399,7 @@ metrics:
     disableAPICheck:
     serviceMonitor:
       # -- Enable optional CR for Prometheus Operator. See EXAMPLES.md for more details.
-      enabled: false
+      enabled: true
       metricRelabelings:
       relabelings:
       jobLabel:
@@ -414,7 +414,7 @@ metrics:
       namespaceSelector:
     prometheusRule:
       # -- Enable optional CR for Prometheus Operator. See EXAMPLES.md for more details.
-      enabled: false
+      enabled: true
       additionalLabels:
       namespace:
 
@@ -565,9 +565,9 @@ globalArguments:
 # See [CLI Reference](https://docs.traefik.io/reference/static-configuration/cli/)
 # Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
 additionalArguments:
-  - "--certificatesresolvers.letsencrypt.acme.email=2694484453@qq.com"
-  - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
-  - "--certificatesresolvers.letsencrypt.acme.httpChallenge.entryPoint=web"
+  - "--certificatesResolvers.letsencrypt.acme.email=2694484453@qq.com"
+  - "--certificatesResolvers.letsencrypt.acme.storage=/data/acme.json"
+  - "--certificatesResolvers.letsencrypt.acme.httpChallenge.entryPoint=web"
 
 # -- Environment variables to be passed to Traefik's binary
 # @default -- See _values.yaml_
@@ -683,14 +683,14 @@ ports:
     # advertisedPort: 4443
     #
     # -- Trust forwarded headers information (X-Forwarded-*).
-    # forwardedHeaders:
+    forwardedHeaders:
     #   trustedIPs: []
-    #   insecure: false
+      insecure: true
     #
     # -- Enable the Proxy Protocol header parsing for the entry point
-    # proxyProtocol:
+    proxyProtocol:
     #   trustedIPs: []
-    #   insecure: false
+      insecure: true
     #
     # -- Set transport settings for the entrypoint; see also
     # https://doc.traefik.io/traefik/routing/entrypoints/#transport
