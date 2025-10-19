@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: local-node-exporter
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: local-node-exporter
+    release: kube-prometheus-stack
+spec:
+  ports:
+    - protocol: TCP
+      port: 9100
+      targetPort: 9100
+      name: metrics
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: local-node-exporter
+  namespace: monitoring
+subsets:
+  - addresses:
+      - ip: node-exporter.nas.gpg123.vip
+    ports:
+      - port: 9100
+        protocol: TCP
+        name: metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: local-node-exporter
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: local-node-exporter
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:            # Service选择器
+      app.kubernetes.io/name: local-node-exporter
+  namespaceSelector:        # Namespace选择器
+    matchNames:
+      - monitoring
+  endpoints:
+    - port: metrics           # 采集节点端口（svc定义）
+      interval: 10s           # 采集频率根据实际需求配置，prometheus默认15s
+      path: /metrics          # 默认地址/metrics
