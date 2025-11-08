@@ -78,3 +78,6 @@ helm uninstall cloud-server -n cloud-server
 
 #traefik
 helm upgrade traefik ./traefik -n kube-system
+
+#安装crd
+kubectl create -f prometheus-operator-crd
