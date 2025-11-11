@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coredns-exporter-service
+  namespace: kube-system
+  labels:
+    k8s-app: kube-dns
+    kubernetes.io/name: CoreDNS
+spec:
+  selector:
+    k8s-app: kube-dns
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: metrics
+      name: metrics
+      nodePort: 9153
+  type: NodePort
+  
