@@ -11,7 +11,7 @@ spec:
     k8s-app: kube-dns
   ports:
     - protocol: TCP
-      port: 80
+      port: 9153
       targetPort: metrics
       name: metrics
       nodePort: 9153
