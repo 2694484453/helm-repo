@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   chart-diy:
   - apiVersion: v2
-    created: "2025-04-19T01:25:30.181974+08:00"
+    created: "2025-11-15T14:35:13.641541+08:00"
     digest: e3d71f7e428c1ec953d88abebaac3329084cb0b593c4b44b250637eae53dd82e
     icon: https://demo.png
     name: chart-diy
@@ -12,7 +12,7 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-04-19T01:25:30.290232+08:00"
+    created: "2025-11-15T14:35:13.758972+08:00"
     description: A Helm chart for Kubernetes
     digest: ea3316bd97dbcdb74f18be074ec97f4cf2606f23dbed889b3ae41d689af825d5
     name: code-server
@@ -22,7 +22,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-04-19T01:25:30.289691+08:00"
+    created: "2025-11-15T14:35:13.758538+08:00"
     description: A Helm chart for Kubernetes
     digest: 55c7041aa83faa8af4b4b1709a07497c87fd4194764789705a178a15913145fe
     name: code-server
@@ -33,7 +33,7 @@ entries:
   elasticsearch:
   - apiVersion: v1
     appVersion: 8.5.1
-    created: "2025-04-19T01:25:30.183537+08:00"
+    created: "2025-11-15T14:35:13.643304+08:00"
     description: Official Elastic helm chart for Elasticsearch
     digest: 8a5e70ec72dc480c8a01b079bf7240722da7d017f5683178e23a745d418448ba
     home: https://github.com/elastic/helm-charts
@@ -50,7 +50,7 @@ entries:
   goland:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-04-19T01:25:30.290886+08:00"
+    created: "2025-11-15T14:35:13.759502+08:00"
     description: A Helm chart for Kubernetes
     digest: 8bef1285a9041a42ba02e986097941b9ea0e9da705c184c0de8eae1d049e3001
     name: goland
@@ -61,7 +61,7 @@ entries:
   idea-c:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-04-19T01:25:30.291523+08:00"
+    created: "2025-11-15T14:35:13.760076+08:00"
     description: A Helm chart for Kubernetes
     digest: e5b57009998191171a702f0b6f8c4b8b3cc6f7f019a553fe4aedd9eb0966efc3
     name: idea-c
@@ -80,7 +80,7 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 1.9.5
-    created: "2025-04-19T01:25:30.185959+08:00"
+    created: "2025-11-15T14:35:13.647191+08:00"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 0e2b1dc67321c6bdc346f43d75683e09a0a4caedb6e55ea2d44d450c23655f72
@@ -103,7 +103,7 @@ entries:
   istiod:
   - apiVersion: v2
     appVersion: 1.24.0-rc.0
-    created: "2025-04-19T01:25:30.187592+08:00"
+    created: "2025-11-15T14:35:13.648904+08:00"
     description: Helm chart for istio control plane
     digest: ad4652fb4662da90935b20376536e865c0e656f3802964fc3e0c600cd8510d16
     icon: https://istio.io/latest/favicons/android-192x192.png
@@ -120,7 +120,7 @@ entries:
   jaeger:
   - apiVersion: v2
     appVersion: 1.53.0
-    created: "2025-04-19T01:25:30.200038+08:00"
+    created: "2025-11-15T14:35:13.662298+08:00"
     dependencies:
     - condition: provisionDataStore.cassandra
       name: cassandra
@@ -178,7 +178,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.73.0
-    created: "2025-04-19T01:25:30.228166+08:00"
+    created: "2025-11-15T14:35:13.690751+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -247,7 +247,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: v0.67.1
-    created: "2025-04-19T01:25:30.213883+08:00"
+    created: "2025-11-15T14:35:13.676805+08:00"
     dependencies:
     - condition: crds.enabled
       name: crds
@@ -306,7 +306,7 @@ entries:
     version: 50.3.1
   kubernetes-dashboard:
   - apiVersion: v2
-    created: "2025-04-19T01:25:30.237883+08:00"
+    created: "2025-11-15T14:35:13.702605+08:00"
     dependencies:
     - alias: nginx
       condition: nginx.enabled
@@ -351,7 +351,7 @@ entries:
           description: "Updated the _Metrics Server_ OCI image to [v0.7.1](https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.7.1)."
     apiVersion: v2
     appVersion: 0.7.1
-    created: "2025-04-19T01:25:30.238969+08:00"
+    created: "2025-11-15T14:35:13.703604+08:00"
     description: Metrics Server is a scalable, efficient source of container resource
       metrics for Kubernetes built-in autoscaling pipelines.
     digest: bed08344ab4b070db463ad63c5effb2ad23a158090ffdb2c1a960895110ee12e
@@ -378,7 +378,7 @@ entries:
   opentelemetry-collector:
   - apiVersion: v2
     appVersion: 0.114.0
-    created: "2025-04-19T01:25:30.24066+08:00"
+    created: "2025-11-15T14:35:13.705373+08:00"
     description: OpenTelemetry Collector Helm chart for Kubernetes
     digest: 5096af4358742a11ded554c821539450d465e1929b7fda0454fcfc99b7e6b031
     home: https://opentelemetry.io/
@@ -398,7 +398,7 @@ entries:
   opentelemetry-demo:
   - apiVersion: v2
     appVersion: 1.12.0
-    created: "2025-04-19T01:25:30.261841+08:00"
+    created: "2025-11-15T14:35:13.727917+08:00"
     dependencies:
     - condition: opentelemetry-collector.enabled
       name: opentelemetry-collector
@@ -439,7 +439,7 @@ entries:
   opentelemetry-operator:
   - apiVersion: v2
     appVersion: 0.114.1
-    created: "2025-04-19T01:25:30.265221+08:00"
+    created: "2025-11-15T14:35:13.732452+08:00"
     description: OpenTelemetry Operator Helm chart for Kubernetes
     digest: 791283ce2fe0b528310d2b58d396e61bff5b839672c57ebf68f5427c2648dcc2
     home: https://opentelemetry.io/
@@ -459,7 +459,7 @@ entries:
   phpstorm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-04-19T01:25:30.292153+08:00"
+    created: "2025-11-15T14:35:13.760635+08:00"
     description: A Helm chart for Kubernetes
     digest: 2a46a797eeb1ae9983574c3dc9ae2f836ba70229cd70e03328b369a05de43522
     name: phpstorm
@@ -477,7 +477,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v3.1.0
-    created: "2025-04-19T01:25:30.277162+08:00"
+    created: "2025-11-15T14:35:13.745678+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -534,7 +534,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.55.0
-    created: "2025-04-19T01:25:30.272768+08:00"
+    created: "2025-11-15T14:35:13.740924+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -591,7 +591,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.46.0
-    created: "2025-04-19T01:25:30.268922+08:00"
+    created: "2025-11-15T14:35:13.736256+08:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -649,7 +649,7 @@ entries:
           url: https://github.com/prometheus-operator/prometheus-operator
     apiVersion: v2
     appVersion: 0.79.2
-    created: "2025-04-19T01:25:30.277985+08:00"
+    created: "2025-11-15T14:35:13.74655+08:00"
     description: Prometheus Operator Admission Webhook
     digest: 1a3f10e238780280fb043b9c427d0c487163bb229e05fef109c2d3aa6c0a6a78
     home: https://github.com/prometheus-operator/prometheus-operator
@@ -673,7 +673,7 @@ entries:
   skywalking:
   - apiVersion: v2
     appVersion: 8.9.1
-    created: "2025-04-19T01:25:30.2793+08:00"
+    created: "2025-11-15T14:35:13.747825+08:00"
     description: Apache SkyWalking APM System
     digest: 56ee5df7ced4cf2ccf8d11b3448149ccf16ca179ad93e86c01ad80dbadedf860
     home: https://skywalking.apache.org
@@ -705,7 +705,7 @@ entries:
         traefik docker tag to v3.1.1\"\n"
     apiVersion: v2
     appVersion: v3.1.2
-    created: "2025-04-19T01:25:30.289093+08:00"
+    created: "2025-11-15T14:35:13.757812+08:00"
     description: A Traefik based Kubernetes ingress controller
     digest: 6ee300287c633830a8c88efa1349a0892491c7b1d4bdd3327dc3068e14daede9
     home: https://traefik.io/
@@ -740,7 +740,7 @@ entries:
         traefik docker tag to v3.1.1\"\n"
     apiVersion: v2
     appVersion: v3.1.2
-    created: "2025-04-19T01:25:30.283562+08:00"
+    created: "2025-11-15T14:35:13.752743+08:00"
     description: A Traefik based Kubernetes ingress controller
     digest: f915ccb83343e297e6758f62eabd7c0c5f8f7eca9d7b208beef5ba7441136b3f
     home: https://traefik.io/
@@ -766,4 +766,15 @@ entries:
     urls:
     - traefik-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-19T01:25:30.178857+08:00"
+  whoami-demo:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-11-15T14:35:13.757911+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 1ff7cdd4f6e92c187ec884d166a90356e54b6da2247237b7f41ac24d3f95611a
+    name: whoami-demo
+    type: application
+    urls:
+    - whoami-demo-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-11-15T14:35:13.637941+08:00"
