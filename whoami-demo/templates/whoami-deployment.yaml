@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: containous/whoami
+          image: {{.Values.images}}
           ports:
             - name: web
               containerPort: 80
