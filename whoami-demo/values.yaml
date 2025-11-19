@@ -1,1 +1,2 @@
 image: containous/whoami
+replicas: 1
