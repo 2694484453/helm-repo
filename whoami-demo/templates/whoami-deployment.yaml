@@ -2,7 +2,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: whoami
-  namespace: demo
   labels:
     app: whoami
 spec:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: {{.Values.images}}
+          image: {{.Values.image}}
           ports:
             - name: web
               containerPort: 80
