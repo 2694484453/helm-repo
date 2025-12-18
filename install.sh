@@ -19,6 +19,7 @@ helm uninstall prometheus-operator-admission-webhook -n monitoring
 #安装dashboard
 helm install kubernetes-dashboard ./kubernetes-dashboard-7.5.0.tgz -n kubernetes-dashboard --create-namespace
 helm install kubernetes-dashboard ./kubernetes-dashboard -n kubernetes-dashboard --create-namespace
+helm upgrade kubernetes-dashboard ./kubernetes-dashboard -n kubernetes-dashboard
 helm uninstall kubernetes-dashboard -n kubernetes-dashboard
 
 #

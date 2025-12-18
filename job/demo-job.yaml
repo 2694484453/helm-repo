@@ -2,14 +2,82 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: my-job-demo
+  namespace: devops
 spec:
   template:
     metadata:
       name: my-job-demo
     spec:
       containers:
-        - name: my-job-demo
-          image: busybox
+        - name: git
+          image: alpine/git:v2.49.1
           imagePullPolicy: IfNotPresent
-          command: [ "sh","-c","echo '123-hahaha'" ]
+          env:
+            - name: GIT_NAME
+              value: "cloud-server"
+            - name: GIT_URL
+              value: "https://codeup.aliyun.com/63b19ef08de0fe7a6554f8c1/cloud-platform/cloud-server.git" #${GIT_BRANCH}
+            - name: GIT_BRANCH
+              value: "master"
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "cd /home && git clone -b $GIT_BRANCH $GIT_URL"
+          volumeMounts:
+            - mountPath: "/home"
+              name: data
+            - mountPath: "/root/.git-credentials"
+              name: git-cred
+        - name: my-job-demo
+          image: registry.cn-hangzhou.aliyuncs.com/gpg_dev/docker-java8-maven
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GIT_NAME
+              value: "cloud-server"
+            - name: GIT_URL
+              value: "https://codeup.aliyun.com/63b19ef08de0fe7a6554f8c1/cloud-platform/cloud-server.git"
+            - name: GIT_BRANCH
+              value: "master"
+          command: [ "sh","-c","cd /home/$GIT_NAME && mvn clean && mvn build" ]
+          volumeMounts:
+            - mountPath: "/home"
+              name: data
+            - mountPath: "/root/.m2"
+              name: maven
+        - name: docker
+          image: docker:latest
+          env:
+            - name: GIT_NAME
+              value: "cloud-server"
+            - name: IMAGE_NAME
+              value: "registry.cn-hangzhou.aliyuncs.com/gpg_dev/cloud-server"
+            - name: IMAGE_VERSION
+              value: "demo"
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "cd /home/$GIT_NAME && docker build --tag $IMAGE_NAME:$IMAGE_VERSION ."
+          volumeMounts:
+            - mountPath: "/run/docker.sock"
+              name: docker-sock
+            - mountPath: "/usr/local/bin/docker"
+              name: docker-cli
+            - mountPath: "/home"
+              name: data
+      volumes:
+        - name: maven
+          hostPath:
+            path: "/root/.m2"
+        - name: docker-sock
+          hostPath:
+            path: "/run/docker.sock"
+        - name: docker-cli
+          hostPath:
+            path: "/usr/local/bin/docker"
+        - name: git-cred
+          hostPath:
+            path: "/root/.git-credentials"
+        - name: data
+          emptyDir:
+            sizeLimit: 1Gi
       restartPolicy: Never
