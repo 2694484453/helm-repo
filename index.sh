@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 echo "开始准备更新...";
-helm repo index ../helm-repo --url https://helm-repo.gpg123.vip
+helm repo index ../helm-repo --url https://helm-repo.gpg123.vip --json
 echo "更新完成!"
